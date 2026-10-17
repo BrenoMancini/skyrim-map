@@ -1,0 +1,55 @@
+[
+  { "id": "mine_iron_breaker", "cat": "ore", "sub": "iron", "x": 722, "y": 162, "hold": "the_pale", "tags": ["iron", "mine"],
+    "name": { "en": "Iron-Breaker Mine", "pt": "Mina Iron-Breaker" }, "desc": { "en": "Dawnstar. ~6 iron veins, smelter outside.", "pt": "Dawnstar. ~6 veios de ferro, fundição do lado de fora." }, "approx": true },
+  { "id": "mine_quicksilver", "cat": "ore", "sub": "quicksilver", "x": 740, "y": 158, "hold": "the_pale", "tags": ["quicksilver", "mine"],
+    "name": { "en": "Quicksilver Mine", "pt": "Mina Quicksilver" }, "desc": { "en": "Dawnstar. The only dedicated quicksilver mine in Skyrim, ~7 veins.", "pt": "Dawnstar. Única mina dedicada de mercúrio em Skyrim, ~7 veios." }, "approx": true },
+  { "id": "mine_rockwallow", "cat": "ore", "sub": "iron", "x": 592, "y": 296, "hold": "hjaalmarch", "tags": ["iron", "mine"],
+    "name": { "en": "Rockwallow Mine", "pt": "Mina Rockwallow" }, "desc": { "en": "Stonehills. Iron veins.", "pt": "Stonehills. Veios de ferro." }, "approx": true },
+  { "id": "mine_halted_stream", "cat": "ore", "sub": "iron", "x": 703, "y": 372, "hold": "whiterun", "tags": ["iron", "mine", "bandits"],
+    "name": { "en": "Halted Stream Camp (iron)", "pt": "Halted Stream Camp (ferro)" }, "desc": { "en": "Bandit camp, ~16 iron veins. Spell book Transmute Mineral Ore (iron → silver → gold).", "pt": "Acampamento de bandidos, ~16 veios de ferro. Livro de magia Transmutar Minério (ferro → prata → ouro)." }, "approx": true },
+  { "id": "mine_embershard", "cat": "ore", "sub": "iron", "x": 663, "y": 608, "hold": "falkreath", "tags": ["iron", "mine", "bandits"],
+    "name": { "en": "Embershard Mine", "pt": "Mina Embershard" }, "desc": { "en": "Bandit mine, ~8 iron veins, smelter.", "pt": "Mina de bandidos, ~8 veios de ferro, fundição." }, "approx": true },
+  { "id": "mine_left_hand", "cat": "ore", "sub": "iron", "x": 192, "y": 440, "hold": "the_reach", "tags": ["iron", "mine"],
+    "name": { "en": "Left Hand Mine", "pt": "Mina Left Hand" }, "desc": { "en": "Outside Markarth. Iron veins, smelter.", "pt": "Fora de Markarth. Veios de ferro, fundição." }, "approx": true },
+  { "id": "mine_northwind", "cat": "ore", "sub": "iron", "x": 1078, "y": 575, "hold": "the_rift", "tags": ["iron", "mine"],
+    "name": { "en": "Northwind Mine", "pt": "Mina Northwind" }, "desc": { "en": "Near Shor's Stone, iron veins, draugr inside.", "pt": "Perto de Shor's Stone, veios de ferro, draugr lá dentro." }, "approx": true },
+  { "id": "mine_whistling", "cat": "ore", "sub": "iron", "x": 955, "y": 195, "hold": "winterhold", "tags": ["iron", "mine"],
+    "name": { "en": "Whistling Mine", "pt": "Mina Whistling" }, "desc": { "en": "South of Winterhold, iron.", "pt": "Ao sul de Winterhold, ferro." }, "approx": true },
+  { "id": "mine_fort_fellhammer", "cat": "ore", "sub": "iron", "x": 755, "y": 225, "hold": "the_pale", "tags": ["iron", "mine", "bandits"],
+    "name": { "en": "Fort Fellhammer", "pt": "Forte Fellhammer" }, "desc": { "en": "Bandit fort with iron mine south of Dawnstar.", "pt": "Forte de bandidos com mina de ferro ao sul de Dawnstar." }, "approx": true },
+
+  { "id": "mine_goldenrock", "cat": "ore", "sub": "corundum", "x": 963, "y": 525, "hold": "eastmarch", "tags": ["corundum", "mine"],
+    "name": { "en": "Goldenrock Mine", "pt": "Mina Goldenrock" }, "desc": { "en": "Darkwater Crossing. Corundum veins, smelter.", "pt": "Darkwater Crossing. Veios de corundum, fundição." }, "approx": true },
+
+  { "id": "mine_cidhna", "cat": "ore", "sub": "silver", "x": 160, "y": 428, "hold": "the_reach", "tags": ["silver", "mine", "prison"],
+    "name": { "en": "Cidhna Mine", "pt": "Mina Cidhna" }, "desc": { "en": "Markarth prison mine. Silver veins. Quest No One Escapes Cidhna Mine.", "pt": "Mina-prisão de Markarth. Veios de prata. Missão No One Escapes Cidhna Mine." } },
+  { "id": "mine_sanuarach", "cat": "ore", "sub": "silver", "x": 265, "y": 328, "hold": "the_reach", "tags": ["silver", "mine"],
+    "name": { "en": "Sanuarach Mine", "pt": "Mina Sanuarach" }, "desc": { "en": "Karthwasten. Silver veins, smelter.", "pt": "Karthwasten. Veios de prata, fundição." }, "approx": true },
+  { "id": "mine_fenns_gulch", "cat": "ore", "sub": "silver", "x": 255, "y": 338, "hold": "the_reach", "tags": ["silver", "mine"],
+    "name": { "en": "Fenn's Gulch Mine", "pt": "Mina Fenn's Gulch" }, "desc": { "en": "Karthwasten. Small silver mine.", "pt": "Karthwasten. Mina de prata pequena." }, "approx": true },
+
+  { "id": "mine_kolskeggr", "cat": "ore", "sub": "gold", "x": 262, "y": 312, "hold": "the_reach", "tags": ["gold", "mine", "forsworn"],
+    "name": { "en": "Kolskeggr Mine", "pt": "Mina Kolskeggr" }, "desc": { "en": "Richest gold mine: ~17 veins. Forsworn must be cleared (quest from Pavo at Left Hand Mine).", "pt": "Mina de ouro mais rica: ~17 veios. Precisa limpar os Forsworn (missão do Pavo na Mina Left Hand)." }, "approx": true },
+  { "id": "mine_lost_prospect", "cat": "ore", "sub": "gold", "x": 1180, "y": 655, "hold": "the_rift", "tags": ["gold", "mine"],
+    "name": { "en": "Lost Prospect Mine", "pt": "Mina Lost Prospect" }, "desc": { "en": "Abandoned mine east of Riften. Gold veins behind the waterfall.", "pt": "Mina abandonada a leste de Riften. Veios de ouro atrás da cachoeira." }, "approx": true },
+
+  { "id": "mine_soljunds_sinkhole", "cat": "ore", "sub": "moonstone", "x": 335, "y": 445, "hold": "the_reach", "tags": ["moonstone", "mine", "draugr"],
+    "name": { "en": "Soljund's Sinkhole", "pt": "Soljund's Sinkhole" }, "desc": { "en": "Near Old Hroldan. Moonstone veins, draugr broke in.", "pt": "Perto de Old Hroldan. Veios de pedra-da-lua, draugr invadiram." }, "approx": true },
+
+  { "id": "mine_steamscorch", "cat": "ore", "sub": "malachite", "x": 993, "y": 402, "hold": "eastmarch", "tags": ["malachite", "mine"],
+    "name": { "en": "Steamscorch Mine", "pt": "Mina Steamscorch" }, "desc": { "en": "Kynesgrove. Only malachite mine in Skyrim.", "pt": "Kynesgrove. Única mina de malaquita em Skyrim." }, "approx": true },
+
+  { "id": "mine_mor_khazgur", "cat": "ore", "sub": "orichalcum", "x": 124, "y": 256, "hold": "the_reach", "tags": ["orichalcum", "mine", "orc"],
+    "name": { "en": "Mor Khazgur Mine", "pt": "Mina Mor Khazgur" }, "desc": { "en": "Orc stronghold. Orichalcum veins.", "pt": "Fortaleza orc. Veios de oricalco." }, "approx": true },
+  { "id": "mine_dushnikh_yal", "cat": "ore", "sub": "orichalcum", "x": 234, "y": 506, "hold": "the_reach", "tags": ["orichalcum", "mine", "orc"],
+    "name": { "en": "Dushnikh Mine", "pt": "Mina Dushnikh" }, "desc": { "en": "Dushnikh Yal stronghold. Orichalcum veins.", "pt": "Fortaleza Dushnikh Yal. Veios de oricalco." }, "approx": true },
+  { "id": "mine_bilegulch", "cat": "ore", "sub": "orichalcum", "x": 430, "y": 545, "hold": "falkreath", "tags": ["orichalcum", "mine", "bandits"],
+    "name": { "en": "Bilegulch Mine", "pt": "Mina Bilegulch" }, "desc": { "en": "Bandit mine in north-west Falkreath. Orichalcum veins.", "pt": "Mina de bandidos no noroeste de Falkreath. Veios de oricalco." }, "approx": true },
+
+  { "id": "mine_gloombound", "cat": "ore", "sub": "ebony", "x": 1065, "y": 486, "hold": "eastmarch", "tags": ["ebony", "orichalcum", "mine", "orc"],
+    "name": { "en": "Gloombound Mine", "pt": "Mina Gloombound" }, "desc": { "en": "Narzulbur. ~14 ebony veins + orichalcum, the best ebony source in the game.", "pt": "Narzulbur. ~14 veios de ébano + oricalco, a melhor fonte de ébano do jogo." }, "approx": true },
+  { "id": "mine_redbelly", "cat": "ore", "sub": "ebony", "x": 1095, "y": 596, "hold": "the_rift", "tags": ["ebony", "mine", "spiders"],
+    "name": { "en": "Redbelly Mine", "pt": "Mina Redbelly" }, "desc": { "en": "Shor's Stone. Ebony veins (villagers call it iron). Frostbite spiders.", "pt": "Shor's Stone. Veios de ébano (os aldeões chamam de ferro). Aranhas." }, "approx": true },
+  { "id": "ore_blackreach", "cat": "ore", "sub": "ebony", "x": 985, "y": 310, "hold": "winterhold", "tags": ["ebony", "corundum", "gold", "silver", "moonstone", "quicksilver", "malachite", "orichalcum", "geode"],
+    "name": { "en": "Blackreach (veins)", "pt": "Blackreach (veios)" }, "desc": { "en": "Dozens of veins of every ore type, plus geode veins with soul gems.", "pt": "Dezenas de veios de todo tipo de minério, mais veios de geodo com gemas de alma." }, "approx": true }
+]

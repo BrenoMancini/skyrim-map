@@ -1,0 +1,74 @@
+[
+  {
+    "id": "haafingar", "kind": "area", "color": "#2e6f9e",
+    "name": { "en": "Haafingar", "pt": "Haafingar" },
+    "capital": "solitude",
+    "desc": { "en": "North-western hold. Capital: Solitude, seat of the High King and the Imperial Legion. Jarl Elisif the Fair.",
+              "pt": "Hold do noroeste. Capital: Solitude, sede do Alto Rei e da Legião Imperial. Jarl Elisif, a Bela." },
+    "points": [[195,180],[230,140],[270,95],[330,70],[400,45],[440,25],[480,35],[505,60],[530,100],[545,115],[520,135],[490,155],[460,175],[430,190],[400,205],[360,220],[320,220],[280,205],[240,195]]
+  },
+  {
+    "id": "hjaalmarch", "kind": "area", "color": "#5e8c5a",
+    "name": { "en": "Hjaalmarch", "pt": "Hjaalmarch" },
+    "capital": "morthal",
+    "desc": { "en": "Marshlands around Morthal. Jarl Idgrod Ravencrone. Swamp ingredients, Ustengrav, Movarth's Lair.",
+              "pt": "Pântanos em volta de Morthal. Jarl Idgrod Ravencrone. Ingredientes de pântano, Ustengrav, Covil de Movarth." },
+    "points": [[545,115],[600,122],[630,130],[620,170],[615,210],[610,250],[620,290],[640,320],[620,345],[580,365],[540,375],[500,380],[460,375],[420,365],[400,340],[400,300],[400,260],[400,205],[430,190],[460,175],[490,155],[520,135]]
+  },
+  {
+    "id": "the_pale", "kind": "area", "color": "#8fa7bf",
+    "name": { "en": "The Pale", "pt": "The Pale" },
+    "capital": "dawnstar",
+    "desc": { "en": "Frozen northern coast around Dawnstar. Jarl Skald the Elder. Iron and quicksilver mines, Nightcaller Temple.",
+              "pt": "Costa gelada do norte em volta de Dawnstar. Jarl Skald, o Velho. Minas de ferro e mercúrio, Templo Nightcaller." },
+    "points": [[630,130],[680,132],[730,148],[780,138],[840,140],[820,180],[800,220],[790,260],[790,300],[800,330],[820,350],[800,380],[760,390],[720,380],[680,360],[650,340],[640,320],[620,290],[610,250],[615,210],[620,170]]
+  },
+  {
+    "id": "winterhold", "kind": "area", "color": "#7fb2d6",
+    "name": { "en": "Winterhold", "pt": "Winterhold" },
+    "capital": "winterhold",
+    "desc": { "en": "North-eastern hold, mostly ruined after the Great Collapse. College of Winterhold, Saarthal, Alftand. Jarl Korir.",
+              "pt": "Hold do nordeste, quase em ruínas depois do Grande Colapso. Colégio de Winterhold, Saarthal, Alftand. Jarl Korir." },
+    "points": [[840,140],[880,135],[920,128],[945,138],[990,150],[1030,170],[1070,195],[1100,240],[1120,275],[1100,300],[1060,300],[1020,290],[980,290],[940,300],[900,310],[870,320],[840,340],[820,350],[800,330],[790,300],[790,260],[800,220],[820,180]]
+  },
+  {
+    "id": "eastmarch", "kind": "area", "color": "#b5651d",
+    "name": { "en": "Eastmarch", "pt": "Eastmarch" },
+    "capital": "windhelm",
+    "desc": { "en": "Volcanic tundra and hot springs around Windhelm, Stormcloak capital. Jarl Ulfric Stormcloak. Ebony at Gloombound, malachite at Steamscorch.",
+              "pt": "Tundra vulcânica e fontes termais em volta de Windhelm, capital dos Stormcloaks. Jarl Ulfric Stormcloak. Ébano em Gloombound, malaquita em Steamscorch." },
+    "points": [[820,350],[860,335],[900,315],[950,300],[1000,290],[1050,300],[1100,300],[1130,305],[1165,330],[1190,380],[1205,430],[1215,480],[1218,530],[1160,532],[1070,537],[990,552],[930,552],[870,517],[850,470],[840,420],[835,380]]
+  },
+  {
+    "id": "the_rift", "kind": "area", "color": "#c9a227",
+    "name": { "en": "The Rift", "pt": "The Rift" },
+    "capital": "riften",
+    "desc": { "en": "Autumn forests around Riften and Lake Honrich. Thieves Guild. Jarl Laila Law-Giver. Ebony at Redbelly, gold at Lost Prospect.",
+              "pt": "Florestas de outono em volta de Riften e do Lago Honrich. Guilda dos Ladrões. Jarl Laila Law-Giver. Ébano em Redbelly, ouro em Lost Prospect." },
+    "points": [[870,517],[930,552],[990,552],[1070,537],[1160,532],[1218,530],[1212,580],[1205,625],[1195,665],[1178,705],[1158,740],[1125,770],[1085,790],[1040,800],[995,795],[950,790],[910,790],[880,785],[850,772],[830,750],[820,720],[820,690],[830,660],[840,630],[850,600],[860,560]]
+  },
+  {
+    "id": "whiterun", "kind": "area", "color": "#d9b45a",
+    "name": { "en": "Whiterun Hold", "pt": "Whiterun Hold" },
+    "capital": "whiterun",
+    "desc": { "en": "Central plains and tundra. Whiterun, Dragonsreach, Riverwood, the Throat of the World. Jarl Balgruuf the Greater.",
+              "pt": "Planícies e tundra centrais. Whiterun, Dragonsreach, Riverwood, a Garganta do Mundo. Jarl Balgruuf, o Grande." },
+    "points": [[400,340],[420,365],[460,375],[500,380],[540,375],[580,365],[620,345],[640,320],[650,340],[680,360],[720,380],[760,390],[800,380],[835,380],[840,420],[850,470],[870,517],[840,540],[820,560],[800,580],[770,600],[740,610],[720,600],[700,585],[680,570],[650,560],[620,555],[590,550],[560,540],[530,520],[500,500],[470,480],[450,450],[430,420],[410,390]]
+  },
+  {
+    "id": "the_reach", "kind": "area", "color": "#8c5a3c",
+    "name": { "en": "The Reach", "pt": "The Reach" },
+    "capital": "markarth",
+    "desc": { "en": "Mountainous west, Forsworn country. Markarth, Cidhna Mine, Kolskeggr gold, Sanuarach silver. Jarl Igmund.",
+              "pt": "Oeste montanhoso, terra dos Forsworn. Markarth, Mina Cidhna, ouro em Kolskeggr, prata em Sanuarach. Jarl Igmund." },
+    "points": [[195,180],[240,195],[280,205],[320,220],[360,220],[400,205],[400,260],[400,300],[400,340],[410,390],[430,420],[450,450],[470,480],[440,500],[400,530],[360,545],[330,530],[300,510],[260,490],[220,475],[180,465],[130,455],[90,445],[65,430],[80,390],[95,350],[115,300],[140,250],[165,210]]
+  },
+  {
+    "id": "falkreath", "kind": "area", "color": "#4f7a3a",
+    "name": { "en": "Falkreath Hold", "pt": "Falkreath Hold" },
+    "capital": "falkreath",
+    "desc": { "en": "Pine forests of the south, Lake Ilinalta, Helgen, Pale Pass to Cyrodiil. Jarl Siddgeir. Dark Brotherhood sanctuary.",
+              "pt": "Florestas de pinheiros do sul, Lago Ilinalta, Helgen, Pale Pass pra Cyrodiil. Jarl Siddgeir. Santuário da Irmandade Sombria." },
+    "points": [[470,480],[500,500],[530,520],[560,540],[590,550],[620,555],[650,560],[680,570],[700,585],[720,600],[740,610],[770,600],[800,580],[820,560],[840,630],[830,660],[820,690],[820,720],[800,745],[770,760],[730,765],[690,768],[650,750],[610,725],[580,705],[550,690],[520,675],[490,660],[460,640],[430,610],[400,585],[370,560],[345,545],[360,545],[400,530],[440,500]]
+  }
+]
