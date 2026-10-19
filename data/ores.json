@@ -173,9 +173,9 @@
     "id": "mine_fort_fellhammer",
     "cat": "mine",
     "sub": "iron",
-    "x": 735,
-    "y": 231,
-    "hold": "the_pale",
+    "x": 755,
+    "y": 225,
+    "hold": "winterhold",
     "tags": [
       "iron",
       "mine",
@@ -469,34 +469,6 @@
     "desc": {
       "en": "Shor's Stone. Ebony veins (villagers call it iron). Frostbite spiders.",
       "pt": "Shor's Stone. Veios de ébano (os aldeões chamam de ferro). Aranhas."
-    },
-    "approx": true
-  },
-  {
-    "id": "ore_blackreach",
-    "cat": "ore",
-    "sub": "ebony",
-    "x": 985,
-    "y": 310,
-    "hold": "winterhold",
-    "tags": [
-      "ebony",
-      "corundum",
-      "gold",
-      "silver",
-      "moonstone",
-      "quicksilver",
-      "malachite",
-      "orichalcum",
-      "geode"
-    ],
-    "name": {
-      "en": "Blackreach (veins)",
-      "pt": "Blackreach (veios)"
-    },
-    "desc": {
-      "en": "Dozens of veins of every ore type, plus geode veins with soul gems.",
-      "pt": "Dezenas de veios de todo tipo de minério, mais veios de geodo com gemas de alma."
     },
     "approx": true
   }
