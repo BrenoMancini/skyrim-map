@@ -1,170 +1,4 @@
 {
-  "settlement": {
-    "icon": "🏰",
-    "color": "#b8321f",
-    "big": true,
-    "label": {
-      "en": "Settlements",
-      "pt": "Assentamentos"
-    },
-    "subs": {
-      "city": {
-        "en": "City (capital)",
-        "pt": "Cidade (capital)",
-        "icon": "🏰",
-        "img": "castle_3.png"
-      },
-      "town": {
-        "en": "Town",
-        "pt": "Vila",
-        "icon": "🏘️",
-        "img": "town.png"
-      },
-      "village": {
-        "en": "Village",
-        "pt": "Aldeia",
-        "icon": "🏡",
-        "img": "settlement.png"
-      },
-      "inn": {
-        "en": "Inn",
-        "pt": "Estalagem",
-        "icon": "🍺",
-        "img": "nordic_dwelling.png"
-      },
-      "farm": {
-        "en": "Farm",
-        "pt": "Fazenda",
-        "icon": "🌾",
-        "img": "farm.png"
-      },
-      "orc_stronghold": {
-        "en": "Orc stronghold",
-        "pt": "Fortaleza orc",
-        "icon": "⚒️",
-        "img": "orc_stronghold.png"
-      }
-    },
-    "img": "town.png"
-  },
-  "dungeon": {
-    "icon": "💀",
-    "color": "#4b3b6e",
-    "label": {
-      "en": "Dungeons & ruins",
-      "pt": "Masmorras e ruínas"
-    },
-    "subs": {
-      "nordic_ruin": {
-        "en": "Nordic ruin",
-        "pt": "Ruína nórdica",
-        "icon": "🪦",
-        "img": "nordic_ruin.png"
-      },
-      "dwemer_ruin": {
-        "en": "Dwemer ruin",
-        "pt": "Ruína dwemer",
-        "icon": "⚙️",
-        "img": "dwemer.png"
-      },
-      "cave": {
-        "en": "Cave",
-        "pt": "Caverna",
-        "icon": "🕳️",
-        "img": "cave.png"
-      },
-      "fort": {
-        "en": "Fort",
-        "pt": "Forte",
-        "icon": "🛡️",
-        "img": "fort.png"
-      },
-      "tower": {
-        "en": "Tower",
-        "pt": "Torre",
-        "icon": "🗼",
-        "img": "nordic_tower.png"
-      },
-      "bandit_camp": {
-        "en": "Bandit camp",
-        "pt": "Acampamento de bandidos",
-        "icon": "🏕️",
-        "img": "camp.png"
-      },
-      "dragon_lair": {
-        "en": "Dragon lair",
-        "pt": "Covil de dragão",
-        "icon": "🐉",
-        "img": "dragon_lair.png"
-      },
-      "giant_camp": {
-        "en": "Giant camp",
-        "pt": "Acampamento de gigantes",
-        "icon": "🦣",
-        "img": "giant_camp.png"
-      },
-      "keep": {
-        "en": "Keep / castle",
-        "pt": "Fortaleza / castelo",
-        "icon": "🏯",
-        "img": "castle.png"
-      }
-    },
-    "img": "cave.png"
-  },
-  "landmark": {
-    "icon": "⭐",
-    "color": "#2f6f8f",
-    "label": {
-      "en": "Landmarks",
-      "pt": "Pontos de referência"
-    },
-    "subs": {
-      "standing_stone": {
-        "en": "Standing stone",
-        "pt": "Pedra guardiã",
-        "icon": "🔮",
-        "img": "doomstone.png"
-      },
-      "shrine": {
-        "en": "Shrine",
-        "pt": "Santuário",
-        "icon": "🕯️",
-        "img": "shrine.png"
-      },
-      "pass": {
-        "en": "Mountain pass",
-        "pt": "Passagem",
-        "icon": "⛰️",
-        "img": "pass.png"
-      },
-      "lake": {
-        "en": "Lake",
-        "pt": "Lago",
-        "icon": "🌊",
-        "img": "lake.svg"
-      },
-      "mountain": {
-        "en": "Mountain",
-        "pt": "Montanha",
-        "icon": "🏔️",
-        "img": "mountain.svg"
-      },
-      "word_wall": {
-        "en": "Word wall",
-        "pt": "Muro das palavras",
-        "icon": "📜",
-        "img": "altar.png"
-      },
-      "misc": {
-        "en": "Other",
-        "pt": "Outro",
-        "icon": "📍",
-        "img": "landmark.png"
-      }
-    },
-    "img": "landmark.png"
-  },
   "ore": {
     "icon": "⛏️",
     "color": "#8a6d3b",
@@ -450,5 +284,171 @@
       }
     },
     "img": "wood_mill.png"
+  },
+  "dungeon": {
+    "icon": "💀",
+    "color": "#4b3b6e",
+    "label": {
+      "en": "Dungeons & ruins",
+      "pt": "Masmorras e ruínas"
+    },
+    "subs": {
+      "nordic_ruin": {
+        "en": "Nordic ruin",
+        "pt": "Ruína nórdica",
+        "icon": "🪦",
+        "img": "nordic_ruin.png"
+      },
+      "dwemer_ruin": {
+        "en": "Dwemer ruin",
+        "pt": "Ruína dwemer",
+        "icon": "⚙️",
+        "img": "dwemer.png"
+      },
+      "cave": {
+        "en": "Cave",
+        "pt": "Caverna",
+        "icon": "🕳️",
+        "img": "cave.png"
+      },
+      "fort": {
+        "en": "Fort",
+        "pt": "Forte",
+        "icon": "🛡️",
+        "img": "fort.png"
+      },
+      "tower": {
+        "en": "Tower",
+        "pt": "Torre",
+        "icon": "🗼",
+        "img": "nordic_tower.png"
+      },
+      "bandit_camp": {
+        "en": "Bandit camp",
+        "pt": "Acampamento de bandidos",
+        "icon": "🏕️",
+        "img": "camp.png"
+      },
+      "dragon_lair": {
+        "en": "Dragon lair",
+        "pt": "Covil de dragão",
+        "icon": "🐉",
+        "img": "dragon_lair.png"
+      },
+      "giant_camp": {
+        "en": "Giant camp",
+        "pt": "Acampamento de gigantes",
+        "icon": "🦣",
+        "img": "giant_camp.png"
+      },
+      "keep": {
+        "en": "Keep / castle",
+        "pt": "Fortaleza / castelo",
+        "icon": "🏯",
+        "img": "castle.png"
+      }
+    },
+    "img": "cave.png"
+  },
+  "landmark": {
+    "icon": "⭐",
+    "color": "#2f6f8f",
+    "label": {
+      "en": "Landmarks",
+      "pt": "Pontos de referência"
+    },
+    "subs": {
+      "standing_stone": {
+        "en": "Standing stone",
+        "pt": "Pedra guardiã",
+        "icon": "🔮",
+        "img": "doomstone.png"
+      },
+      "shrine": {
+        "en": "Shrine",
+        "pt": "Santuário",
+        "icon": "🕯️",
+        "img": "shrine.png"
+      },
+      "pass": {
+        "en": "Mountain pass",
+        "pt": "Passagem",
+        "icon": "⛰️",
+        "img": "pass.png"
+      },
+      "lake": {
+        "en": "Lake",
+        "pt": "Lago",
+        "icon": "🌊",
+        "img": "lake.svg"
+      },
+      "mountain": {
+        "en": "Mountain",
+        "pt": "Montanha",
+        "icon": "🏔️",
+        "img": "mountain.svg"
+      },
+      "word_wall": {
+        "en": "Word wall",
+        "pt": "Muro das palavras",
+        "icon": "📜",
+        "img": "altar.png"
+      },
+      "misc": {
+        "en": "Other",
+        "pt": "Outro",
+        "icon": "📍",
+        "img": "landmark.png"
+      }
+    },
+    "img": "landmark.png"
+  },
+  "settlement": {
+    "icon": "🏰",
+    "color": "#b8321f",
+    "big": true,
+    "label": {
+      "en": "Settlements",
+      "pt": "Assentamentos"
+    },
+    "subs": {
+      "city": {
+        "en": "City (capital)",
+        "pt": "Cidade (capital)",
+        "icon": "🏰",
+        "img": "castle_3.png"
+      },
+      "town": {
+        "en": "Town",
+        "pt": "Vila",
+        "icon": "🏘️",
+        "img": "town.png"
+      },
+      "village": {
+        "en": "Village",
+        "pt": "Aldeia",
+        "icon": "🏡",
+        "img": "settlement.png"
+      },
+      "inn": {
+        "en": "Inn",
+        "pt": "Estalagem",
+        "icon": "🍺",
+        "img": "nordic_dwelling.png"
+      },
+      "farm": {
+        "en": "Farm",
+        "pt": "Fazenda",
+        "icon": "🌾",
+        "img": "farm.png"
+      },
+      "orc_stronghold": {
+        "en": "Orc stronghold",
+        "pt": "Fortaleza orc",
+        "icon": "⚒️",
+        "img": "orc_stronghold.png"
+      }
+    },
+    "img": "town.png"
   }
 }
