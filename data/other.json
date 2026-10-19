@@ -1,36 +1,290 @@
 [
-  { "id": "mill_riverwood", "cat": "other", "sub": "lumber", "x": 690, "y": 565, "hold": "whiterun", "tags": ["wood", "sawmill"],
-    "name": { "en": "Riverwood Mill", "pt": "Serraria de Riverwood" }, "desc": { "en": "Hod and Gerdur's sawmill. Wood chopping block, free lumber after friendship (Hearthfire).", "pt": "Serraria do Hod e da Gerdur. Cepo de lenha, madeira grátis depois da amizade (Hearthfire)." }, "approx": true },
-  { "id": "mill_half_moon", "cat": "other", "sub": "lumber", "x": 540, "y": 625, "hold": "falkreath", "tags": ["wood", "sawmill", "vampires"],
-    "name": { "en": "Half-Moon Mill", "pt": "Serraria Half-Moon" }, "desc": { "en": "West shore of Lake Ilinalta. Owners are vampires.", "pt": "Margem oeste do Lago Ilinalta. Os donos são vampiros." }, "approx": true },
-  { "id": "mill_mixwater", "cat": "other", "sub": "lumber", "x": 905, "y": 465, "hold": "eastmarch", "tags": ["wood", "sawmill"],
-    "name": { "en": "Mixwater Mill", "pt": "Serraria Mixwater" }, "desc": { "en": "On the White River between Whiterun and Windhelm.", "pt": "No Rio Branco entre Whiterun e Windhelm." }, "approx": true },
-  { "id": "mill_angas", "cat": "other", "sub": "lumber", "x": 880, "y": 265, "hold": "the_pale", "tags": ["wood", "sawmill"],
-    "name": { "en": "Anga's Mill", "pt": "Serraria Anga" }, "desc": { "en": "Eastern Pale, near the Windhelm road.", "pt": "Leste do Pale, perto da estrada pra Windhelm." }, "approx": true },
-  { "id": "mill_heartwood", "cat": "other", "sub": "lumber", "x": 1045, "y": 715, "hold": "the_rift", "tags": ["wood", "sawmill"],
-    "name": { "en": "Heartwood Mill", "pt": "Serraria Heartwood" }, "desc": { "en": "West shore of Lake Honrich.", "pt": "Margem oeste do Lago Honrich." }, "approx": true },
-  { "id": "mill_solitude", "cat": "other", "sub": "lumber", "x": 435, "y": 152, "hold": "haafingar", "tags": ["wood", "sawmill"],
-    "name": { "en": "Solitude Sawmill", "pt": "Serraria de Solitude" }, "desc": { "en": "Below Solitude, by the docks.", "pt": "Abaixo de Solitude, perto das docas." }, "approx": true },
-  { "id": "mill_deadwood", "cat": "other", "sub": "lumber", "x": 360, "y": 207, "hold": "haafingar", "tags": ["wood", "sawmill"],
-    "name": { "en": "Dragon Bridge Lumber Camp", "pt": "Serraria de Dragon Bridge" }, "desc": { "en": "Lumber camp beside the bridge.", "pt": "Serraria ao lado da ponte." }, "approx": true },
-
-  { "id": "hot_springs_eastmarch", "cat": "other", "sub": "hot_spring", "x": 1010, "y": 465, "hold": "eastmarch", "tags": ["jazbay", "dragons tongue", "creep cluster", "fly amanita"],
-    "name": { "en": "Eastmarch Hot Springs", "pt": "Fontes termais de Eastmarch" }, "desc": { "en": "Volcanic tundra south of Windhelm. Unique ingredients, Atronach Stone, giants and mammoths.", "pt": "Tundra vulcânica ao sul de Windhelm. Ingredientes únicos, Pedra do Atronach, gigantes e mamutes." }, "approx": true },
-
-  { "id": "fish_ilinalta", "cat": "other", "sub": "fishing", "x": 545, "y": 585, "hold": "falkreath", "tags": ["salmon", "slaughterfish"],
-    "name": { "en": "Lake Ilinalta fishing", "pt": "Pesca no Lago Ilinalta" }, "desc": { "en": "Salmon, slaughterfish, clams along the shore.", "pt": "Salmão, peixe-carniceiro, moluscos na margem." }, "approx": true },
-  { "id": "fish_honrich", "cat": "other", "sub": "fishing", "x": 1100, "y": 710, "hold": "the_rift", "tags": ["salmon"],
-    "name": { "en": "Lake Honrich fishing", "pt": "Pesca no Lago Honrich" }, "desc": { "en": "Riften fishery, salmon roe.", "pt": "Pesqueiro de Riften, ovas de salmão." }, "approx": true },
-
-  { "id": "hunt_whiterun", "cat": "other", "sub": "hunting", "x": 760, "y": 500, "hold": "whiterun", "tags": ["deer", "elk", "mammoth", "sabre cat"],
-    "name": { "en": "Whiterun tundra hunting", "pt": "Caça na tundra de Whiterun" }, "desc": { "en": "Deer, elk, mammoths near giant camps, sabre cats. Leather and hides.", "pt": "Cervos, alces, mamutes perto dos gigantes, tigres-dente-de-sabre. Couro e peles." }, "approx": true },
-  { "id": "hunt_falkreath", "cat": "other", "sub": "hunting", "x": 500, "y": 690, "hold": "falkreath", "tags": ["deer", "bear", "wolf"],
-    "name": { "en": "Falkreath forest hunting", "pt": "Caça na floresta de Falkreath" }, "desc": { "en": "Deer, bears, wolves, spriggans.", "pt": "Cervos, ursos, lobos, spriggans." }, "approx": true },
-
-  { "id": "smelter_whiterun", "cat": "other", "sub": "smelter", "x": 718, "y": 432, "hold": "whiterun", "tags": ["warmaidens", "skyforge"],
-    "name": { "en": "Whiterun: Warmaiden's + Skyforge", "pt": "Whiterun: Warmaiden's + Skyforge" }, "desc": { "en": "Smelter at Warmaiden's. Skyforge (Eorlund) sells Skyforge steel.", "pt": "Fundição na Warmaiden's. Skyforge (Eorlund) vende aço Skyforge." } },
-  { "id": "smelter_windhelm", "cat": "other", "sub": "smelter", "x": 1012, "y": 330, "hold": "eastmarch", "tags": [],
-    "name": { "en": "Windhelm: Blacksmith Quarters", "pt": "Windhelm: Forja" }, "desc": { "en": "Oengul's forge, smelter next to it.", "pt": "Forja do Oengul, fundição ao lado." } },
-  { "id": "smelter_markarth", "cat": "other", "sub": "smelter", "x": 172, "y": 426, "hold": "the_reach", "tags": [],
-    "name": { "en": "Markarth smelter", "pt": "Fundição de Markarth" }, "desc": { "en": "Smelter by the main gate, next to the Left Hand Mine road.", "pt": "Fundição perto do portão principal, caminho da Mina Left Hand." } }
+  {
+    "id": "mill_riverwood",
+    "cat": "other",
+    "sub": "lumber",
+    "x": 690,
+    "y": 565,
+    "hold": "whiterun",
+    "tags": [
+      "wood",
+      "sawmill"
+    ],
+    "name": {
+      "en": "Riverwood Mill",
+      "pt": "Serraria de Riverwood"
+    },
+    "desc": {
+      "en": "Hod and Gerdur's sawmill. Wood chopping block, free lumber after friendship (Hearthfire).",
+      "pt": "Serraria do Hod e da Gerdur. Cepo de lenha, madeira grátis depois da amizade (Hearthfire)."
+    },
+    "approx": true
+  },
+  {
+    "id": "mill_half_moon",
+    "cat": "other",
+    "sub": "lumber",
+    "x": 540,
+    "y": 625,
+    "hold": "falkreath",
+    "tags": [
+      "wood",
+      "sawmill",
+      "vampires"
+    ],
+    "name": {
+      "en": "Half-Moon Mill",
+      "pt": "Serraria Half-Moon"
+    },
+    "desc": {
+      "en": "West shore of Lake Ilinalta. Owners are vampires.",
+      "pt": "Margem oeste do Lago Ilinalta. Os donos são vampiros."
+    },
+    "approx": true
+  },
+  {
+    "id": "mill_mixwater",
+    "cat": "other",
+    "sub": "lumber",
+    "x": 905,
+    "y": 465,
+    "hold": "eastmarch",
+    "tags": [
+      "wood",
+      "sawmill"
+    ],
+    "name": {
+      "en": "Mixwater Mill",
+      "pt": "Serraria Mixwater"
+    },
+    "desc": {
+      "en": "On the White River between Whiterun and Windhelm.",
+      "pt": "No Rio Branco entre Whiterun e Windhelm."
+    },
+    "approx": true
+  },
+  {
+    "id": "mill_angas",
+    "cat": "other",
+    "sub": "lumber",
+    "x": 880,
+    "y": 265,
+    "hold": "the_pale",
+    "tags": [
+      "wood",
+      "sawmill"
+    ],
+    "name": {
+      "en": "Anga's Mill",
+      "pt": "Serraria Anga"
+    },
+    "desc": {
+      "en": "Eastern Pale, near the Windhelm road.",
+      "pt": "Leste do Pale, perto da estrada pra Windhelm."
+    },
+    "approx": true
+  },
+  {
+    "id": "mill_heartwood",
+    "cat": "other",
+    "sub": "lumber",
+    "x": 1045,
+    "y": 715,
+    "hold": "the_rift",
+    "tags": [
+      "wood",
+      "sawmill"
+    ],
+    "name": {
+      "en": "Heartwood Mill",
+      "pt": "Serraria Heartwood"
+    },
+    "desc": {
+      "en": "West shore of Lake Honrich.",
+      "pt": "Margem oeste do Lago Honrich."
+    },
+    "approx": true
+  },
+  {
+    "id": "mill_solitude",
+    "cat": "other",
+    "sub": "lumber",
+    "x": 435,
+    "y": 152,
+    "hold": "haafingar",
+    "tags": [
+      "wood",
+      "sawmill"
+    ],
+    "name": {
+      "en": "Solitude Sawmill",
+      "pt": "Serraria de Solitude"
+    },
+    "desc": {
+      "en": "Below Solitude, by the docks.",
+      "pt": "Abaixo de Solitude, perto das docas."
+    },
+    "approx": true
+  },
+  {
+    "id": "mill_deadwood",
+    "cat": "other",
+    "sub": "lumber",
+    "x": 360,
+    "y": 207,
+    "hold": "haafingar",
+    "tags": [
+      "wood",
+      "sawmill"
+    ],
+    "name": {
+      "en": "Dragon Bridge Lumber Camp",
+      "pt": "Serraria de Dragon Bridge"
+    },
+    "desc": {
+      "en": "Lumber camp beside the bridge.",
+      "pt": "Serraria ao lado da ponte."
+    },
+    "approx": true
+  },
+  {
+    "id": "fish_ilinalta",
+    "cat": "other",
+    "sub": "fishing",
+    "x": 545,
+    "y": 585,
+    "hold": "falkreath",
+    "tags": [
+      "salmon",
+      "slaughterfish"
+    ],
+    "name": {
+      "en": "Lake Ilinalta fishing",
+      "pt": "Pesca no Lago Ilinalta"
+    },
+    "desc": {
+      "en": "Salmon, slaughterfish, clams along the shore.",
+      "pt": "Salmão, peixe-carniceiro, moluscos na margem."
+    },
+    "approx": true
+  },
+  {
+    "id": "fish_honrich",
+    "cat": "other",
+    "sub": "fishing",
+    "x": 1100,
+    "y": 710,
+    "hold": "the_rift",
+    "tags": [
+      "salmon"
+    ],
+    "name": {
+      "en": "Lake Honrich fishing",
+      "pt": "Pesca no Lago Honrich"
+    },
+    "desc": {
+      "en": "Riften fishery, salmon roe.",
+      "pt": "Pesqueiro de Riften, ovas de salmão."
+    },
+    "approx": true
+  },
+  {
+    "id": "hunt_whiterun",
+    "cat": "other",
+    "sub": "hunting",
+    "x": 760,
+    "y": 500,
+    "hold": "whiterun",
+    "tags": [
+      "deer",
+      "elk",
+      "mammoth",
+      "sabre cat"
+    ],
+    "name": {
+      "en": "Whiterun tundra hunting",
+      "pt": "Caça na tundra de Whiterun"
+    },
+    "desc": {
+      "en": "Deer, elk, mammoths near giant camps, sabre cats. Leather and hides.",
+      "pt": "Cervos, alces, mamutes perto dos gigantes, tigres-dente-de-sabre. Couro e peles."
+    },
+    "approx": true
+  },
+  {
+    "id": "hunt_falkreath",
+    "cat": "other",
+    "sub": "hunting",
+    "x": 500,
+    "y": 690,
+    "hold": "falkreath",
+    "tags": [
+      "deer",
+      "bear",
+      "wolf"
+    ],
+    "name": {
+      "en": "Falkreath forest hunting",
+      "pt": "Caça na floresta de Falkreath"
+    },
+    "desc": {
+      "en": "Deer, bears, wolves, spriggans.",
+      "pt": "Cervos, ursos, lobos, spriggans."
+    },
+    "approx": true
+  },
+  {
+    "id": "smelter_whiterun",
+    "cat": "other",
+    "sub": "smelter",
+    "x": 718,
+    "y": 432,
+    "hold": "whiterun",
+    "tags": [
+      "warmaidens",
+      "skyforge"
+    ],
+    "name": {
+      "en": "Whiterun: Warmaiden's + Skyforge",
+      "pt": "Whiterun: Warmaiden's + Skyforge"
+    },
+    "desc": {
+      "en": "Smelter at Warmaiden's. Skyforge (Eorlund) sells Skyforge steel.",
+      "pt": "Fundição na Warmaiden's. Skyforge (Eorlund) vende aço Skyforge."
+    }
+  },
+  {
+    "id": "smelter_windhelm",
+    "cat": "other",
+    "sub": "smelter",
+    "x": 1012,
+    "y": 330,
+    "hold": "eastmarch",
+    "tags": [],
+    "name": {
+      "en": "Windhelm: Blacksmith Quarters",
+      "pt": "Windhelm: Forja"
+    },
+    "desc": {
+      "en": "Oengul's forge, smelter next to it.",
+      "pt": "Forja do Oengul, fundição ao lado."
+    }
+  },
+  {
+    "id": "smelter_markarth",
+    "cat": "other",
+    "sub": "smelter",
+    "x": 172,
+    "y": 426,
+    "hold": "the_reach",
+    "tags": [],
+    "name": {
+      "en": "Markarth smelter",
+      "pt": "Fundição de Markarth"
+    },
+    "desc": {
+      "en": "Smelter by the main gate, next to the Left Hand Mine road.",
+      "pt": "Fundição perto do portão principal, caminho da Mina Left Hand."
+    }
+  }
 ]

@@ -424,12 +424,6 @@
         "icon": "🪵",
         "img": "wood_mill.png"
       },
-      "hot_spring": {
-        "en": "Hot springs",
-        "pt": "Fontes termais",
-        "icon": "♨️",
-        "img": "hot_spring.svg"
-      },
       "fishing": {
         "en": "Fishing spot",
         "pt": "Pesca",
@@ -447,12 +441,6 @@
         "pt": "Fundição",
         "icon": "🔥",
         "img": "smelter.png"
-      },
-      "trainer": {
-        "en": "Trainer",
-        "pt": "Treinador",
-        "icon": "🎓",
-        "img": "trainer.svg"
       },
       "merchant": {
         "en": "Merchant",
