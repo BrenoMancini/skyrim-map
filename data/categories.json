@@ -301,6 +301,13 @@
         "icon": "🪴",
         "img": "nirnroot.svg"
       },
+      "nordic_barnacle": {
+        "en": "Nordic Barnacle",
+        "pt": "Craca Nórdica",
+        "icon": "🐚",
+        "img": "nordic_barnacle.svg",
+        "color": "#3f6f7d"
+      },
       "lavender": {
         "en": "Lavender",
         "pt": "Lavanda",
