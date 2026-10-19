@@ -385,7 +385,6 @@
     const isArea = kind === "area";
     F("f-cat").parentElement.parentElement.classList.toggle("hidden", isArea);
     F("f-color-row").classList.toggle("hidden", !isArea);
-    F("f-hold").parentElement.classList.toggle("hidden", isArea);
     F("f-delete").classList.toggle("hidden", !item);
     fillCatSelect(); F("f-cat").value = item?.cat || "settlement"; fillSubList();
     F("f-sub").value = item?.sub || ""; F("f-name-en").value = L10(item?.name); F("f-name-pt").value = item?.name?.pt || "";
@@ -443,7 +442,7 @@
     } else {
       const sub = subRaw || "misc";
       const prev = allItems()[id] || {};
-      S.ovr.items[id] = { ...(prev.img ? { img: prev.img } : {}), id, cat: F("f-cat").value, sub, x: +F("f-x").value, y: +F("f-y").value, hold: F("f-hold").value,
+      S.ovr.items[id] = { ...(prev.img ? { img: prev.img } : {}), id, cat: F("f-cat").value, sub, x: +F("f-x").value, y: +F("f-y").value, hold: holdAt(+F("f-x").value, +F("f-y").value) || F("f-hold").value,
         name: nameEn ? name : { en: "", pt: "" }, desc,
         tags: F("f-tags").value.split(",").map((t) => t.trim()).filter(Boolean) };
       S.filters.add(`${F("f-cat").value}:${sub}`);

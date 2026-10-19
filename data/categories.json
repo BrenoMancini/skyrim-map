@@ -178,63 +178,63 @@
         "pt": "Ferro",
         "icon": "⛏️",
         "color": "#6b6b6b",
-        "img": "mine.png"
+        "img": "ore_iron.svg"
       },
       "corundum": {
         "en": "Corundum",
         "pt": "Corundum",
         "icon": "⛏️",
         "color": "#8b4a2b",
-        "img": "mine.png"
+        "img": "ore_corundum.svg"
       },
       "silver": {
         "en": "Silver",
         "pt": "Prata",
         "icon": "⛏️",
         "color": "#c0c0c0",
-        "img": "mine.png"
+        "img": "ore_silver.svg"
       },
       "gold": {
         "en": "Gold",
         "pt": "Ouro",
         "icon": "⛏️",
         "color": "#d4af37",
-        "img": "mine.png"
+        "img": "ore_gold.svg"
       },
       "quicksilver": {
         "en": "Quicksilver",
         "pt": "Mercúrio",
         "icon": "⛏️",
         "color": "#9fb6c6",
-        "img": "mine.png"
+        "img": "ore_quicksilver.svg"
       },
       "moonstone": {
         "en": "Moonstone",
         "pt": "Pedra-da-lua",
         "icon": "⛏️",
         "color": "#e8e4d0",
-        "img": "mine.png"
+        "img": "ore_moonstone.svg"
       },
       "malachite": {
         "en": "Malachite",
         "pt": "Malaquita",
         "icon": "⛏️",
         "color": "#2e8b57",
-        "img": "mine.png"
+        "img": "ore_malachite.svg"
       },
       "orichalcum": {
         "en": "Orichalcum",
         "pt": "Oricalco",
         "icon": "⛏️",
         "color": "#5c7a3b",
-        "img": "mine.png"
+        "img": "ore_orichalcum.svg"
       },
       "ebony": {
         "en": "Ebony",
         "pt": "Ébano",
         "icon": "⛏️",
         "color": "#1d1d1d",
-        "img": "mine.png"
+        "img": "ore_ebony.svg"
       }
     },
     "img": "mine.png"
@@ -331,14 +331,14 @@
         "en": "Blue Mountain Flower",
         "pt": "Flor-da-montanha azul",
         "icon": "💙",
-        "img": "mountain_flower.svg",
+        "img": "blue_mountain_flower.svg",
         "color": "#2f5f9e"
       },
       "purple_mountain_flower": {
         "en": "Purple Mountain Flower",
         "pt": "Flor-da-montanha roxa",
         "icon": "💮",
-        "img": "mountain_flower.svg",
+        "img": "purple_mountain_flower.svg",
         "color": "#6a3f8f"
       },
       "juniper_berries": {
