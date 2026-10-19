@@ -4,9 +4,10 @@
 (() => {
   const W = 1300, H = 867;                 // map image size in px
   const LS_OVR = "skyrimmap.overrides.v1";
-  const LS_FILTERS = "skyrimmap.filters.v1";
+  const LS_FILTERS = "skyrimmap.filters.v2";
+  const DEFAULT_ON = new Set(["ore", "ingredient", "landmark"]);   // layers on by first visit
   const LS_LANG = "skyrimmap.lang";
-  const GROUP_OF_CAT = { settlement: "locations", dungeon: "locations", landmark: "locations", ore: "ores", ingredient: "ingredients", other: "other" };
+  const GROUP_OF_CAT = { settlement: "locations", dungeon: "locations", landmark: "locations", ore: "ores", mine: "ores", ingredient: "ingredients", other: "other" };
 
   const S = {
     lang: new URLSearchParams(location.search).get("lang") || localStorage.getItem(LS_LANG) || (navigator.language.startsWith("pt") ? "pt" : "en"),
@@ -188,7 +189,7 @@
     const subs = allSubs();
     const saved = (() => { try { return JSON.parse(localStorage.getItem(LS_FILTERS)); } catch { return null; } })();
     S.filters = new Set();
-    for (const cid in subs) for (const sid in subs[cid]) { const k = `${cid}:${sid}`; if (!saved || saved.includes(k)) S.filters.add(k); }
+    for (const cid in subs) for (const sid in subs[cid]) { const k = `${cid}:${sid}`; if (saved ? saved.includes(k) : DEFAULT_ON.has(cid)) S.filters.add(k); }
   }
   function saveFilters() { localStorage.setItem(LS_FILTERS, JSON.stringify([...S.filters])); }
   function renderFilters() {

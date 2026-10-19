@@ -3,8 +3,8 @@
     "icon": "⛏️",
     "color": "#8a6d3b",
     "label": {
-      "en": "Ore veins & mines",
-      "pt": "Minérios e minas"
+      "en": "Ore veins",
+      "pt": "Minérios"
     },
     "subs": {
       "iron": {
@@ -71,14 +71,88 @@
         "img": "ore_ebony.svg"
       }
     },
-    "img": "mine.png"
+    "img": "ore_iron.svg"
+  },
+  "mine": {
+    "icon": "⛏️",
+    "color": "#8a6d3b",
+    "img": "mine.png",
+    "label": {
+      "en": "Mines",
+      "pt": "Minas"
+    },
+    "subs": {
+      "iron": {
+        "en": "Iron mine",
+        "pt": "Mina de ferro",
+        "icon": "⛏️",
+        "img": "mine.png",
+        "color": "#6b6b6b"
+      },
+      "corundum": {
+        "en": "Corundum mine",
+        "pt": "Mina de corundum",
+        "icon": "⛏️",
+        "img": "mine.png",
+        "color": "#8b4a2b"
+      },
+      "silver": {
+        "en": "Silver mine",
+        "pt": "Mina de prata",
+        "icon": "⛏️",
+        "img": "mine.png",
+        "color": "#c0c0c0"
+      },
+      "gold": {
+        "en": "Gold mine",
+        "pt": "Mina de ouro",
+        "icon": "⛏️",
+        "img": "mine.png",
+        "color": "#d4af37"
+      },
+      "quicksilver": {
+        "en": "Quicksilver mine",
+        "pt": "Mina de mercúrio",
+        "icon": "⛏️",
+        "img": "mine.png",
+        "color": "#9fb6c6"
+      },
+      "moonstone": {
+        "en": "Moonstone mine",
+        "pt": "Mina de pedra-da-lua",
+        "icon": "⛏️",
+        "img": "mine.png",
+        "color": "#e8e4d0"
+      },
+      "malachite": {
+        "en": "Malachite mine",
+        "pt": "Mina de malaquita",
+        "icon": "⛏️",
+        "img": "mine.png",
+        "color": "#2e8b57"
+      },
+      "orichalcum": {
+        "en": "Orichalcum mine",
+        "pt": "Mina de oricalco",
+        "icon": "⛏️",
+        "img": "mine.png",
+        "color": "#5c7a3b"
+      },
+      "ebony": {
+        "en": "Ebony mine",
+        "pt": "Mina de ébano",
+        "icon": "⛏️",
+        "img": "mine.png",
+        "color": "#1d1d1d"
+      }
+    }
   },
   "ingredient": {
     "icon": "🌿",
     "color": "#3f7d3a",
     "label": {
-      "en": "Alchemy ingredients",
-      "pt": "Ingredientes de alquimia"
+      "en": "Ingredients",
+      "pt": "Ingredientes"
     },
     "subs": {
       "snowberries": {
