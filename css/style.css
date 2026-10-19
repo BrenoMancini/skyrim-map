@@ -221,6 +221,8 @@ input[type=color]{width:100%;height:36px;padding:3px;background:var(--panel2);bo
 .lbl{position:relative;display:inline-block;z-index:0;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.8);transition:transform var(--t) var(--ease),color var(--t-fast)}
 .lbl::before{content:attr(data-text);position:absolute;left:0;top:0;z-index:-1;color:#000;-webkit-text-stroke:4px #000;text-shadow:none}
 .hold-label .lbl::before{-webkit-text-stroke:5px #000}
+.hold-label.featured{font-size:20px;opacity:1;letter-spacing:3px}
+.hold-label.featured .lbl{color:#eaf4ff;text-shadow:0 0 10px rgba(150,200,255,.9),0 1px 3px rgba(0,0,0,.8)}
 .leaflet-tooltip-top .lbl{animation:lbl-in var(--t) var(--ease-out)}   /* hover-only labels fade in; permanent ones re-render on zoom and must not blink */
 /* hover grows the label around its anchor instead of reflowing font-size */
 .leaflet-tooltip-bottom .lbl{transform-origin:50% 0}

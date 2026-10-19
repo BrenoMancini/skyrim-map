@@ -110,9 +110,12 @@
     if (!S.showHolds) return;
     for (const h of Object.values(allHolds())) {
       const dim = S.holdFilter && S.holdFilter !== h.id;
-      const poly = L.polygon(h.points.map(([x, y]) => xy(x, y)), {
-        color: h.color, weight: dim ? 1 : 2, fillColor: h.color, fillOpacity: dim ? 0.04 : 0.16, dashArray: "6 5", pmIgnore: !S.edit, interactive: S.edit
-      });
+      const latlngs = h.points.map(([x, y]) => xy(x, y));
+      // featured hold: solid bright border over a dark halo so it stands out on the parchment
+      if (h.featured && !dim) S.layers.holds.addLayer(L.polygon(latlngs, { color: "#14202e", weight: 7, opacity: 0.6, fill: false, interactive: false, pmIgnore: true }));
+      const poly = L.polygon(latlngs, h.featured && !dim
+        ? { color: h.color, weight: 3, fillColor: h.color, fillOpacity: 0.32, pmIgnore: !S.edit, interactive: S.edit }
+        : { color: h.color, weight: dim ? 1 : 2, fillColor: h.color, fillOpacity: dim ? 0.04 : 0.16, dashArray: "6 5", pmIgnore: !S.edit, interactive: S.edit });
       poly._holdId = h.id;
       poly.bindPopup(() => holdPopup(h));
       poly.on("pm:edit", (e) => {
@@ -123,7 +126,7 @@
       S.layers.holds.addLayer(poly); S.polys[h.id] = poly;
       if (S.showLabels) {
         const c = poly.getBounds().getCenter();
-        S.layers.holdLabels.addLayer(L.marker(c, { interactive: false, icon: L.divIcon({ className: "hold-label", html: `<span class="lbl" data-text="${esc(L10(h.name).toUpperCase())}">${esc(L10(h.name).toUpperCase())}</span>`, iconSize: [220, 24], iconAnchor: [110, 12] }) }));
+        S.layers.holdLabels.addLayer(L.marker(c, { interactive: false, icon: L.divIcon({ className: "hold-label" + (h.featured ? " featured" : ""), html: `<span class="lbl" data-text="${esc(L10(h.name).toUpperCase())}">${esc(L10(h.name).toUpperCase())}</span>`, iconSize: [220, 24], iconAnchor: [110, 12] }) }));
       }
     }
   }
@@ -439,7 +442,7 @@
     if (isArea && !nameEn) { toast(T("needName"), "error"); invalid(F("f-name-en")); return; }
     const id = F("f-id").value || slug(nameEn || subRaw);
     if (isArea) {
-      S.ovr.holds[id] = { id, kind: "area", color: F("f-color").value, capital: F("poi-form")._capital, name, desc, points: F("poi-form")._points || [] };
+      S.ovr.holds[id] = { id, kind: "area", ...(allHolds()[id]?.featured ? { featured: true } : {}), color: F("f-color").value, capital: F("poi-form")._capital, name, desc, points: F("poi-form")._points || [] };
     } else {
       const sub = subRaw || "misc";
       const prev = allItems()[id] || {};
