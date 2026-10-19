@@ -83,7 +83,20 @@
   L.imageOverlay("assets/skyrim_map.jpg", bounds).addTo(map);
   map.fitBounds(bounds, { padding: [0, 0] });
   map.setMinZoom(map.getZoom());             // never zoom out past "whole map"
-  window.addEventListener("resize", () => { const z = map.getZoom(); map.setMinZoom(-2); map.fitBounds(bounds); map.setMinZoom(map.getZoom()); if (z > map.getZoom()) map.setZoom(z); });
+  const isMobile = () => window.matchMedia("(max-width: 760px)").matches;
+  if (isMobile() && window.innerHeight > window.innerWidth) map.setView(map.getCenter(), map.getZoom() + 0.75, { animate: false });
+  // on resize (rotation, mobile URL bar) keep the user's view; only re-derive the "whole map" zoom floor
+  let resizeT = 0;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeT);
+    resizeT = setTimeout(() => {
+      const wasWhole = map.getZoom() <= map.getMinZoom() + 0.01;            // user was looking at the whole map
+      map.invalidateSize({ pan: false }); map.setMinZoom(-3);
+      const fz = map.getBoundsZoom(bounds); map.setMinZoom(fz);
+      if (wasWhole || map.getZoom() < fz) map.fitBounds(bounds);
+      if (!isMobile()) setDrawer(false);
+    }, 120);
+  });
   map.setMaxBounds([[-200, -300], [H + 200, W + 300]]);
   S.layers.holds = L.layerGroup().addTo(map);
   S.layers.holdLabels = L.layerGroup().addTo(map);
@@ -179,27 +192,40 @@
   }
   function saveFilters() { localStorage.setItem(LS_FILTERS, JSON.stringify([...S.filters])); }
   function renderFilters() {
-    const subs = allSubs(); const root = $("#filters"); root.innerHTML = "";
-    const openCats = new Set([...root.querySelectorAll(".cat.open")].map((e) => e.dataset.cat));
+    const subs = allSubs(); const root = $("#filters");
+    const openCats = new Set([...root.querySelectorAll(".cat.open")].map((e) => e.dataset.cat));   // read before clearing so toggles keep groups open
+    const focusCat = document.activeElement?.closest?.("#filters .cat")?.dataset.cat;
+    const focusSub = document.activeElement?.closest?.("#filters .subs label")?.dataset.sub;
+    root.innerHTML = "";
     for (const cid in subs) {
       const c = S.cats[cid] || { icon: "📍", color: "#777", label: { en: cid, pt: cid }, subs: {} };
       const keys = Object.keys(subs[cid]); const on = keys.filter((s) => S.filters.has(`${cid}:${s}`)).length;
       const total = keys.reduce((a, s) => a + subs[cid][s], 0);
-      const el = document.createElement("div"); el.className = "cat" + (openCats.has(cid) ? " open" : ""); el.dataset.cat = cid;
-      el.innerHTML = `<div class="cat-head"><span class="caret">▶</span><input type="checkbox" ${on === keys.length ? "checked" : ""} ${on && on < keys.length ? "data-ind=1" : ""}>
-        <span class="ico">${iconHtml({ cat: cid, sub: "" })}</span><span>${esc(L10(c.label))}</span><span class="count">${total}</span></div><div class="subs"></div>`;
+      const isOpen = openCats.has(cid);
+      const el = document.createElement("div"); el.className = "cat" + (isOpen ? " open" : "") + (on === 0 ? " off" : ""); el.dataset.cat = cid;
+      el.innerHTML = `<div class="cat-head" role="button" tabindex="0" aria-expanded="${isOpen}" title="${esc(T("expand"))}"><span class="caret" aria-hidden="true"><svg viewBox="0 0 10 10"><path d="M3 1.5 6.5 5 3 8.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><input type="checkbox" aria-label="${esc(L10(c.label))}" ${on === keys.length ? "checked" : ""} ${on && on < keys.length ? "data-ind=1" : ""}>
+        <span class="ico">${iconHtml({ cat: cid, sub: "" })}</span><span class="name">${esc(L10(c.label))}</span><span class="count">${total}</span></div><div class="subs"><div class="subs-inner"></div></div>`;
       const cb = el.querySelector("input"); cb.indeterminate = on > 0 && on < keys.length;
       cb.addEventListener("click", (e) => { e.stopPropagation(); for (const s of keys) cb.checked ? S.filters.add(`${cid}:${s}`) : S.filters.delete(`${cid}:${s}`); apply(); });
-      el.querySelector(".cat-head").addEventListener("click", () => el.classList.toggle("open"));
-      const subsEl = el.querySelector(".subs");
+      const head = el.querySelector(".cat-head");
+      const subsEl = el.querySelector(".subs-inner");
+      const syncTab = () => subsEl.querySelectorAll("input").forEach((i) => i.tabIndex = el.classList.contains("open") ? 0 : -1);   // collapsed groups stay out of the tab order
+      const toggleOpen = () => { const o = el.classList.toggle("open"); head.setAttribute("aria-expanded", o); syncTab(); };
+      head.addEventListener("click", toggleOpen);
+      head.addEventListener("keydown", (e) => { if (e.target !== head) return; if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleOpen(); } });
       for (const sid of keys) {
         const si = c.subs[sid] || { en: sid, pt: sid, icon: c.icon };
-        const lab = document.createElement("label");
-        lab.innerHTML = `<input type="checkbox" ${S.filters.has(`${cid}:${sid}`) ? "checked" : ""}><span class="dot" style="background:${si.color || c.color}"></span><span class="ico">${iconHtml({ cat: cid, sub: sid })}</span><span>${esc(si[S.lang] || si.en || sid)}</span><span class="count">${subs[cid][sid]}</span>`;
+        const lab = document.createElement("label"); lab.dataset.sub = sid;
+        lab.innerHTML = `<input type="checkbox" ${S.filters.has(`${cid}:${sid}`) ? "checked" : ""} ${isOpen ? "" : 'tabindex="-1"'}><span class="dot" style="background:${si.color || c.color}"></span><span class="ico">${iconHtml({ cat: cid, sub: sid })}</span><span class="lab">${esc(si[S.lang] || si.en || sid)}</span><span class="count">${subs[cid][sid]}</span>`;
         lab.querySelector("input").addEventListener("change", (e) => { e.target.checked ? S.filters.add(`${cid}:${sid}`) : S.filters.delete(`${cid}:${sid}`); apply(); });
         subsEl.appendChild(lab);
       }
       root.appendChild(el);
+    }
+    // re-rendering replaces the DOM: put keyboard focus back where it was
+    if (focusCat) {
+      const c = root.querySelector(`.cat[data-cat="${CSS.escape(focusCat)}"]`);
+      (focusSub ? c?.querySelector(`label[data-sub="${CSS.escape(focusSub)}"] input`) : c?.querySelector(".cat-head input"))?.focus({ preventScroll: true });
     }
   }
   function apply() { saveFilters(); renderFilters(); renderPoints(); }
@@ -225,8 +251,25 @@
     }
     box.innerHTML = hits.length ? hits.slice(0, 40).map((h) => `<div data-kind="${h.kind}" data-id="${h.id}"><span class="ico">${h.icon}</span>${esc(h.label)}<small>${esc(h.sub)}</small></div>`).join("") : `<div>${T("noResults")}</div>`;
     box.classList.remove("hidden");
-    box.querySelectorAll("div[data-id]").forEach((d) => d.addEventListener("click", () => { d.dataset.kind === "hold" ? goToHold(d.dataset.id) : goTo(d.dataset.id); box.classList.add("hidden"); }));
+    box.querySelectorAll("div[data-id]").forEach((d) => { d.setAttribute("role", "option"); d.addEventListener("click", () => pickResult(d)); });
   });
+  function pickResult(d) {
+    d.dataset.kind === "hold" ? goToHold(d.dataset.id) : goTo(d.dataset.id); $("#search-results").classList.add("hidden");
+    if (isMobile()) setDrawer(false);
+  }
+  $("#search").addEventListener("keydown", (e) => {
+    const box = $("#search-results"); const opts = [...box.querySelectorAll("div[data-id]")];
+    if (e.key === "Escape") { if (!box.classList.contains("hidden")) { e.stopPropagation(); box.classList.add("hidden"); } else if (e.target.value) { e.stopPropagation(); e.target.value = ""; } return; }
+    if (box.classList.contains("hidden") || !opts.length) return;
+    const cur = opts.findIndex((o) => o.classList.contains("active"));
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+      e.preventDefault();
+      const next = e.key === "ArrowDown" ? (cur + 1) % opts.length : (cur <= 0 ? opts.length - 1 : cur - 1);
+      opts.forEach((o, i) => o.classList.toggle("active", i === next)); opts[next].scrollIntoView({ block: "nearest" });
+    } else if (e.key === "Enter") { e.preventDefault(); pickResult(opts[Math.max(cur, 0)]); }
+  });
+  $("#search").addEventListener("focus", (e) => { if (e.target.value.trim()) $("#search-results").classList.remove("hidden"); });
+  document.addEventListener("pointerdown", (e) => { if (!e.target.closest(".sb-search")) $("#search-results").classList.add("hidden"); });
   function goTo(id) {
     const it = allItems()[id]; if (!it) return;
     if (!isVisible(it)) { S.filters.add(`${it.cat}:${it.sub}`); if (S.holdFilter && S.holdFilter !== it.hold) { S.holdFilter = ""; $("#hold-filter").value = ""; renderHolds(); } apply(); }
@@ -256,8 +299,11 @@
     // menu is position:fixed, so viewport coordinates of the click are used directly
     let x = e.originalEvent.clientX + 2, y = e.originalEvent.clientY + 2;
     ctx.classList.remove("hidden");
-    if (x + ctx.offsetWidth > window.innerWidth) x -= ctx.offsetWidth + 4; if (y + ctx.offsetHeight > window.innerHeight) y -= ctx.offsetHeight + 4;
-    ctx.style.left = x + "px"; ctx.style.top = y + "px";
+    let ox = "left", oy = "top";
+    if (x + ctx.offsetWidth > window.innerWidth - 8) { x -= ctx.offsetWidth + 4; ox = "right"; } if (y + ctx.offsetHeight > window.innerHeight - 8) { y -= ctx.offsetHeight + 4; oy = "bottom"; }
+    x = Math.max(8, x); y = Math.max(8, y);
+    ctx.style.left = x + "px"; ctx.style.top = y + "px"; ctx.style.transformOrigin = `${oy} ${ox}`;
+    ctx.style.animation = "none"; void ctx.offsetWidth; ctx.style.animation = "";   // replay the pop-in when re-opened in place
   }
   map.on("click", (e) => {
     if (!ctx.classList.contains("hidden")) { hideCtx(); return; }   // click outside the menu closes it
@@ -267,7 +313,19 @@
   });
   map.on("contextmenu", (e) => { L.DomEvent.preventDefault(e.originalEvent); showMenu(e); });
   const hideCtx = () => ctx.classList.add("hidden");
-  map.on("movestart zoomstart", hideCtx); document.addEventListener("keydown", (e) => { if (e.key === "Escape") { hideCtx(); } });
+  map.on("movestart zoomstart", hideCtx);
+  // Escape closes the top-most layer only: confirm dialog -> form -> menu -> drawer
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    if (!$("#dlg-backdrop").classList.contains("hidden")) return;           // handled by the dialog
+    if (!$("#form-backdrop").classList.contains("hidden")) { e.preventDefault(); closeForm(); return; }
+    if (!ctx.classList.contains("hidden")) { hideCtx(); return; }
+    if ($("#sidebar").classList.contains("open")) { setDrawer(false); $("#sb-toggle").focus(); }
+  });
+  ctx.addEventListener("keydown", (e) => {
+    const items = [...ctx.querySelectorAll("button:not(.hidden)")]; const i = items.indexOf(document.activeElement);
+    if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); items[(i + (e.key === "ArrowDown" ? 1 : items.length - 1)) % items.length]?.focus(); }
+  });
   ctx.querySelectorAll("button").forEach((b) => b.addEventListener("click", (ev) => {
     ev.stopPropagation(); const act = b.dataset.act; hideCtx();
     if (act === "add") openForm(null, { kind: "point", ...ctxPoint });
@@ -275,7 +333,39 @@
     else if (act === "area") { if (!S.edit) { $("#edit-mode").checked = true; $("#edit-mode").dispatchEvent(new Event("change")); } map.pm?.enableDraw("Polygon"); }
     else if (act === "copy") { navigator.clipboard?.writeText(`${ctxPoint.x}, ${ctxPoint.y}`); toast(T("copied")); }
   }));
-  function toast(msg) { const t = document.createElement("div"); t.className = "coords"; t.style.bottom = "34px"; t.textContent = msg; $("#map").appendChild(t); setTimeout(() => t.remove(), 1800); }
+  // ---------- feedback: toast + confirm dialog ----------
+  function toast(msg, type = "info", ms = 2600) {
+    const box = $("#toasts"); const t = document.createElement("div");
+    t.className = "toast " + type;
+    t.innerHTML = `<span class="t-ico" aria-hidden="true">${type === "error" ? "!" : type === "success" ? "✓" : "i"}</span><span></span>`;
+    t.lastChild.textContent = msg;
+    while (box.children.length > 2) box.firstChild.remove();
+    box.appendChild(t);
+    const kill = () => { t.classList.add("out"); setTimeout(() => t.remove(), 200); };
+    const timer = setTimeout(kill, ms); t.addEventListener("click", () => { clearTimeout(timer); kill(); });
+  }
+  // in-app replacement for window.confirm(); resolves true/false
+  function ask(msg, { ok = "OK", danger = false } = {}) {
+    return new Promise((resolve) => {
+      const bd = $("#dlg-backdrop"), okB = $("#dlg-ok"), noB = $("#dlg-cancel"), prev = document.activeElement;
+      $("#dlg-msg").textContent = msg; okB.textContent = ok; noB.textContent = T("cancel");
+      okB.classList.toggle("danger", danger); okB.classList.toggle("solid", danger); okB.classList.toggle("primary", !danger);
+      bd.classList.remove("hidden"); (danger ? noB : okB).focus();
+      const done = (v) => { bd.classList.add("hidden"); bd.removeEventListener("keydown", key); okB.onclick = noB.onclick = bd.onclick = null; prev?.focus?.(); resolve(v); };
+      const key = (e) => { if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); done(false); } else trapTab(e, $("#dlg")); };
+      bd.addEventListener("keydown", key);
+      okB.onclick = () => done(true); noB.onclick = () => done(false);
+      bd.onclick = (e) => { if (e.target === bd) done(false); };
+    });
+  }
+  function trapTab(e, root) {
+    if (e.key !== "Tab") return;
+    const f = [...root.querySelectorAll("button,input,select,textarea,[tabindex]")].filter((n) => !n.disabled && n.type !== "hidden" && n.tabIndex >= 0 && n.offsetParent !== null);
+    if (!f.length) return;
+    const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
   map.on("pm:create", (e) => {
     if (e.shape !== "Polygon") return;
     const pts = e.layer.getLatLngs()[0].map((ll) => { const p = toXY(ll); return [p.x, p.y]; });
@@ -294,10 +384,8 @@
     F("form-title").textContent = item ? T("formEdit") : (kind === "area" ? T("newArea") : T("formNew"));
     const isArea = kind === "area";
     F("f-cat").parentElement.parentElement.classList.toggle("hidden", isArea);
-    F("f-xy-row").classList.toggle("hidden", isArea);
     F("f-color-row").classList.toggle("hidden", !isArea);
     F("f-hold").parentElement.classList.toggle("hidden", isArea);
-    F("f-tags").parentElement.classList.toggle("hidden", isArea);
     F("f-delete").classList.toggle("hidden", !item);
     fillCatSelect(); F("f-cat").value = item?.cat || "settlement"; fillSubList();
     F("f-sub").value = item?.sub || ""; F("f-name-en").value = L10(item?.name); F("f-name-pt").value = item?.name?.pt || "";
@@ -308,17 +396,35 @@
     F("f-x").value = item?.x ?? defaults.x ?? ""; F("f-y").value = item?.y ?? defaults.y ?? "";
     F("poi-form")._points = item?.points || defaults.points || null;
     F("poi-form")._capital = item?.capital || "";
-    $("#form-backdrop").classList.remove("hidden"); F("f-name-en").focus();
+    F("poi-form").querySelectorAll("[aria-invalid]").forEach((n) => n.removeAttribute("aria-invalid"));
+    if ($("#form-backdrop").classList.contains("hidden")) formReturnFocus = document.activeElement;
+    $("#form-backdrop").classList.remove("hidden"); F("poi-form").scrollTop = 0; F("f-name-en").focus({ preventScroll: true });
   }
-  function closeForm() { $("#form-backdrop").classList.add("hidden"); }
+  let formReturnFocus = null;
+  function closeForm() {
+    $("#form-backdrop").classList.add("hidden");
+    if (formReturnFocus && formReturnFocus !== document.body && document.contains(formReturnFocus)) formReturnFocus.focus?.({ preventScroll: true });
+    formReturnFocus = null;
+  }
+  function invalid(el) {
+    el.setAttribute("aria-invalid", "true"); el.focus();
+    const f = F("poi-form"); f.classList.remove("shake"); void f.offsetWidth; f.classList.add("shake");
+    el.addEventListener("input", () => el.removeAttribute("aria-invalid"), { once: true });
+  }
   F("f-cancel").addEventListener("click", closeForm);
+  F("f-close").addEventListener("click", closeForm);
+  F("poi-form").addEventListener("keydown", (e) => {
+    trapTab(e, F("poi-form"));
+    // Enter in a single-line field saves; Ctrl/Cmd+Enter saves from anywhere (textarea included)
+    if (e.key === "Enter" && !e.isComposing && ((e.target.tagName === "INPUT" && !["checkbox", "color", "file"].includes(e.target.type)) || e.ctrlKey || e.metaKey)) { e.preventDefault(); F("poi-form").requestSubmit(); }
+  });
   $("#form-backdrop").addEventListener("click", (e) => { if (e.target.id === "form-backdrop") closeForm(); });
-  F("f-delete").addEventListener("click", () => {
-    if (!confirm(T("confirmDelete"))) return;
+  F("f-delete").addEventListener("click", async () => {
+    if (!(await ask(T("confirmDelete"), { ok: T("delete"), danger: true }))) return;
     const id = F("f-id").value, isArea = F("f-kind").value === "area";
     const bucket = isArea ? S.ovr.holds : S.ovr.items, base = isArea ? S.base.holds : S.base.items;
     bucket[id] = null;                       // null = deleted (also for ids that only exist in the database)
-    saveOvr([{ kind: isArea ? "hold" : "item", id }]); closeForm(); refreshAll();
+    saveOvr([{ kind: isArea ? "hold" : "item", id }]); closeForm(); refreshAll(); toast(T("deleted"), "success");
   });
   F("poi-form").addEventListener("submit", (e) => {
     e.preventDefault();
@@ -329,8 +435,8 @@
     const name = both(nameVal, orig.name), desc = both(descVal, orig.desc);
     const nameEn = nameVal;
     const subRaw = F("f-sub").value.trim().toLowerCase().replace(/\s+/g, "_");
-    if (!isArea && !nameEn && !subRaw) { alert(T("needName")); F("f-sub").focus(); return; }
-    if (isArea && !nameEn) { alert(T("needName")); F("f-name-en").focus(); return; }
+    if (!isArea && !nameEn && !subRaw) { toast(T("needName"), "error"); invalid(F("f-sub")); return; }
+    if (isArea && !nameEn) { toast(T("needName"), "error"); invalid(F("f-name-en")); return; }
     const id = F("f-id").value || slug(nameEn || subRaw);
     if (isArea) {
       S.ovr.holds[id] = { id, kind: "area", color: F("f-color").value, capital: F("poi-form")._capital, name, desc, points: F("poi-form")._points || [] };
@@ -342,7 +448,7 @@
         tags: F("f-tags").value.split(",").map((t) => t.trim()).filter(Boolean) };
       S.filters.add(`${F("f-cat").value}:${sub}`);
     }
-    saveOvr([{ kind: isArea ? "hold" : "item", id }]); closeForm(); refreshAll();
+    saveOvr([{ kind: isArea ? "hold" : "item", id }]); closeForm(); refreshAll(); toast(T("saved"), "success", 1600);
   });
   function slug(s) { let b = s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "") || "item"; let id = b, n = 2; const all = { ...allItems(), ...allHolds() }; while (all[id]) id = `${b}_${n++}`; return id; }
   function holdAt(x, y) { for (const h of Object.values(allHolds())) if (pointInPoly([x, y], h.points)) return h.id; return ""; }
@@ -357,6 +463,7 @@
   }
   $("#btn-export").addEventListener("click", () => download("skyrim-map-data.json", { _type: "skyrim-map-full", ...fullDataset() }));
   $("#btn-export-changes").addEventListener("click", () => download("skyrim-map-changes.json", { _type: "skyrim-map-overrides", ...S.ovr }));
+  document.querySelector("label.btn.file").addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); $("#btn-import").click(); } });
   $("#btn-import").addEventListener("change", async (e) => {
     const f = e.target.files[0]; if (!f) return;
     try {
@@ -371,13 +478,13 @@
         for (const [id, it] of Object.entries(items)) if (JSON.stringify(it) !== JSON.stringify(S.base.items[id])) S.ovr.items[id] = it;
         for (const id in S.base.items) if (!items[id]) S.ovr.items[id] = null;
       } else throw new Error("format");
-      saveOvr(allChanges()); refreshAll(); alert(T("imported"));
-    } catch { alert(T("importFail")); }
+      saveOvr(allChanges()); refreshAll(); toast(T("imported"), "success");
+    } catch { toast(T("importFail"), "error", 3600); }
     e.target.value = "";
   });
   $("#btn-reset").addEventListener("click", async () => {
-    if (REMOTE) { try { S.ovr = await remoteLoad(); saveOvr(); refreshAll(); } catch (e) { setSync(T("syncLoadErr"), true); } return; }
-    if (confirm(T("confirmReset"))) { S.ovr = { holds: {}, items: {} }; saveOvr(); refreshAll(); }
+    if (REMOTE) { try { S.ovr = await remoteLoad(); saveOvr(); refreshAll(); } catch (e) { setSync(T("syncLoadErr"), true); toast(T("syncLoadErr"), "error", 4000); } return; }
+    if (await ask(T("confirmReset"), { ok: T("discard"), danger: true })) { S.ovr = { holds: {}, items: {} }; saveOvr(); refreshAll(); }
   });
   function updateChangeCount() { $("#change-count").textContent = REMOTE ? T("changesRemote", ovrCount()) : T("changes", ovrCount()); }
 
@@ -387,17 +494,32 @@
   $("#hold-filter").addEventListener("change", (e) => { S.holdFilter = e.target.value; renderHolds(); renderPoints(); if (S.holdFilter) goToHold(S.holdFilter); });
   $("#all-on").addEventListener("click", () => { const s = allSubs(); for (const c in s) for (const k in s[c]) S.filters.add(`${c}:${k}`); apply(); });
   $("#all-off").addEventListener("click", () => { S.filters.clear(); apply(); });
-  $("#sb-toggle").addEventListener("click", () => $("#sidebar").classList.toggle("open"));
+  function setDrawer(open) {
+    const sb = $("#sidebar"); if (sb.classList.contains("open") === open) return;
+    sb.classList.toggle("open", open); $("#sb-toggle").setAttribute("aria-expanded", open);
+    if (open) hideCtx();
+  }
+  $("#sb-toggle").addEventListener("click", () => setDrawer(!$("#sidebar").classList.contains("open")));
+  $("#sb-backdrop").addEventListener("click", () => setDrawer(false));
+  (() => { let x0 = null; const sb = $("#sidebar");   // swipe left closes the drawer
+    sb.addEventListener("touchstart", (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    sb.addEventListener("touchend", (e) => { if (x0 != null && x0 - e.changedTouches[0].clientX > 60) setDrawer(false); x0 = null; }, { passive: true });
+  })();
+  if (new URLSearchParams(location.search).get("sb") === "1") setDrawer(true);
   document.querySelectorAll(".lang-btn").forEach((b) => b.addEventListener("click", () => setLang(b.dataset.lang)));
   function setLang(l) {
     S.lang = l; localStorage.setItem(LS_LANG, l); document.documentElement.lang = l === "pt" ? "pt-BR" : "en";
-    document.querySelectorAll(".lang-btn").forEach((b) => b.classList.toggle("active", b.dataset.lang === l));
-    document.querySelectorAll("[data-i18n]").forEach((el) => el.textContent = T(el.dataset.i18n));
-    document.querySelectorAll("[data-i18n-ph]").forEach((el) => el.placeholder = T(el.dataset.i18nPh));
-    document.title = T("title");
+    applyStatic();
     if (REMOTE) setSync(pending.length ? T("syncErr") : T("syncOn"), !!pending.length); else setSync(T("syncOff"));
     if (S.edit && map.pm) map.pm.setLang(l === "pt" ? "pt_br" : "en");
     refreshAll();
+  }
+  function applyStatic() {
+    document.querySelectorAll(".lang-btn").forEach((b) => { const on = b.dataset.lang === S.lang; b.classList.toggle("active", on); b.setAttribute("aria-pressed", on); });
+    document.querySelectorAll("[data-i18n]").forEach((el) => el.textContent = T(el.dataset.i18n));
+    document.querySelectorAll("[data-i18n-ph]").forEach((el) => el.placeholder = T(el.dataset.i18nPh));
+    document.querySelectorAll("[data-i18n-aria]").forEach((el) => el.setAttribute("aria-label", T(el.dataset.i18nAria)));
+    document.title = T("title");
   }
   function refreshAll() { renderHoldSelects(); renderFilters(); renderHolds(); renderPoints(); updateChangeCount(); map.closePopup(); }
 
@@ -409,6 +531,7 @@
 
   // ---------- boot ----------
   (async () => {
+    document.documentElement.lang = S.lang === "pt" ? "pt-BR" : "en"; applyStatic();   // no flash of the wrong language while data loads
     const j = (u) => fetch(u).then((r) => { if (!r.ok) throw new Error(u); return r.json(); });
     S.cats = await j("data/categories.json");
     const idx = await j("data/index.json");
@@ -424,6 +547,7 @@
     } else setSync(T("syncOff"));
     initFilters();
     setLang(S.lang);
+    $("#loading").classList.add("done");
     if (location.hash.length > 1) setTimeout(() => goTo(decodeURIComponent(location.hash.slice(1))), 300);
     if (new URLSearchParams(location.search).get("selftest")) {
       try {
@@ -447,5 +571,11 @@
         document.title += "SELFTEST " + (it && it.hold === "whiterun" && it.x === 700 && mk ? "OK" : "FAIL " + JSON.stringify(it)) + " MENU " + (menuOk ? "OK" : "FAIL");
       } catch (e) { document.title = "SELFTEST ERR " + e.message; }
     }
-  })().catch((err) => { console.error(err); alert("Failed to load data: " + err.message); });
+  })().catch((err) => {
+    console.error(err);
+    const ld = $("#loading"); ld.classList.add("error");
+    $("#loading-msg").textContent = T("loadFail");
+    const b = document.createElement("button"); b.type = "button"; b.className = "btn primary"; b.textContent = T("retry"); b.onclick = () => location.reload();
+    ld.appendChild(b); toast(T("loadFail") + " (" + err.message + ")", "error", 6000);
+  });
 })();

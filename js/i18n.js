@@ -15,6 +15,8 @@ window.I18N = {
     confirmReset: "Descartar todas as mudanças locais? Isso não pode ser desfeito.",
     confirmDelete: "Apagar este item?", newArea: "Nova área", areaHint: "Área desenhada. Preencha os dados.",
     none: "—", resources: "Recursos", noResults: "Nada encontrado", imported: "Importado com sucesso.", importFail: "Arquivo inválido.",
+    display: "Exibição", loading: "Carregando mapa…", loadFail: "Não foi possível carregar os dados do mapa.", retry: "Tentar de novo",
+    close: "Fechar", menu: "Abrir ou fechar o menu", discard: "Descartar", saved: "Salvo.", deleted: "Item apagado.", expand: "Expandir ou recolher",
   },
   en: {
     title: "Skyrim Map", search: "Search location, resource, hold...", holds: "Territories (Holds)", labels: "Labels",
@@ -31,5 +33,7 @@ window.I18N = {
     confirmReset: "Discard all local changes? This cannot be undone.",
     confirmDelete: "Delete this item?", newArea: "New area", areaHint: "Area drawn. Fill in the details.",
     none: "—", resources: "Resources", noResults: "Nothing found", imported: "Imported successfully.", importFail: "Invalid file.",
+    display: "Display", loading: "Loading map…", loadFail: "Could not load the map data.", retry: "Try again",
+    close: "Close", menu: "Open or close the menu", discard: "Discard", saved: "Saved.", deleted: "Item deleted.", expand: "Expand or collapse",
   }
 };

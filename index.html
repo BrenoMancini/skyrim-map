@@ -2,9 +2,11 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1b1711">
 <title>Skyrim Interactive Map</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@2.17.0/dist/leaflet-geoman.css">
@@ -12,37 +14,42 @@
 </head>
 <body>
 <div id="app">
-  <aside id="sidebar">
+  <aside id="sidebar" aria-label="Skyrim">
     <header class="sb-head">
       <h1 data-i18n="title">Mapa de Skyrim</h1>
-      <div class="lang-switch">
-        <button data-lang="pt" class="lang-btn active">PT</button>
-        <button data-lang="en" class="lang-btn">EN</button>
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang="pt" class="lang-btn active" aria-pressed="true">PT</button>
+        <button type="button" data-lang="en" class="lang-btn" aria-pressed="false">EN</button>
       </div>
     </header>
 
-    <div class="sb-section">
-      <input id="search" type="search" data-i18n-ph="search" placeholder="Buscar...">
-      <div id="search-results" class="search-results hidden"></div>
+    <div class="sb-section sb-search">
+      <div class="search-wrap">
+        <svg class="search-ico" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M13 13l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <input id="search" type="search" data-i18n-ph="search" placeholder="Buscar..." autocomplete="off" spellcheck="false" aria-controls="search-results">
+      </div>
+      <div id="search-results" class="search-results hidden" role="listbox"></div>
     </div>
 
     <div class="sb-section">
-      <div class="sb-row">
+      <div class="sb-title" data-i18n="display">Exibição</div>
+      <div class="sb-row chips">
         <label class="chk"><input type="checkbox" id="toggle-holds" checked> <span data-i18n="holds">Territórios (Holds)</span></label>
         <label class="chk"><input type="checkbox" id="toggle-labels" checked> <span data-i18n="labels">Rótulos</span></label>
       </div>
       <div class="sb-row">
-        <label data-i18n="filterHold">Filtrar por hold</label>
+        <label for="hold-filter" class="field-label" data-i18n="filterHold">Filtrar por hold</label>
         <select id="hold-filter"><option value="">—</option></select>
       </div>
     </div>
 
     <div class="sb-section">
       <div class="sb-row sb-between">
-        <strong data-i18n="layers">Camadas</strong>
-        <span>
-          <button class="link" id="all-on" data-i18n="allOn">todas</button> ·
-          <button class="link" id="all-off" data-i18n="allOff">nenhuma</button>
+        <strong class="sb-title" data-i18n="layers">Camadas</strong>
+        <span class="link-group">
+          <button type="button" class="link" id="all-on" data-i18n="allOn">todas</button>
+          <span class="sep" aria-hidden="true">·</span>
+          <button type="button" class="link" id="all-off" data-i18n="allOff">nenhuma</button>
         </span>
       </div>
       <div id="filters"></div>
@@ -50,18 +57,18 @@
 
     <div class="sb-section">
       <div class="sb-row sb-between">
-        <strong data-i18n="edit">Edição</strong>
-        <label class="switch"><input type="checkbox" id="edit-mode"><span class="slider"></span></label>
+        <label for="edit-mode" class="sb-title" data-i18n="edit">Edição</label>
+        <label class="switch"><input type="checkbox" id="edit-mode" role="switch"><span class="slider"></span></label>
       </div>
       <div id="edit-tools" class="hidden">
         <p class="hint" data-i18n="editHint">Clique num espaço vazio do mapa pra adicionar um recurso. Arraste marcadores pra mover. Use as ferramentas no canto do mapa pra editar áreas.</p>
         <div class="btn-row">
-          <button id="btn-export" class="btn" data-i18n="export">Exportar JSON</button>
-          <button id="btn-export-changes" class="btn" data-i18n="exportChanges">Só minhas mudanças</button>
+          <button type="button" id="btn-export" class="btn" data-i18n="export">Exportar JSON</button>
+          <button type="button" id="btn-export-changes" class="btn" data-i18n="exportChanges">Só minhas mudanças</button>
         </div>
         <div class="btn-row">
-          <label class="btn file"><span data-i18n="import">Importar JSON</span><input type="file" id="btn-import" accept="application/json" hidden></label>
-          <button id="btn-reset" class="btn danger" data-i18n="reset">Descartar mudanças locais</button>
+          <label class="btn file" tabindex="0"><span data-i18n="import">Importar JSON</span><input type="file" id="btn-import" accept="application/json" hidden></label>
+          <button type="button" id="btn-reset" class="btn danger" data-i18n="reset">Descartar mudanças locais</button>
         </div>
         <p class="hint small" id="change-count"></p>
         <p class="hint small" id="sync-status"></p>
@@ -73,45 +80,70 @@
       <a id="gh-link" href="#" target="_blank" rel="noopener">GitHub</a>
     </footer>
   </aside>
+  <div id="sb-backdrop" class="sb-backdrop" aria-hidden="true"></div>
 
   <main id="map"></main>
-  <button id="sb-toggle" aria-label="menu">☰</button>
+  <button id="sb-toggle" type="button" aria-label="menu" data-i18n-aria="menu" aria-controls="sidebar" aria-expanded="false"><span class="burger" aria-hidden="true"></span></button>
+
+  <div id="loading" class="loading" role="status" aria-live="polite">
+    <div class="spinner" aria-hidden="true"></div>
+    <span id="loading-msg" data-i18n="loading">Carregando mapa…</span>
+  </div>
 
   <div id="coords" class="coords"></div>
-  <div id="ctx" class="ctx hidden">
-    <button data-act="hold" class="ctx-hold"><span class="ico">🗺️</span><span></span></button>
-    <button data-act="add"><span class="ico">➕</span><span data-i18n="ctxAdd">Adicionar recurso aqui</span></button>
-    <button data-act="area"><span class="ico">⬠</span><span data-i18n="ctxArea">Desenhar área / território</span></button>
-    <button data-act="copy"><span class="ico">📋</span><span data-i18n="ctxCopy">Copiar coordenadas</span></button>
+  <div id="ctx" class="ctx hidden" role="menu">
+    <button type="button" role="menuitem" data-act="hold" class="ctx-hold"><span class="ico">🗺️</span><span></span></button>
+    <button type="button" role="menuitem" data-act="add"><span class="ico">➕</span><span data-i18n="ctxAdd">Adicionar recurso aqui</span></button>
+    <button type="button" role="menuitem" data-act="area"><span class="ico">⬠</span><span data-i18n="ctxArea">Desenhar área / território</span></button>
+    <button type="button" role="menuitem" data-act="copy"><span class="ico">📋</span><span data-i18n="ctxCopy">Copiar coordenadas</span></button>
   </div>
 </div>
 
 <!-- Edit form -->
-<div id="form-backdrop" class="hidden">
-  <form id="poi-form" class="poi-form" novalidate>
-    <h2 id="form-title" data-i18n="formNew">Novo ponto</h2>
-    <input type="hidden" id="f-id">
-    <input type="hidden" id="f-kind" value="point">
-    <div class="grid2">
-      <label><span data-i18n="category">Categoria</span><select id="f-cat"></select></label>
-      <label><span data-i18n="subtype">Subtipo</span><input id="f-sub" list="sub-list"><datalist id="sub-list"></datalist></label>
+<div id="form-backdrop" class="modal-backdrop hidden">
+  <form id="poi-form" class="poi-form" novalidate role="dialog" aria-modal="true" aria-labelledby="form-title">
+    <div class="form-head">
+      <h2 id="form-title" data-i18n="formNew">Novo ponto</h2>
+      <button type="button" id="f-close" class="icon-btn" aria-label="close" data-i18n-aria="close">✕</button>
     </div>
-    <label><span data-i18n="name">Nome (opcional, senão usa o subtipo)</span><input id="f-name-en"><input id="f-name-pt" type="hidden"></label>
-    <label><span data-i18n="hold">Hold</span><select id="f-hold"></select></label>
-    <label><span data-i18n="desc">Descrição</span><textarea id="f-desc-en" rows="3"></textarea><input id="f-desc-pt" type="hidden"></label>
-    <label class="hidden"><span data-i18n="tags">Tags (separadas por vírgula)</span><input id="f-tags" placeholder="iron, silver"></label>
-    <label id="f-color-row" class="hidden"><span data-i18n="color">Cor</span><input id="f-color" type="color" value="#c08a3e"></label>
-    <div class="grid2 hidden" id="f-xy-row">
-      <label><span>X</span><input id="f-x" type="number" step="0.1"></label>
-      <label><span>Y</span><input id="f-y" type="number" step="0.1"></label>
+    <div class="form-body">
+      <input type="hidden" id="f-id">
+      <input type="hidden" id="f-kind" value="point">
+      <div class="grid2">
+        <label><span data-i18n="category">Categoria</span><select id="f-cat"></select></label>
+        <label><span data-i18n="subtype">Subtipo</span><input id="f-sub" list="sub-list" autocomplete="off"><datalist id="sub-list"></datalist></label>
+      </div>
+      <label><span data-i18n="name">Nome (opcional, senão usa o subtipo)</span><input id="f-name-en" autocomplete="off"><input id="f-name-pt" type="hidden"></label>
+      <label><span data-i18n="hold">Hold</span><select id="f-hold"></select></label>
+      <label><span data-i18n="desc">Descrição</span><textarea id="f-desc-en" rows="3"></textarea><input id="f-desc-pt" type="hidden"></label>
+      <label class="hidden"><span data-i18n="tags">Tags (separadas por vírgula)</span><input id="f-tags" placeholder="iron, silver"></label>
+      <label id="f-color-row" class="hidden"><span data-i18n="color">Cor</span><input id="f-color" type="color" value="#c08a3e"></label>
+      <div class="grid2 hidden" id="f-xy-row">
+        <label><span>X</span><input id="f-x" type="number" step="0.1"></label>
+        <label><span>Y</span><input id="f-y" type="number" step="0.1"></label>
+      </div>
     </div>
-    <div class="btn-row end">
+    <div class="btn-row end form-foot">
       <button type="button" id="f-delete" class="btn danger hidden" data-i18n="delete">Apagar</button>
       <button type="button" id="f-cancel" class="btn" data-i18n="cancel">Cancelar</button>
       <button type="submit" class="btn primary" data-i18n="save">Salvar</button>
     </div>
   </form>
 </div>
+
+<!-- In-app confirm dialog -->
+<div id="dlg-backdrop" class="modal-backdrop dlg-backdrop hidden">
+  <div id="dlg" class="dlg" role="alertdialog" aria-modal="true" aria-describedby="dlg-msg">
+    <p id="dlg-msg"></p>
+    <div class="btn-row end">
+      <button type="button" id="dlg-cancel" class="btn" data-i18n="cancel">Cancelar</button>
+      <button type="button" id="dlg-ok" class="btn primary">OK</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toasts -->
+<div id="toasts" class="toasts" role="status" aria-live="polite"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@2.17.0/dist/leaflet-geoman.min.js"></script>
