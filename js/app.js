@@ -95,6 +95,7 @@
       map.invalidateSize({ pan: false }); map.setMinZoom(-3);
       const fz = map.getBoundsZoom(bounds); map.setMinZoom(fz);
       if (wasWhole || map.getZoom() < fz) map.fitBounds(bounds);
+      syncHoldLabels();
       if (!isMobile()) setDrawer(false);
     }, 120);
   });
@@ -159,6 +160,13 @@
     }
   }
   map.on("zoomend", renderPoints);
+  // hold names are an overview aid: show them only while zoomed out near the whole-map view
+  const HOLD_LABEL_ZOOM = 0.8;   // zoom levels above the "whole map" floor (mobile portrait opens at +0.75)
+  function syncHoldLabels() {
+    const show = map.getZoom() <= map.getMinZoom() + HOLD_LABEL_ZOOM;
+    if (show !== map.hasLayer(S.layers.holdLabels)) show ? map.addLayer(S.layers.holdLabels) : map.removeLayer(S.layers.holdLabels);
+  }
+  map.on("zoomend", syncHoldLabels); syncHoldLabels();
 
   function esc(s) { return String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
   function itemPopup(it) {
