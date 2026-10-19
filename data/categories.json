@@ -1,101 +1,459 @@
 {
   "settlement": {
-    "icon": "🏰", "color": "#b8321f", "big": true,
-    "label": { "en": "Settlements", "pt": "Assentamentos" },
+    "icon": "🏰",
+    "color": "#b8321f",
+    "big": true,
+    "label": {
+      "en": "Settlements",
+      "pt": "Assentamentos"
+    },
     "subs": {
-      "city":    { "en": "City (capital)", "pt": "Cidade (capital)", "icon": "🏰" },
-      "town":    { "en": "Town",           "pt": "Vila",             "icon": "🏘️" },
-      "village": { "en": "Village",        "pt": "Aldeia",           "icon": "🏡" },
-      "inn":     { "en": "Inn",            "pt": "Estalagem",        "icon": "🍺" },
-      "farm":    { "en": "Farm",           "pt": "Fazenda",          "icon": "🌾" },
-      "orc_stronghold": { "en": "Orc stronghold", "pt": "Fortaleza orc", "icon": "⚒️" }
-    }
+      "city": {
+        "en": "City (capital)",
+        "pt": "Cidade (capital)",
+        "icon": "🏰",
+        "img": "castle_3.png"
+      },
+      "town": {
+        "en": "Town",
+        "pt": "Vila",
+        "icon": "🏘️",
+        "img": "town.png"
+      },
+      "village": {
+        "en": "Village",
+        "pt": "Aldeia",
+        "icon": "🏡",
+        "img": "settlement.png"
+      },
+      "inn": {
+        "en": "Inn",
+        "pt": "Estalagem",
+        "icon": "🍺",
+        "img": "nordic_dwelling.png"
+      },
+      "farm": {
+        "en": "Farm",
+        "pt": "Fazenda",
+        "icon": "🌾",
+        "img": "farm.png"
+      },
+      "orc_stronghold": {
+        "en": "Orc stronghold",
+        "pt": "Fortaleza orc",
+        "icon": "⚒️",
+        "img": "orc_stronghold.png"
+      }
+    },
+    "img": "town.png"
   },
   "dungeon": {
-    "icon": "💀", "color": "#4b3b6e",
-    "label": { "en": "Dungeons & ruins", "pt": "Masmorras e ruínas" },
+    "icon": "💀",
+    "color": "#4b3b6e",
+    "label": {
+      "en": "Dungeons & ruins",
+      "pt": "Masmorras e ruínas"
+    },
     "subs": {
-      "nordic_ruin": { "en": "Nordic ruin",   "pt": "Ruína nórdica",  "icon": "🪦" },
-      "dwemer_ruin": { "en": "Dwemer ruin",   "pt": "Ruína dwemer",   "icon": "⚙️" },
-      "cave":        { "en": "Cave",          "pt": "Caverna",        "icon": "🕳️" },
-      "fort":        { "en": "Fort",          "pt": "Forte",          "icon": "🛡️" },
-      "tower":       { "en": "Tower",         "pt": "Torre",          "icon": "🗼" },
-      "bandit_camp": { "en": "Bandit camp",   "pt": "Acampamento de bandidos", "icon": "🏕️" },
-      "dragon_lair": { "en": "Dragon lair",   "pt": "Covil de dragão", "icon": "🐉" },
-      "giant_camp":  { "en": "Giant camp",    "pt": "Acampamento de gigantes", "icon": "🦣" },
-      "keep":        { "en": "Keep / castle", "pt": "Fortaleza / castelo", "icon": "🏯" }
-    }
+      "nordic_ruin": {
+        "en": "Nordic ruin",
+        "pt": "Ruína nórdica",
+        "icon": "🪦",
+        "img": "nordic_ruin.png"
+      },
+      "dwemer_ruin": {
+        "en": "Dwemer ruin",
+        "pt": "Ruína dwemer",
+        "icon": "⚙️",
+        "img": "dwemer.png"
+      },
+      "cave": {
+        "en": "Cave",
+        "pt": "Caverna",
+        "icon": "🕳️",
+        "img": "cave.png"
+      },
+      "fort": {
+        "en": "Fort",
+        "pt": "Forte",
+        "icon": "🛡️",
+        "img": "fort.png"
+      },
+      "tower": {
+        "en": "Tower",
+        "pt": "Torre",
+        "icon": "🗼",
+        "img": "nordic_tower.png"
+      },
+      "bandit_camp": {
+        "en": "Bandit camp",
+        "pt": "Acampamento de bandidos",
+        "icon": "🏕️",
+        "img": "camp.png"
+      },
+      "dragon_lair": {
+        "en": "Dragon lair",
+        "pt": "Covil de dragão",
+        "icon": "🐉",
+        "img": "dragon_lair.png"
+      },
+      "giant_camp": {
+        "en": "Giant camp",
+        "pt": "Acampamento de gigantes",
+        "icon": "🦣",
+        "img": "giant_camp.png"
+      },
+      "keep": {
+        "en": "Keep / castle",
+        "pt": "Fortaleza / castelo",
+        "icon": "🏯",
+        "img": "castle.png"
+      }
+    },
+    "img": "cave.png"
   },
   "landmark": {
-    "icon": "⭐", "color": "#2f6f8f",
-    "label": { "en": "Landmarks", "pt": "Pontos de referência" },
+    "icon": "⭐",
+    "color": "#2f6f8f",
+    "label": {
+      "en": "Landmarks",
+      "pt": "Pontos de referência"
+    },
     "subs": {
-      "standing_stone": { "en": "Standing stone", "pt": "Pedra guardiã", "icon": "🔮" },
-      "shrine":         { "en": "Shrine",         "pt": "Santuário",     "icon": "🕯️" },
-      "pass":           { "en": "Mountain pass",  "pt": "Passagem",      "icon": "⛰️" },
-      "lake":           { "en": "Lake",           "pt": "Lago",          "icon": "🌊" },
-      "mountain":       { "en": "Mountain",       "pt": "Montanha",      "icon": "🏔️" },
-      "word_wall":      { "en": "Word wall",      "pt": "Muro das palavras", "icon": "📜" },
-      "misc":           { "en": "Other",          "pt": "Outro",         "icon": "📍" }
-    }
+      "standing_stone": {
+        "en": "Standing stone",
+        "pt": "Pedra guardiã",
+        "icon": "🔮",
+        "img": "doomstone.png"
+      },
+      "shrine": {
+        "en": "Shrine",
+        "pt": "Santuário",
+        "icon": "🕯️",
+        "img": "shrine.png"
+      },
+      "pass": {
+        "en": "Mountain pass",
+        "pt": "Passagem",
+        "icon": "⛰️",
+        "img": "pass.png"
+      },
+      "lake": {
+        "en": "Lake",
+        "pt": "Lago",
+        "icon": "🌊",
+        "img": "lake.svg"
+      },
+      "mountain": {
+        "en": "Mountain",
+        "pt": "Montanha",
+        "icon": "🏔️",
+        "img": "mountain.svg"
+      },
+      "word_wall": {
+        "en": "Word wall",
+        "pt": "Muro das palavras",
+        "icon": "📜",
+        "img": "altar.png"
+      },
+      "misc": {
+        "en": "Other",
+        "pt": "Outro",
+        "icon": "📍",
+        "img": "landmark.png"
+      }
+    },
+    "img": "landmark.png"
   },
   "ore": {
-    "icon": "⛏️", "color": "#8a6d3b",
-    "label": { "en": "Ore veins & mines", "pt": "Minérios e minas" },
+    "icon": "⛏️",
+    "color": "#8a6d3b",
+    "label": {
+      "en": "Ore veins & mines",
+      "pt": "Minérios e minas"
+    },
     "subs": {
-      "iron":        { "en": "Iron",        "pt": "Ferro",         "icon": "⛏️", "color": "#6b6b6b" },
-      "corundum":    { "en": "Corundum",    "pt": "Corundum",      "icon": "⛏️", "color": "#8b4a2b" },
-      "silver":      { "en": "Silver",      "pt": "Prata",         "icon": "⛏️", "color": "#c0c0c0" },
-      "gold":        { "en": "Gold",        "pt": "Ouro",          "icon": "⛏️", "color": "#d4af37" },
-      "quicksilver": { "en": "Quicksilver", "pt": "Mercúrio",      "icon": "⛏️", "color": "#9fb6c6" },
-      "moonstone":   { "en": "Moonstone",   "pt": "Pedra-da-lua",  "icon": "⛏️", "color": "#e8e4d0" },
-      "malachite":   { "en": "Malachite",   "pt": "Malaquita",     "icon": "⛏️", "color": "#2e8b57" },
-      "orichalcum":  { "en": "Orichalcum",  "pt": "Oricalco",      "icon": "⛏️", "color": "#5c7a3b" },
-      "ebony":       { "en": "Ebony",       "pt": "Ébano",         "icon": "⛏️", "color": "#1d1d1d" }
-    }
+      "iron": {
+        "en": "Iron",
+        "pt": "Ferro",
+        "icon": "⛏️",
+        "color": "#6b6b6b",
+        "img": "mine.png"
+      },
+      "corundum": {
+        "en": "Corundum",
+        "pt": "Corundum",
+        "icon": "⛏️",
+        "color": "#8b4a2b",
+        "img": "mine.png"
+      },
+      "silver": {
+        "en": "Silver",
+        "pt": "Prata",
+        "icon": "⛏️",
+        "color": "#c0c0c0",
+        "img": "mine.png"
+      },
+      "gold": {
+        "en": "Gold",
+        "pt": "Ouro",
+        "icon": "⛏️",
+        "color": "#d4af37",
+        "img": "mine.png"
+      },
+      "quicksilver": {
+        "en": "Quicksilver",
+        "pt": "Mercúrio",
+        "icon": "⛏️",
+        "color": "#9fb6c6",
+        "img": "mine.png"
+      },
+      "moonstone": {
+        "en": "Moonstone",
+        "pt": "Pedra-da-lua",
+        "icon": "⛏️",
+        "color": "#e8e4d0",
+        "img": "mine.png"
+      },
+      "malachite": {
+        "en": "Malachite",
+        "pt": "Malaquita",
+        "icon": "⛏️",
+        "color": "#2e8b57",
+        "img": "mine.png"
+      },
+      "orichalcum": {
+        "en": "Orichalcum",
+        "pt": "Oricalco",
+        "icon": "⛏️",
+        "color": "#5c7a3b",
+        "img": "mine.png"
+      },
+      "ebony": {
+        "en": "Ebony",
+        "pt": "Ébano",
+        "icon": "⛏️",
+        "color": "#1d1d1d",
+        "img": "mine.png"
+      }
+    },
+    "img": "mine.png"
   },
   "ingredient": {
-    "icon": "🌿", "color": "#3f7d3a",
-    "label": { "en": "Alchemy ingredients", "pt": "Ingredientes de alquimia" },
+    "icon": "🌿",
+    "color": "#3f7d3a",
+    "label": {
+      "en": "Alchemy ingredients",
+      "pt": "Ingredientes de alquimia"
+    },
     "subs": {
-      "snowberries":       { "en": "Snowberries",         "pt": "Bagas-de-neve",       "icon": "🫐" },
-      "nightshade":        { "en": "Nightshade",          "pt": "Beladona",            "icon": "🌸" },
-      "deathbell":         { "en": "Deathbell",           "pt": "Sino-da-morte",       "icon": "🔔" },
-      "dragons_tongue":    { "en": "Dragon's Tongue",     "pt": "Língua-de-dragão",    "icon": "🌼" },
-      "jazbay_grapes":     { "en": "Jazbay Grapes",       "pt": "Uvas Jazbay",         "icon": "🍇" },
-      "giant_lichen":      { "en": "Giant Lichen",        "pt": "Líquen gigante",      "icon": "🍀" },
-      "swamp_fungal_pod":  { "en": "Swamp Fungal Pod",    "pt": "Cápsula fúngica do pântano", "icon": "🍄" },
-      "creep_cluster":     { "en": "Creep Cluster",       "pt": "Trepadeira",          "icon": "🌱" },
-      "nirnroot":          { "en": "Nirnroot",            "pt": "Nirnroot",            "icon": "🪴" },
-      "lavender":          { "en": "Lavender",            "pt": "Lavanda",             "icon": "💜" },
-      "tundra_cotton":     { "en": "Tundra Cotton",       "pt": "Algodão da tundra",   "icon": "☁️" },
-      "red_mountain_flower":    { "en": "Red Mountain Flower",    "pt": "Flor-da-montanha vermelha", "icon": "🌺" },
-      "blue_mountain_flower":   { "en": "Blue Mountain Flower",   "pt": "Flor-da-montanha azul",     "icon": "💙" },
-      "purple_mountain_flower": { "en": "Purple Mountain Flower", "pt": "Flor-da-montanha roxa",     "icon": "💮" },
-      "juniper_berries":   { "en": "Juniper Berries",     "pt": "Bagas de zimbro",     "icon": "🫒" },
-      "thistle":           { "en": "Thistle",             "pt": "Cardo",               "icon": "🌵" },
-      "hanging_moss":      { "en": "Hanging Moss",        "pt": "Musgo pendente",      "icon": "🧶" },
-      "elves_ear":         { "en": "Elves Ear",           "pt": "Orelha-de-elfo",      "icon": "🍃" },
-      "frost_mirriam":     { "en": "Frost Mirriam",       "pt": "Mirriam gelada",      "icon": "❄️" },
-      "canis_root":        { "en": "Canis Root",          "pt": "Raiz canis",          "icon": "🌾" },
-      "fly_amanita":       { "en": "Fly Amanita",         "pt": "Amanita",             "icon": "🍄" },
-      "glowing_mushroom":  { "en": "Glowing Mushroom",    "pt": "Cogumelo luminoso",   "icon": "✨" },
-      "taproot":           { "en": "Taproot (spriggan)",  "pt": "Raiz-mestra (spriggan)", "icon": "🌳" },
-      "giants_toe":        { "en": "Giant's Toe (giants)","pt": "Dedo de gigante",     "icon": "🦶" },
-      "fire_salts":        { "en": "Fire / Frost Salts",  "pt": "Sais de fogo / gelo", "icon": "🧂" }
-    }
+      "snowberries": {
+        "en": "Snowberries",
+        "pt": "Bagas-de-neve",
+        "icon": "🫐",
+        "img": "snowberries.svg"
+      },
+      "nightshade": {
+        "en": "Nightshade",
+        "pt": "Beladona",
+        "icon": "🌸",
+        "img": "nightshade.svg"
+      },
+      "deathbell": {
+        "en": "Deathbell",
+        "pt": "Sino-da-morte",
+        "icon": "🔔",
+        "img": "deathbell.svg"
+      },
+      "dragons_tongue": {
+        "en": "Dragon's Tongue",
+        "pt": "Língua-de-dragão",
+        "icon": "🌼",
+        "img": "dragons_tongue.svg"
+      },
+      "jazbay_grapes": {
+        "en": "Jazbay Grapes",
+        "pt": "Uvas Jazbay",
+        "icon": "🍇",
+        "img": "jazbay_grapes.svg"
+      },
+      "giant_lichen": {
+        "en": "Giant Lichen",
+        "pt": "Líquen gigante",
+        "icon": "🍀",
+        "img": "giant_lichen.svg"
+      },
+      "swamp_fungal_pod": {
+        "en": "Swamp Fungal Pod",
+        "pt": "Cápsula fúngica do pântano",
+        "icon": "🍄",
+        "img": "swamp_fungal_pod.svg"
+      },
+      "creep_cluster": {
+        "en": "Creep Cluster",
+        "pt": "Trepadeira",
+        "icon": "🌱",
+        "img": "creep_cluster.svg"
+      },
+      "nirnroot": {
+        "en": "Nirnroot",
+        "pt": "Nirnroot",
+        "icon": "🪴",
+        "img": "nirnroot.svg"
+      },
+      "lavender": {
+        "en": "Lavender",
+        "pt": "Lavanda",
+        "icon": "💜",
+        "img": "lavender.svg"
+      },
+      "tundra_cotton": {
+        "en": "Tundra Cotton",
+        "pt": "Algodão da tundra",
+        "icon": "☁️",
+        "img": "tundra_cotton.svg"
+      },
+      "red_mountain_flower": {
+        "en": "Red Mountain Flower",
+        "pt": "Flor-da-montanha vermelha",
+        "icon": "🌺",
+        "img": "mountain_flower.svg",
+        "color": "#b8321f"
+      },
+      "blue_mountain_flower": {
+        "en": "Blue Mountain Flower",
+        "pt": "Flor-da-montanha azul",
+        "icon": "💙",
+        "img": "mountain_flower.svg",
+        "color": "#2f5f9e"
+      },
+      "purple_mountain_flower": {
+        "en": "Purple Mountain Flower",
+        "pt": "Flor-da-montanha roxa",
+        "icon": "💮",
+        "img": "mountain_flower.svg",
+        "color": "#6a3f8f"
+      },
+      "juniper_berries": {
+        "en": "Juniper Berries",
+        "pt": "Bagas de zimbro",
+        "icon": "🫒",
+        "img": "juniper_berries.svg"
+      },
+      "thistle": {
+        "en": "Thistle",
+        "pt": "Cardo",
+        "icon": "🌵",
+        "img": "thistle.svg"
+      },
+      "hanging_moss": {
+        "en": "Hanging Moss",
+        "pt": "Musgo pendente",
+        "icon": "🧶",
+        "img": "hanging_moss.svg"
+      },
+      "elves_ear": {
+        "en": "Elves Ear",
+        "pt": "Orelha-de-elfo",
+        "icon": "🍃",
+        "img": "elves_ear.svg"
+      },
+      "frost_mirriam": {
+        "en": "Frost Mirriam",
+        "pt": "Mirriam gelada",
+        "icon": "❄️",
+        "img": "frost_mirriam.svg"
+      },
+      "canis_root": {
+        "en": "Canis Root",
+        "pt": "Raiz canis",
+        "icon": "🌾",
+        "img": "canis_root.svg"
+      },
+      "fly_amanita": {
+        "en": "Fly Amanita",
+        "pt": "Amanita",
+        "icon": "🍄",
+        "img": "fly_amanita.svg"
+      },
+      "glowing_mushroom": {
+        "en": "Glowing Mushroom",
+        "pt": "Cogumelo luminoso",
+        "icon": "✨",
+        "img": "glowing_mushroom.svg"
+      },
+      "taproot": {
+        "en": "Taproot (spriggan)",
+        "pt": "Raiz-mestra (spriggan)",
+        "icon": "🌳",
+        "img": "taproot.svg"
+      },
+      "giants_toe": {
+        "en": "Giant's Toe (giants)",
+        "pt": "Dedo de gigante",
+        "icon": "🦶",
+        "img": "giants_toe.svg"
+      },
+      "fire_salts": {
+        "en": "Fire / Frost Salts",
+        "pt": "Sais de fogo / gelo",
+        "icon": "🧂",
+        "img": "fire_salts.svg"
+      }
+    },
+    "img": "ingredient.svg"
   },
   "other": {
-    "icon": "🪵", "color": "#6a4e23",
-    "label": { "en": "Other resources", "pt": "Outros recursos" },
+    "icon": "🪵",
+    "color": "#6a4e23",
+    "label": {
+      "en": "Other resources",
+      "pt": "Outros recursos"
+    },
     "subs": {
-      "lumber":     { "en": "Lumber mill",   "pt": "Serraria",        "icon": "🪵" },
-      "hot_spring": { "en": "Hot springs",   "pt": "Fontes termais",  "icon": "♨️" },
-      "fishing":    { "en": "Fishing spot",  "pt": "Pesca",           "icon": "🎣" },
-      "hunting":    { "en": "Hunting ground","pt": "Área de caça",    "icon": "🦌" },
-      "smelter":    { "en": "Smelter",       "pt": "Fundição",        "icon": "🔥" },
-      "trainer":    { "en": "Trainer",       "pt": "Treinador",       "icon": "🎓" },
-      "merchant":   { "en": "Merchant",      "pt": "Mercador",        "icon": "💰" }
-    }
+      "lumber": {
+        "en": "Lumber mill",
+        "pt": "Serraria",
+        "icon": "🪵",
+        "img": "wood_mill.png"
+      },
+      "hot_spring": {
+        "en": "Hot springs",
+        "pt": "Fontes termais",
+        "icon": "♨️",
+        "img": "hot_spring.svg"
+      },
+      "fishing": {
+        "en": "Fishing spot",
+        "pt": "Pesca",
+        "icon": "🎣",
+        "img": "fishing.svg"
+      },
+      "hunting": {
+        "en": "Hunting ground",
+        "pt": "Área de caça",
+        "icon": "🦌",
+        "img": "hunting.svg"
+      },
+      "smelter": {
+        "en": "Smelter",
+        "pt": "Fundição",
+        "icon": "🔥",
+        "img": "smelter.png"
+      },
+      "trainer": {
+        "en": "Trainer",
+        "pt": "Treinador",
+        "icon": "🎓",
+        "img": "trainer.svg"
+      },
+      "merchant": {
+        "en": "Merchant",
+        "pt": "Mercador",
+        "icon": "💰",
+        "img": "merchant.svg"
+      }
+    },
+    "img": "wood_mill.png"
   }
 }

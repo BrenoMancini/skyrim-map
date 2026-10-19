@@ -3,7 +3,9 @@ window.I18N = {
   pt: {
     title: "Mapa de Skyrim", search: "Buscar local, recurso, hold...", holds: "Territórios (Holds)", labels: "Rótulos",
     filterHold: "Filtrar por hold", layers: "Camadas", allOn: "todas", allOff: "nenhuma", edit: "Modo de edição",
-    editHint: "Clique no mapa pra adicionar um ponto. Arraste marcadores pra mover. Use as ferramentas no canto do mapa pra desenhar ou editar áreas.",
+    editHint: "Clique num espaço vazio do mapa pra adicionar um recurso. Arraste marcadores pra mover. Use as ferramentas no canto do mapa pra editar áreas.",
+    ctxAdd: "Adicionar recurso aqui", ctxArea: "Desenhar área / território", ctxCopy: "Copiar coordenadas", needName: "Dê um nome ao item.", copied: "Coordenadas copiadas.",
+    syncOn: "Banco compartilhado ligado: suas mudanças aparecem pra todo mundo.", syncOff: "Sem banco compartilhado: mudanças ficam só neste navegador.", syncErr: "Falha ao salvar no banco. Guardei neste navegador; tente de novo mais tarde.", syncLoadErr: "Não consegui ler o banco compartilhado. Mostrando só os dados do repositório.", changesRemote: (n) => `${n} mudança(s) no banco compartilhado além dos dados do repositório.`,
     export: "Exportar tudo (JSON)", exportChanges: "Só minhas mudanças", import: "Importar JSON", reset: "Descartar mudanças locais",
     footer: "Mapa © Bethesda. Projeto de fãs, sem fins lucrativos.",
     formNew: "Novo ponto", formEdit: "Editar", category: "Categoria", subtype: "Subtipo", hold: "Hold", descEn: "Descrição (EN)", descPt: "Descrição (PT)",
@@ -17,7 +19,9 @@ window.I18N = {
   en: {
     title: "Skyrim Map", search: "Search location, resource, hold...", holds: "Territories (Holds)", labels: "Labels",
     filterHold: "Filter by hold", layers: "Layers", allOn: "all", allOff: "none", edit: "Edit mode",
-    editHint: "Click the map to add a point. Drag markers to move them. Use the tools on the map corner to draw or edit areas.",
+    editHint: "Click an empty spot on the map to add a resource. Drag markers to move them. Use the tools on the map corner to edit areas.",
+    ctxAdd: "Add resource here", ctxArea: "Draw area / territory", ctxCopy: "Copy coordinates", needName: "Give the item a name.", copied: "Coordinates copied.",
+    syncOn: "Shared database on: your changes are visible to everyone.", syncOff: "No shared database: changes stay in this browser only.", syncErr: "Could not save to the database. Kept in this browser; try again later.", syncLoadErr: "Could not read the shared database. Showing repository data only.", changesRemote: (n) => `${n} change(s) in the shared database on top of the repository data.`,
     export: "Export all (JSON)", exportChanges: "Only my changes", import: "Import JSON", reset: "Discard local changes",
     footer: "Map © Bethesda. Fan project, non-commercial.",
     formNew: "New point", formEdit: "Edit", category: "Category", subtype: "Subtype", hold: "Hold", descEn: "Description (EN)", descPt: "Description (PT)",

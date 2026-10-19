@@ -1,190 +1,1387 @@
 [
-  { "id": "solitude",   "cat": "settlement", "sub": "city", "x": 450, "y": 135, "hold": "haafingar",
-    "name": { "en": "Solitude", "pt": "Solitude" },
-    "desc": { "en": "Capital of Haafingar and of Skyrim. Blue Palace, Castle Dour (Imperial Legion HQ), Bards College, East Empire Company docks.",
-              "pt": "Capital de Haafingar e de Skyrim. Palácio Azul, Castelo Dour (QG da Legião Imperial), Colégio dos Bardos, docas da Companhia do Império Oriental." } },
-  { "id": "markarth",   "cat": "settlement", "sub": "city", "x": 165, "y": 420, "hold": "the_reach",
-    "name": { "en": "Markarth", "pt": "Markarth" },
-    "desc": { "en": "Dwemer stone city carved into the mountain. Understone Keep, Cidhna Mine (silver), Temple of Dibella.",
-              "pt": "Cidade de pedra dwemer esculpida na montanha. Understone Keep, Mina Cidhna (prata), Templo de Dibella." } },
-  { "id": "whiterun",   "cat": "settlement", "sub": "city", "x": 712, "y": 428, "hold": "whiterun",
-    "name": { "en": "Whiterun", "pt": "Whiterun" },
-    "desc": { "en": "Trade hub in the centre of Skyrim. Dragonsreach, Jorrvaskr (Companions), Warmaiden's, Belethor's.",
-              "pt": "Centro comercial no meio de Skyrim. Dragonsreach, Jorrvaskr (Companheiros), Warmaiden's, Belethor's." } },
-  { "id": "windhelm",   "cat": "settlement", "sub": "city", "x": 1005, "y": 325, "hold": "eastmarch",
-    "name": { "en": "Windhelm", "pt": "Windhelm" },
-    "desc": { "en": "Oldest city in Skyrim, Stormcloak capital. Palace of the Kings, Gray Quarter, docks to Solstheim.",
-              "pt": "Cidade mais antiga de Skyrim, capital Stormcloak. Palácio dos Reis, Bairro Cinzento, docas pra Solstheim." } },
-  { "id": "riften",     "cat": "settlement", "sub": "city", "x": 1130, "y": 687, "hold": "the_rift",
-    "name": { "en": "Riften", "pt": "Riften" },
-    "desc": { "en": "Canal city on Lake Honrich. Mistveil Keep, Thieves Guild (Ragged Flagon), Temple of Mara, Black-Briar Meadery.",
-              "pt": "Cidade de canais no Lago Honrich. Mistveil Keep, Guilda dos Ladrões (Ragged Flagon), Templo de Mara, Hidromelaria Black-Briar." } },
-
-  { "id": "morthal",    "cat": "settlement", "sub": "town", "x": 540, "y": 265, "hold": "hjaalmarch",
-    "name": { "en": "Morthal", "pt": "Morthal" },
-    "desc": { "en": "Capital of Hjaalmarch, small town in the marsh. Highmoon Hall, Moorside Inn.", "pt": "Capital de Hjaalmarch, vila pequena no pântano. Highmoon Hall, Moorside Inn." } },
-  { "id": "dawnstar",   "cat": "settlement", "sub": "town", "x": 730, "y": 150, "hold": "the_pale",
-    "name": { "en": "Dawnstar", "pt": "Dawnstar" },
-    "desc": { "en": "Capital of the Pale. Port, Iron-Breaker and Quicksilver mines, Windpeak Inn, Dark Brotherhood sanctuary (late game).", "pt": "Capital do Pale. Porto, minas Iron-Breaker e Quicksilver, Windpeak Inn, santuário da Irmandade Sombria (fim de jogo)." } },
-  { "id": "winterhold_town", "cat": "settlement", "sub": "town", "x": 940, "y": 150, "hold": "winterhold",
-    "name": { "en": "Winterhold", "pt": "Winterhold" },
-    "desc": { "en": "Capital of Winterhold hold, mostly destroyed. College of Winterhold stands on the cliff to the north.", "pt": "Capital do hold de Winterhold, quase destruída. O Colégio de Winterhold fica no penhasco ao norte." } },
-  { "id": "falkreath_town", "cat": "settlement", "sub": "town", "x": 565, "y": 677, "hold": "falkreath",
-    "name": { "en": "Falkreath", "pt": "Falkreath" },
-    "desc": { "en": "Capital of Falkreath Hold. Large graveyard, Dead Man's Drink inn, Lod's smithy.", "pt": "Capital de Falkreath Hold. Cemitério grande, estalagem Dead Man's Drink, forja do Lod." } },
-
-  { "id": "dragon_bridge", "cat": "settlement", "sub": "village", "x": 355, "y": 200, "hold": "haafingar",
-    "name": { "en": "Dragon Bridge", "pt": "Dragon Bridge" }, "desc": { "en": "Village at the stone dragon bridge over the Karth River. Penitus Oculatus outpost, lumber mill.", "pt": "Aldeia na ponte de pedra com cabeça de dragão sobre o Rio Karth. Posto dos Penitus Oculatus, serraria." } },
-  { "id": "karthwasten", "cat": "settlement", "sub": "village", "x": 270, "y": 320, "hold": "the_reach",
-    "name": { "en": "Karthwasten", "pt": "Karthwasten" }, "desc": { "en": "Mining village. Sanuarach Mine and Fenn's Gulch Mine (silver).", "pt": "Aldeia mineradora. Minas Sanuarach e Fenn's Gulch (prata)." } },
-  { "id": "rorikstead", "cat": "settlement", "sub": "village", "x": 410, "y": 420, "hold": "whiterun",
-    "name": { "en": "Rorikstead", "pt": "Rorikstead" }, "desc": { "en": "Farming village on the western edge of Whiterun Hold. Frostfruit Inn.", "pt": "Aldeia agrícola no limite oeste de Whiterun Hold. Frostfruit Inn." } },
-  { "id": "riverwood",  "cat": "settlement", "sub": "village", "x": 695, "y": 559, "hold": "whiterun",
-    "name": { "en": "Riverwood", "pt": "Riverwood" }, "desc": { "en": "First village of the game. Sleeping Giant Inn, Riverwood Trader, Alvor's forge, lumber mill.", "pt": "Primeira aldeia do jogo. Sleeping Giant Inn, Riverwood Trader, forja do Alvor, serraria." } },
-  { "id": "ivarstead",  "cat": "settlement", "sub": "village", "x": 850, "y": 602, "hold": "the_rift",
-    "name": { "en": "Ivarstead", "pt": "Ivarstead" }, "desc": { "en": "Village at the foot of the 7,000 Steps to High Hrothgar. Vilemyr Inn.", "pt": "Aldeia ao pé dos 7.000 Degraus pra High Hrothgar. Vilemyr Inn." } },
-  { "id": "helgen",     "cat": "settlement", "sub": "village", "x": 682, "y": 652, "hold": "falkreath",
-    "name": { "en": "Helgen", "pt": "Helgen" }, "desc": { "en": "Destroyed by Alduin in the intro. Bandits occupy the ruins afterwards.", "pt": "Destruída pelo Alduin na introdução. Bandidos ocupam as ruínas depois." } },
-  { "id": "shors_stone", "cat": "settlement", "sub": "village", "x": 1090, "y": 602, "hold": "the_rift",
-    "name": { "en": "Shor's Stone", "pt": "Shor's Stone" }, "desc": { "en": "Mining village. Redbelly Mine (ebony).", "pt": "Aldeia mineradora. Mina Redbelly (ébano)." } },
-  { "id": "kynesgrove", "cat": "settlement", "sub": "village", "x": 990, "y": 395, "hold": "eastmarch",
-    "name": { "en": "Kynesgrove", "pt": "Kynesgrove" }, "desc": { "en": "Village south of Windhelm. Steamscorch Mine (malachite), Braidwood Inn. Dragon Sahloknir rises here.", "pt": "Aldeia ao sul de Windhelm. Mina Steamscorch (malaquita), Braidwood Inn. O dragão Sahloknir ressurge aqui." }, "approx": true },
-  { "id": "darkwater_crossing", "cat": "settlement", "sub": "village", "x": 960, "y": 520, "hold": "eastmarch",
-    "name": { "en": "Darkwater Crossing", "pt": "Darkwater Crossing" }, "desc": { "en": "Mining camp. Goldenrock Mine (corundum).", "pt": "Acampamento mineiro. Mina Goldenrock (corundum)." }, "approx": true },
-  { "id": "stonehills", "cat": "settlement", "sub": "village", "x": 590, "y": 300, "hold": "hjaalmarch",
-    "name": { "en": "Stonehills", "pt": "Stonehills" }, "desc": { "en": "Mining camp. Rockwallow Mine (iron).", "pt": "Acampamento mineiro. Mina Rockwallow (ferro)." }, "approx": true },
-
-  { "id": "nightgate_inn", "cat": "settlement", "sub": "inn", "x": 790, "y": 250, "hold": "the_pale",
-    "name": { "en": "Nightgate Inn", "pt": "Nightgate Inn" }, "desc": { "en": "Lonely inn in the eastern Pale.", "pt": "Estalagem isolada no leste do Pale." }, "approx": true },
-  { "id": "old_hroldan", "cat": "settlement", "sub": "inn", "x": 330, "y": 460, "hold": "the_reach",
-    "name": { "en": "Old Hroldan Inn", "pt": "Old Hroldan Inn" }, "desc": { "en": "Historic inn where Tiber Septim slept. Ghost of Hjalti.", "pt": "Estalagem histórica onde Tiber Septim dormiu. Fantasma de Hjalti." }, "approx": true },
-  { "id": "mor_khazgur", "cat": "settlement", "sub": "orc_stronghold", "x": 120, "y": 250, "hold": "the_reach",
-    "name": { "en": "Mor Khazgur", "pt": "Mor Khazgur" }, "desc": { "en": "Orc stronghold. Orichalcum mine.", "pt": "Fortaleza orc. Mina de oricalco." }, "approx": true },
-  { "id": "dushnikh_yal", "cat": "settlement", "sub": "orc_stronghold", "x": 230, "y": 500, "hold": "the_reach",
-    "name": { "en": "Dushnikh Yal", "pt": "Dushnikh Yal" }, "desc": { "en": "Orc stronghold south-east of Markarth. Orichalcum mine.", "pt": "Fortaleza orc a sudeste de Markarth. Mina de oricalco." }, "approx": true },
-  { "id": "narzulbur", "cat": "settlement", "sub": "orc_stronghold", "x": 1060, "y": 480, "hold": "eastmarch",
-    "name": { "en": "Narzulbur", "pt": "Narzulbur" }, "desc": { "en": "Orc stronghold. Gloombound Mine (ebony + orichalcum), the richest ebony mine in Skyrim.", "pt": "Fortaleza orc. Mina Gloombound (ébano + oricalco), a mina de ébano mais rica de Skyrim." }, "approx": true },
-  { "id": "largashbur", "cat": "settlement", "sub": "orc_stronghold", "x": 1040, "y": 760, "hold": "the_rift",
-    "name": { "en": "Largashbur", "pt": "Largashbur" }, "desc": { "en": "Orc stronghold in the southern Rift, cursed by Malacath.", "pt": "Fortaleza orc no sul do Rift, amaldiçoada por Malacath." }, "approx": true },
-
-  { "id": "bleak_falls_barrow", "cat": "dungeon", "sub": "nordic_ruin", "x": 672, "y": 530, "hold": "whiterun",
-    "name": { "en": "Bleak Falls Barrow", "pt": "Bleak Falls Barrow" }, "desc": { "en": "First major dungeon. Dragonstone, Golden Claw, word wall (Unrelenting Force).", "pt": "Primeira masmorra grande. Dragonstone, Garra Dourada, muro das palavras (Força Implacável)." }, "approx": true },
-  { "id": "ustengrav", "cat": "dungeon", "sub": "nordic_ruin", "x": 520, "y": 235, "hold": "hjaalmarch",
-    "name": { "en": "Ustengrav", "pt": "Ustengrav" }, "desc": { "en": "Tomb of Jurgen Windcaller. Horn quest, word wall (Become Ethereal).", "pt": "Tumba de Jurgen Windcaller. Missão da Trompa, muro das palavras (Tornar-se Etéreo)." }, "approx": true },
-  { "id": "saarthal", "cat": "dungeon", "sub": "nordic_ruin", "x": 920, "y": 185, "hold": "winterhold",
-    "name": { "en": "Saarthal", "pt": "Saarthal" }, "desc": { "en": "Ancient Nordic city, College of Winterhold questline. Eye of Magnus.", "pt": "Cidade nórdica antiga, linha de missões do Colégio. Olho de Magnus." }, "approx": true },
-  { "id": "labyrinthian", "cat": "dungeon", "sub": "nordic_ruin", "x": 560, "y": 375, "hold": "hjaalmarch",
-    "name": { "en": "Labyrinthian", "pt": "Labyrinthian" }, "desc": { "en": "Huge ruin, Staff of Magnus. Dragon priest Morokei. Word wall (Slow Time).", "pt": "Ruína enorme, Cajado de Magnus. Sacerdote dragão Morokei. Muro das palavras (Retardar o Tempo)." }, "approx": true },
-  { "id": "dimhollow_crypt", "cat": "dungeon", "sub": "nordic_ruin", "x": 690, "y": 280, "hold": "the_pale",
-    "name": { "en": "Dimhollow Crypt", "pt": "Dimhollow Crypt" }, "desc": { "en": "Dawnguard: where Serana is found.", "pt": "Dawnguard: onde Serana é encontrada." }, "approx": true },
-  { "id": "yngol_barrow", "cat": "dungeon", "sub": "nordic_ruin", "x": 1075, "y": 300, "hold": "eastmarch",
-    "name": { "en": "Yngol Barrow", "pt": "Yngol Barrow" }, "desc": { "en": "Tomb of Yngol, helm of Yngol.", "pt": "Tumba de Yngol, elmo de Yngol." }, "approx": true },
-  { "id": "forelhost", "cat": "dungeon", "sub": "nordic_ruin", "x": 1170, "y": 755, "hold": "the_rift",
-    "name": { "en": "Forelhost", "pt": "Forelhost" }, "desc": { "en": "Dragon cult fortress. Dragon priest Rahgot.", "pt": "Fortaleza do culto do dragão. Sacerdote dragão Rahgot." }, "approx": true },
-  { "id": "volskygge", "cat": "dungeon", "sub": "nordic_ruin", "x": 250, "y": 165, "hold": "haafingar",
-    "name": { "en": "Volskygge", "pt": "Volskygge" }, "desc": { "en": "Dragon priest Volsung. Word wall (Whirlwind Sprint).", "pt": "Sacerdote dragão Volsung. Muro das palavras (Corrida do Turbilhão)." }, "approx": true },
-
-  { "id": "alftand", "cat": "dungeon", "sub": "dwemer_ruin", "x": 960, "y": 255, "hold": "winterhold",
-    "name": { "en": "Alftand", "pt": "Alftand" }, "desc": { "en": "Dwemer ruin, entrance to Blackreach. Dwarven metal, soul gems.", "pt": "Ruína dwemer, entrada pra Blackreach. Metal dwemer, gemas de alma." }, "approx": true },
-  { "id": "mzulft", "cat": "dungeon", "sub": "dwemer_ruin", "x": 1050, "y": 400, "hold": "eastmarch",
-    "name": { "en": "Mzulft", "pt": "Mzulft" }, "desc": { "en": "Dwemer ruin, Oculory. College questline.", "pt": "Ruína dwemer, Oculório. Linha de missões do Colégio." }, "approx": true },
-  { "id": "nchuand_zel", "cat": "dungeon", "sub": "dwemer_ruin", "x": 170, "y": 412, "hold": "the_reach",
-    "name": { "en": "Nchuand-Zel", "pt": "Nchuand-Zel" }, "desc": { "en": "Dwemer ruin beneath Markarth.", "pt": "Ruína dwemer embaixo de Markarth." }, "approx": true },
-  { "id": "blackreach", "cat": "dungeon", "sub": "dwemer_ruin", "x": 990, "y": 300, "hold": "winterhold",
-    "name": { "en": "Blackreach", "pt": "Blackreach" }, "desc": { "en": "Vast underground cavern. Crimson Nirnroot, geode veins (soul gems), Dwemer loot, ebony and other ores.", "pt": "Caverna subterrânea gigante. Nirnroot Carmesim, veios de geodo (gemas de alma), loot dwemer, ébano e outros minérios." }, "approx": true },
-
-  { "id": "high_hrothgar", "cat": "landmark", "sub": "mountain", "x": 770, "y": 567, "hold": "whiterun",
-    "name": { "en": "Throat of the World / High Hrothgar", "pt": "Garganta do Mundo / High Hrothgar" }, "desc": { "en": "Tallest mountain in Tamriel. Monastery of the Greybeards, Paarthurnax at the summit.", "pt": "Montanha mais alta de Tamriel. Mosteiro dos Barbas-Grisalhas, Paarthurnax no topo." } },
-  { "id": "sky_haven_temple", "cat": "dungeon", "sub": "keep", "x": 330, "y": 500, "hold": "the_reach",
-    "name": { "en": "Sky Haven Temple (Karthspire)", "pt": "Sky Haven Temple (Karthspire)" }, "desc": { "en": "Blades headquarters. Alduin's Wall.", "pt": "Quartel-general dos Blades. Muro de Alduin." }, "approx": true },
-  { "id": "castle_volkihar", "cat": "dungeon", "sub": "keep", "x": 300, "y": 55, "hold": "haafingar",
-    "name": { "en": "Castle Volkihar", "pt": "Castelo Volkihar" }, "desc": { "en": "Dawnguard: vampire castle on an island north-west of Solitude.", "pt": "Dawnguard: castelo dos vampiros numa ilha a noroeste de Solitude." }, "approx": true },
-  { "id": "fort_dawnguard", "cat": "dungeon", "sub": "keep", "x": 1195, "y": 650, "hold": "the_rift",
-    "name": { "en": "Fort Dawnguard", "pt": "Forte Dawnguard" }, "desc": { "en": "Dawnguard headquarters, Dayspring Canyon.", "pt": "Quartel-general da Dawnguard, Dayspring Canyon." }, "approx": true },
-  { "id": "fellglow_keep", "cat": "dungeon", "sub": "fort", "x": 780, "y": 370, "hold": "whiterun",
-    "name": { "en": "Fellglow Keep", "pt": "Fellglow Keep" }, "desc": { "en": "Mage fort, College quest (Hitting the Books).", "pt": "Forte de magos, missão do Colégio." }, "approx": true },
-  { "id": "fort_greymoor", "cat": "dungeon", "sub": "fort", "x": 640, "y": 440, "hold": "whiterun",
-    "name": { "en": "Fort Greymoor", "pt": "Forte Greymoor" }, "desc": { "en": "Bandit fort west of Whiterun, civil war objective.", "pt": "Forte de bandidos a oeste de Whiterun, objetivo da guerra civil." }, "approx": true },
-  { "id": "fort_sungard", "cat": "dungeon", "sub": "fort", "x": 345, "y": 455, "hold": "the_reach",
-    "name": { "en": "Fort Sungard", "pt": "Forte Sungard" }, "desc": { "en": "Fort in the eastern Reach, civil war objective.", "pt": "Forte no leste do Reach, objetivo da guerra civil." }, "approx": true },
-  { "id": "fort_amol", "cat": "dungeon", "sub": "fort", "x": 920, "y": 470, "hold": "eastmarch",
-    "name": { "en": "Fort Amol", "pt": "Forte Amol" }, "desc": { "en": "Fort between Whiterun and Windhelm.", "pt": "Forte entre Whiterun e Windhelm." }, "approx": true },
-  { "id": "western_watchtower", "cat": "dungeon", "sub": "tower", "x": 665, "y": 445, "hold": "whiterun",
-    "name": { "en": "Western Watchtower", "pt": "Torre de Vigia Oeste" }, "desc": { "en": "First dragon fight (Mirmulnir).", "pt": "Primeira luta contra dragão (Mirmulnir)." }, "approx": true },
-  { "id": "halted_stream_camp", "cat": "dungeon", "sub": "bandit_camp", "x": 700, "y": 375, "hold": "whiterun",
-    "name": { "en": "Halted Stream Camp", "pt": "Halted Stream Camp" }, "desc": { "en": "Bandit camp with iron mine, Transmute Mineral Ore spell book.", "pt": "Acampamento de bandidos com mina de ferro, livro da magia Transmutar Minério." }, "approx": true },
-  { "id": "embershard_mine", "cat": "dungeon", "sub": "bandit_camp", "x": 660, "y": 605, "hold": "falkreath",
-    "name": { "en": "Embershard Mine", "pt": "Embershard Mine" }, "desc": { "en": "Bandit iron mine between Helgen and Riverwood.", "pt": "Mina de ferro dos bandidos entre Helgen e Riverwood." }, "approx": true },
-
-  { "id": "mount_anthor", "cat": "dungeon", "sub": "dragon_lair", "x": 900, "y": 240, "hold": "winterhold",
-    "name": { "en": "Mount Anthor", "pt": "Monte Anthor" }, "desc": { "en": "Dragon lair, word wall (Ice Form).", "pt": "Covil de dragão, muro das palavras (Forma de Gelo)." }, "approx": true },
-  { "id": "bonestrewn_crest", "cat": "dungeon", "sub": "dragon_lair", "x": 980, "y": 475, "hold": "eastmarch",
-    "name": { "en": "Bonestrewn Crest", "pt": "Bonestrewn Crest" }, "desc": { "en": "Dragon lair, word wall (Frost Breath).", "pt": "Covil de dragão, muro das palavras (Sopro Gélido)." }, "approx": true },
-  { "id": "shearpoint", "cat": "dungeon", "sub": "dragon_lair", "x": 790, "y": 330, "hold": "the_pale",
-    "name": { "en": "Shearpoint", "pt": "Shearpoint" }, "desc": { "en": "Dragon + dragon priest Krosis. Word wall (Throw Voice, all 3 words).", "pt": "Dragão + sacerdote dragão Krosis. Muro das palavras (Lançar Voz, 3 palavras)." }, "approx": true },
-  { "id": "eldersblood_peak", "cat": "dungeon", "sub": "dragon_lair", "x": 555, "y": 340, "hold": "hjaalmarch",
-    "name": { "en": "Eldersblood Peak", "pt": "Eldersblood Peak" }, "desc": { "en": "Dragon lair, word wall (Disarm).", "pt": "Covil de dragão, muro das palavras (Desarmar)." }, "approx": true },
-  { "id": "lost_tongue_overlook", "cat": "dungeon", "sub": "dragon_lair", "x": 1120, "y": 735, "hold": "the_rift",
-    "name": { "en": "Lost Tongue Overlook", "pt": "Lost Tongue Overlook" }, "desc": { "en": "Dragon lair, word wall (Dismay).", "pt": "Covil de dragão, muro das palavras (Desânimo)." }, "approx": true },
-  { "id": "ancients_ascent", "cat": "dungeon", "sub": "dragon_lair", "x": 560, "y": 725, "hold": "falkreath",
-    "name": { "en": "Ancient's Ascent", "pt": "Ancient's Ascent" }, "desc": { "en": "Dragon lair, word wall (Animal Allegiance).", "pt": "Covil de dragão, muro das palavras (Lealdade Animal)." }, "approx": true },
-  { "id": "dragontooth_crater", "cat": "dungeon", "sub": "dragon_lair", "x": 210, "y": 235, "hold": "the_reach",
-    "name": { "en": "Dragontooth Crater", "pt": "Dragontooth Crater" }, "desc": { "en": "Dragon lair, word wall (Elemental Fury).", "pt": "Covil de dragão, muro das palavras (Fúria Elemental)." }, "approx": true },
-  { "id": "skyborn_altar", "cat": "dungeon", "sub": "dragon_lair", "x": 515, "y": 345, "hold": "hjaalmarch",
-    "name": { "en": "Skyborn Altar", "pt": "Skyborn Altar" }, "desc": { "en": "Dragon lair, word wall (Frost Breath).", "pt": "Covil de dragão, muro das palavras (Sopro Gélido)." }, "approx": true },
-  { "id": "northwind_summit", "cat": "dungeon", "sub": "dragon_lair", "x": 1065, "y": 565, "hold": "the_rift",
-    "name": { "en": "Northwind Summit", "pt": "Northwind Summit" }, "desc": { "en": "Dragon lair, word wall (Aura Whisper).", "pt": "Covil de dragão, muro das palavras (Sussurro de Aura)." }, "approx": true },
-  { "id": "autumnwatch_tower", "cat": "dungeon", "sub": "dragon_lair", "x": 870, "y": 655, "hold": "the_rift",
-    "name": { "en": "Autumnwatch Tower", "pt": "Autumnwatch Tower" }, "desc": { "en": "Dragon lair, word wall (Marked for Death).", "pt": "Covil de dragão, muro das palavras (Marcado pra Morte)." }, "approx": true },
-
-  { "id": "bleakwind_basin", "cat": "dungeon", "sub": "giant_camp", "x": 625, "y": 465, "hold": "whiterun",
-    "name": { "en": "Bleakwind Basin", "pt": "Bleakwind Basin" }, "desc": { "en": "Giant camp with mammoths. Giant's toe, mammoth tusk.", "pt": "Acampamento de gigantes com mamutes. Dedo de gigante, presa de mamute." }, "approx": true },
-  { "id": "sleeping_tree_camp", "cat": "dungeon", "sub": "giant_camp", "x": 585, "y": 455, "hold": "whiterun",
-    "name": { "en": "Sleeping Tree Camp", "pt": "Sleeping Tree Camp" }, "desc": { "en": "Giant camp, Sleeping Tree Sap.", "pt": "Acampamento de gigantes, Seiva da Árvore Adormecida." }, "approx": true },
-  { "id": "secundas_kiss", "cat": "dungeon", "sub": "giant_camp", "x": 600, "y": 425, "hold": "whiterun",
-    "name": { "en": "Secunda's Kiss", "pt": "Secunda's Kiss" }, "desc": { "en": "Giant camp north-west of Whiterun.", "pt": "Acampamento de gigantes a noroeste de Whiterun." }, "approx": true },
-  { "id": "red_road_pass", "cat": "dungeon", "sub": "giant_camp", "x": 790, "y": 405, "hold": "whiterun",
-    "name": { "en": "Red Road Pass", "pt": "Red Road Pass" }, "desc": { "en": "Giant camp east of Whiterun.", "pt": "Acampamento de gigantes a leste de Whiterun." }, "approx": true },
-
-  { "id": "guardian_stones", "cat": "landmark", "sub": "standing_stone", "x": 660, "y": 585, "hold": "whiterun",
-    "name": { "en": "Guardian Stones", "pt": "Pedras Guardiãs" }, "desc": { "en": "Warrior, Mage and Thief stones (+20% XP to the respective skills).", "pt": "Pedras do Guerreiro, Mago e Ladrão (+20% XP nas habilidades respectivas)." }, "approx": true },
-  { "id": "lady_stone", "cat": "landmark", "sub": "standing_stone", "x": 560, "y": 600, "hold": "falkreath",
-    "name": { "en": "Lady Stone", "pt": "Pedra da Dama" }, "desc": { "en": "Island on Lake Ilinalta. Health and stamina regen.", "pt": "Ilha no Lago Ilinalta. Regeneração de vida e stamina." }, "approx": true },
-  { "id": "lord_stone", "cat": "landmark", "sub": "standing_stone", "x": 770, "y": 290, "hold": "the_pale",
-    "name": { "en": "Lord Stone", "pt": "Pedra do Senhor" }, "desc": { "en": "+50 armor, 25% magic resistance.", "pt": "+50 armadura, 25% resistência a magia." }, "approx": true },
-  { "id": "lover_stone", "cat": "landmark", "sub": "standing_stone", "x": 230, "y": 375, "hold": "the_reach",
-    "name": { "en": "Lover Stone", "pt": "Pedra do Amante" }, "desc": { "en": "+15% XP to all skills.", "pt": "+15% XP em todas as habilidades." }, "approx": true },
-  { "id": "ritual_stone", "cat": "landmark", "sub": "standing_stone", "x": 785, "y": 425, "hold": "whiterun",
-    "name": { "en": "Ritual Stone", "pt": "Pedra do Ritual" }, "desc": { "en": "Raise nearby dead once a day.", "pt": "Reanima mortos próximos uma vez por dia." }, "approx": true },
-  { "id": "serpent_stone", "cat": "landmark", "sub": "standing_stone", "x": 1080, "y": 235, "hold": "winterhold",
-    "name": { "en": "Serpent Stone", "pt": "Pedra da Serpente" }, "desc": { "en": "Island north-east of Winterhold. Paralysis poison power.", "pt": "Ilha a nordeste de Winterhold. Poder de veneno paralisante." }, "approx": true },
-  { "id": "shadow_stone", "cat": "landmark", "sub": "standing_stone", "x": 1110, "y": 640, "hold": "the_rift",
-    "name": { "en": "Shadow Stone", "pt": "Pedra da Sombra" }, "desc": { "en": "Invisibility once a day.", "pt": "Invisibilidade uma vez por dia." }, "approx": true },
-  { "id": "steed_stone", "cat": "landmark", "sub": "standing_stone", "x": 385, "y": 110, "hold": "haafingar",
-    "name": { "en": "Steed Stone", "pt": "Pedra do Corcel" }, "desc": { "en": "+100 carry weight, armor weighs nothing.", "pt": "+100 capacidade de carga, armadura não pesa." }, "approx": true },
-  { "id": "tower_stone", "cat": "landmark", "sub": "standing_stone", "x": 835, "y": 190, "hold": "the_pale",
-    "name": { "en": "Tower Stone", "pt": "Pedra da Torre" }, "desc": { "en": "Unlock expert locks once a day.", "pt": "Abre fechaduras de perito uma vez por dia." }, "approx": true },
-  { "id": "atronach_stone", "cat": "landmark", "sub": "standing_stone", "x": 1000, "y": 455, "hold": "eastmarch",
-    "name": { "en": "Atronach Stone", "pt": "Pedra do Atronach" }, "desc": { "en": "+50 magicka, 50% spell absorption, -50% magicka regen.", "pt": "+50 magicka, 50% absorção de magia, -50% regeneração." }, "approx": true },
-  { "id": "apprentice_stone", "cat": "landmark", "sub": "standing_stone", "x": 485, "y": 270, "hold": "hjaalmarch",
-    "name": { "en": "Apprentice Stone", "pt": "Pedra do Aprendiz" }, "desc": { "en": "Magicka regen doubled, weakness to magic.", "pt": "Regeneração de magicka dobrada, fraqueza a magia." }, "approx": true },
-
-  { "id": "pale_pass", "cat": "landmark", "sub": "pass", "x": 700, "y": 712, "hold": "falkreath",
-    "name": { "en": "Pale Pass", "pt": "Pale Pass" }, "desc": { "en": "Pass to Cyrodiil through the Jerall Mountains.", "pt": "Passagem pra Cyrodiil pelas Montanhas Jerall." } },
-  { "id": "dunmeth_pass", "cat": "landmark", "sub": "pass", "x": 1070, "y": 350, "hold": "eastmarch",
-    "name": { "en": "Dunmeth Pass", "pt": "Dunmeth Pass" }, "desc": { "en": "Pass to Morrowind, east of Windhelm.", "pt": "Passagem pra Morrowind, a leste de Windhelm." } },
-  { "id": "lake_ilinalta", "cat": "landmark", "sub": "lake", "x": 560, "y": 592, "hold": "falkreath",
-    "name": { "en": "Lake Ilinalta", "pt": "Lago Ilinalta" }, "desc": { "en": "Largest lake. Ilinalta's Deep, Lady Stone, slaughterfish, Nirnroot.", "pt": "Maior lago. Ilinalta's Deep, Pedra da Dama, peixes-carniceiros, Nirnroot." } },
-  { "id": "lake_geir", "cat": "landmark", "sub": "lake", "x": 900, "y": 632, "hold": "the_rift",
-    "name": { "en": "Lake Geir", "pt": "Lago Geir" }, "desc": { "en": "Lake east of Ivarstead.", "pt": "Lago a leste de Ivarstead." } },
-  { "id": "lake_honrich", "cat": "landmark", "sub": "lake", "x": 1080, "y": 717, "hold": "the_rift",
-    "name": { "en": "Lake Honrich", "pt": "Lago Honrich" }, "desc": { "en": "Lake of Riften. Goldenglow Estate (Thieves Guild).", "pt": "Lago de Riften. Goldenglow Estate (Guilda dos Ladrões)." } },
-  { "id": "lake_yorgrim", "cat": "landmark", "sub": "lake", "x": 865, "y": 330, "hold": "eastmarch",
-    "name": { "en": "Lake Yorgrim", "pt": "Lago Yorgrim" }, "desc": { "en": "Lake west of Windhelm.", "pt": "Lago a oeste de Windhelm." } },
-  { "id": "college_winterhold", "cat": "landmark", "sub": "misc", "x": 950, "y": 135, "hold": "winterhold",
-    "name": { "en": "College of Winterhold", "pt": "Colégio de Winterhold" }, "desc": { "en": "Mages guild of Skyrim. Arcanaeum, Hall of the Elements, Enchanting and alchemy stations.", "pt": "Guilda dos magos de Skyrim. Arcanaeum, Salão dos Elementos, estações de encantamento e alquimia." }, "approx": true },
-  { "id": "shrine_azura", "cat": "landmark", "sub": "shrine", "x": 905, "y": 215, "hold": "winterhold",
-    "name": { "en": "Shrine of Azura", "pt": "Santuário de Azura" }, "desc": { "en": "Giant statue south of Winterhold. Azura's Star quest.", "pt": "Estátua gigante ao sul de Winterhold. Missão da Estrela de Azura." }, "approx": true },
-  { "id": "shrine_mehrunes", "cat": "landmark", "sub": "shrine", "x": 765, "y": 240, "hold": "the_pale",
-    "name": { "en": "Shrine of Mehrunes Dagon", "pt": "Santuário de Mehrunes Dagon" }, "desc": { "en": "Pieces of the Past quest, Mehrunes' Razor.", "pt": "Missão Pieces of the Past, Navalha de Mehrunes." }, "approx": true }
+  {
+    "id": "solitude",
+    "cat": "settlement",
+    "sub": "city",
+    "x": 450,
+    "y": 135,
+    "hold": "haafingar",
+    "name": {
+      "en": "Solitude",
+      "pt": "Solitude"
+    },
+    "desc": {
+      "en": "Capital of Haafingar and of Skyrim. Blue Palace, Castle Dour (Imperial Legion HQ), Bards College, East Empire Company docks.",
+      "pt": "Capital de Haafingar e de Skyrim. Palácio Azul, Castelo Dour (QG da Legião Imperial), Colégio dos Bardos, docas da Companhia do Império Oriental."
+    },
+    "img": "city_solitude.png"
+  },
+  {
+    "id": "markarth",
+    "cat": "settlement",
+    "sub": "city",
+    "x": 165,
+    "y": 420,
+    "hold": "the_reach",
+    "name": {
+      "en": "Markarth",
+      "pt": "Markarth"
+    },
+    "desc": {
+      "en": "Dwemer stone city carved into the mountain. Understone Keep, Cidhna Mine (silver), Temple of Dibella.",
+      "pt": "Cidade de pedra dwemer esculpida na montanha. Understone Keep, Mina Cidhna (prata), Templo de Dibella."
+    },
+    "img": "city_markarth.png"
+  },
+  {
+    "id": "whiterun",
+    "cat": "settlement",
+    "sub": "city",
+    "x": 712,
+    "y": 428,
+    "hold": "whiterun",
+    "name": {
+      "en": "Whiterun",
+      "pt": "Whiterun"
+    },
+    "desc": {
+      "en": "Trade hub in the centre of Skyrim. Dragonsreach, Jorrvaskr (Companions), Warmaiden's, Belethor's.",
+      "pt": "Centro comercial no meio de Skyrim. Dragonsreach, Jorrvaskr (Companheiros), Warmaiden's, Belethor's."
+    },
+    "img": "city_whiterun.png"
+  },
+  {
+    "id": "windhelm",
+    "cat": "settlement",
+    "sub": "city",
+    "x": 1005,
+    "y": 325,
+    "hold": "eastmarch",
+    "name": {
+      "en": "Windhelm",
+      "pt": "Windhelm"
+    },
+    "desc": {
+      "en": "Oldest city in Skyrim, Stormcloak capital. Palace of the Kings, Gray Quarter, docks to Solstheim.",
+      "pt": "Cidade mais antiga de Skyrim, capital Stormcloak. Palácio dos Reis, Bairro Cinzento, docas pra Solstheim."
+    },
+    "img": "city_windhelm.png"
+  },
+  {
+    "id": "riften",
+    "cat": "settlement",
+    "sub": "city",
+    "x": 1130,
+    "y": 687,
+    "hold": "the_rift",
+    "name": {
+      "en": "Riften",
+      "pt": "Riften"
+    },
+    "desc": {
+      "en": "Canal city on Lake Honrich. Mistveil Keep, Thieves Guild (Ragged Flagon), Temple of Mara, Black-Briar Meadery.",
+      "pt": "Cidade de canais no Lago Honrich. Mistveil Keep, Guilda dos Ladrões (Ragged Flagon), Templo de Mara, Hidromelaria Black-Briar."
+    },
+    "img": "city_riften.png"
+  },
+  {
+    "id": "morthal",
+    "cat": "settlement",
+    "sub": "town",
+    "x": 540,
+    "y": 265,
+    "hold": "hjaalmarch",
+    "name": {
+      "en": "Morthal",
+      "pt": "Morthal"
+    },
+    "desc": {
+      "en": "Capital of Hjaalmarch, small town in the marsh. Highmoon Hall, Moorside Inn.",
+      "pt": "Capital de Hjaalmarch, vila pequena no pântano. Highmoon Hall, Moorside Inn."
+    },
+    "img": "city_morthal.png"
+  },
+  {
+    "id": "dawnstar",
+    "cat": "settlement",
+    "sub": "town",
+    "x": 730,
+    "y": 150,
+    "hold": "the_pale",
+    "name": {
+      "en": "Dawnstar",
+      "pt": "Dawnstar"
+    },
+    "desc": {
+      "en": "Capital of the Pale. Port, Iron-Breaker and Quicksilver mines, Windpeak Inn, Dark Brotherhood sanctuary (late game).",
+      "pt": "Capital do Pale. Porto, minas Iron-Breaker e Quicksilver, Windpeak Inn, santuário da Irmandade Sombria (fim de jogo)."
+    },
+    "img": "city_dawnstar.png"
+  },
+  {
+    "id": "winterhold_town",
+    "cat": "settlement",
+    "sub": "town",
+    "x": 940,
+    "y": 150,
+    "hold": "winterhold",
+    "name": {
+      "en": "Winterhold",
+      "pt": "Winterhold"
+    },
+    "desc": {
+      "en": "Capital of Winterhold hold, mostly destroyed. College of Winterhold stands on the cliff to the north.",
+      "pt": "Capital do hold de Winterhold, quase destruída. O Colégio de Winterhold fica no penhasco ao norte."
+    },
+    "img": "city_winterhold.png"
+  },
+  {
+    "id": "falkreath_town",
+    "cat": "settlement",
+    "sub": "town",
+    "x": 565,
+    "y": 677,
+    "hold": "falkreath",
+    "name": {
+      "en": "Falkreath",
+      "pt": "Falkreath"
+    },
+    "desc": {
+      "en": "Capital of Falkreath Hold. Large graveyard, Dead Man's Drink inn, Lod's smithy.",
+      "pt": "Capital de Falkreath Hold. Cemitério grande, estalagem Dead Man's Drink, forja do Lod."
+    },
+    "img": "city_falkreath.png"
+  },
+  {
+    "id": "dragon_bridge",
+    "cat": "settlement",
+    "sub": "village",
+    "x": 355,
+    "y": 200,
+    "hold": "haafingar",
+    "name": {
+      "en": "Dragon Bridge",
+      "pt": "Dragon Bridge"
+    },
+    "desc": {
+      "en": "Village at the stone dragon bridge over the Karth River. Penitus Oculatus outpost, lumber mill.",
+      "pt": "Aldeia na ponte de pedra com cabeça de dragão sobre o Rio Karth. Posto dos Penitus Oculatus, serraria."
+    }
+  },
+  {
+    "id": "karthwasten",
+    "cat": "settlement",
+    "sub": "village",
+    "x": 270,
+    "y": 320,
+    "hold": "the_reach",
+    "name": {
+      "en": "Karthwasten",
+      "pt": "Karthwasten"
+    },
+    "desc": {
+      "en": "Mining village. Sanuarach Mine and Fenn's Gulch Mine (silver).",
+      "pt": "Aldeia mineradora. Minas Sanuarach e Fenn's Gulch (prata)."
+    }
+  },
+  {
+    "id": "rorikstead",
+    "cat": "settlement",
+    "sub": "village",
+    "x": 410,
+    "y": 420,
+    "hold": "whiterun",
+    "name": {
+      "en": "Rorikstead",
+      "pt": "Rorikstead"
+    },
+    "desc": {
+      "en": "Farming village on the western edge of Whiterun Hold. Frostfruit Inn.",
+      "pt": "Aldeia agrícola no limite oeste de Whiterun Hold. Frostfruit Inn."
+    }
+  },
+  {
+    "id": "riverwood",
+    "cat": "settlement",
+    "sub": "village",
+    "x": 695,
+    "y": 559,
+    "hold": "whiterun",
+    "name": {
+      "en": "Riverwood",
+      "pt": "Riverwood"
+    },
+    "desc": {
+      "en": "First village of the game. Sleeping Giant Inn, Riverwood Trader, Alvor's forge, lumber mill.",
+      "pt": "Primeira aldeia do jogo. Sleeping Giant Inn, Riverwood Trader, forja do Alvor, serraria."
+    }
+  },
+  {
+    "id": "ivarstead",
+    "cat": "settlement",
+    "sub": "village",
+    "x": 850,
+    "y": 602,
+    "hold": "the_rift",
+    "name": {
+      "en": "Ivarstead",
+      "pt": "Ivarstead"
+    },
+    "desc": {
+      "en": "Village at the foot of the 7,000 Steps to High Hrothgar. Vilemyr Inn.",
+      "pt": "Aldeia ao pé dos 7.000 Degraus pra High Hrothgar. Vilemyr Inn."
+    }
+  },
+  {
+    "id": "helgen",
+    "cat": "settlement",
+    "sub": "village",
+    "x": 682,
+    "y": 652,
+    "hold": "falkreath",
+    "name": {
+      "en": "Helgen",
+      "pt": "Helgen"
+    },
+    "desc": {
+      "en": "Destroyed by Alduin in the intro. Bandits occupy the ruins afterwards.",
+      "pt": "Destruída pelo Alduin na introdução. Bandidos ocupam as ruínas depois."
+    }
+  },
+  {
+    "id": "shors_stone",
+    "cat": "settlement",
+    "sub": "village",
+    "x": 1090,
+    "y": 602,
+    "hold": "the_rift",
+    "name": {
+      "en": "Shor's Stone",
+      "pt": "Shor's Stone"
+    },
+    "desc": {
+      "en": "Mining village. Redbelly Mine (ebony).",
+      "pt": "Aldeia mineradora. Mina Redbelly (ébano)."
+    }
+  },
+  {
+    "id": "kynesgrove",
+    "cat": "settlement",
+    "sub": "village",
+    "x": 990,
+    "y": 395,
+    "hold": "eastmarch",
+    "name": {
+      "en": "Kynesgrove",
+      "pt": "Kynesgrove"
+    },
+    "desc": {
+      "en": "Village south of Windhelm. Steamscorch Mine (malachite), Braidwood Inn. Dragon Sahloknir rises here.",
+      "pt": "Aldeia ao sul de Windhelm. Mina Steamscorch (malaquita), Braidwood Inn. O dragão Sahloknir ressurge aqui."
+    },
+    "approx": true
+  },
+  {
+    "id": "darkwater_crossing",
+    "cat": "settlement",
+    "sub": "village",
+    "x": 960,
+    "y": 520,
+    "hold": "eastmarch",
+    "name": {
+      "en": "Darkwater Crossing",
+      "pt": "Darkwater Crossing"
+    },
+    "desc": {
+      "en": "Mining camp. Goldenrock Mine (corundum).",
+      "pt": "Acampamento mineiro. Mina Goldenrock (corundum)."
+    },
+    "approx": true
+  },
+  {
+    "id": "stonehills",
+    "cat": "settlement",
+    "sub": "village",
+    "x": 590,
+    "y": 300,
+    "hold": "hjaalmarch",
+    "name": {
+      "en": "Stonehills",
+      "pt": "Stonehills"
+    },
+    "desc": {
+      "en": "Mining camp. Rockwallow Mine (iron).",
+      "pt": "Acampamento mineiro. Mina Rockwallow (ferro)."
+    },
+    "approx": true
+  },
+  {
+    "id": "nightgate_inn",
+    "cat": "settlement",
+    "sub": "inn",
+    "x": 790,
+    "y": 250,
+    "hold": "the_pale",
+    "name": {
+      "en": "Nightgate Inn",
+      "pt": "Nightgate Inn"
+    },
+    "desc": {
+      "en": "Lonely inn in the eastern Pale.",
+      "pt": "Estalagem isolada no leste do Pale."
+    },
+    "approx": true
+  },
+  {
+    "id": "old_hroldan",
+    "cat": "settlement",
+    "sub": "inn",
+    "x": 330,
+    "y": 460,
+    "hold": "the_reach",
+    "name": {
+      "en": "Old Hroldan Inn",
+      "pt": "Old Hroldan Inn"
+    },
+    "desc": {
+      "en": "Historic inn where Tiber Septim slept. Ghost of Hjalti.",
+      "pt": "Estalagem histórica onde Tiber Septim dormiu. Fantasma de Hjalti."
+    },
+    "approx": true
+  },
+  {
+    "id": "mor_khazgur",
+    "cat": "settlement",
+    "sub": "orc_stronghold",
+    "x": 120,
+    "y": 250,
+    "hold": "the_reach",
+    "name": {
+      "en": "Mor Khazgur",
+      "pt": "Mor Khazgur"
+    },
+    "desc": {
+      "en": "Orc stronghold. Orichalcum mine.",
+      "pt": "Fortaleza orc. Mina de oricalco."
+    },
+    "approx": true
+  },
+  {
+    "id": "dushnikh_yal",
+    "cat": "settlement",
+    "sub": "orc_stronghold",
+    "x": 230,
+    "y": 500,
+    "hold": "the_reach",
+    "name": {
+      "en": "Dushnikh Yal",
+      "pt": "Dushnikh Yal"
+    },
+    "desc": {
+      "en": "Orc stronghold south-east of Markarth. Orichalcum mine.",
+      "pt": "Fortaleza orc a sudeste de Markarth. Mina de oricalco."
+    },
+    "approx": true
+  },
+  {
+    "id": "narzulbur",
+    "cat": "settlement",
+    "sub": "orc_stronghold",
+    "x": 1060,
+    "y": 480,
+    "hold": "eastmarch",
+    "name": {
+      "en": "Narzulbur",
+      "pt": "Narzulbur"
+    },
+    "desc": {
+      "en": "Orc stronghold. Gloombound Mine (ebony + orichalcum), the richest ebony mine in Skyrim.",
+      "pt": "Fortaleza orc. Mina Gloombound (ébano + oricalco), a mina de ébano mais rica de Skyrim."
+    },
+    "approx": true
+  },
+  {
+    "id": "largashbur",
+    "cat": "settlement",
+    "sub": "orc_stronghold",
+    "x": 1040,
+    "y": 760,
+    "hold": "the_rift",
+    "name": {
+      "en": "Largashbur",
+      "pt": "Largashbur"
+    },
+    "desc": {
+      "en": "Orc stronghold in the southern Rift, cursed by Malacath.",
+      "pt": "Fortaleza orc no sul do Rift, amaldiçoada por Malacath."
+    },
+    "approx": true
+  },
+  {
+    "id": "bleak_falls_barrow",
+    "cat": "dungeon",
+    "sub": "nordic_ruin",
+    "x": 672,
+    "y": 530,
+    "hold": "whiterun",
+    "name": {
+      "en": "Bleak Falls Barrow",
+      "pt": "Bleak Falls Barrow"
+    },
+    "desc": {
+      "en": "First major dungeon. Dragonstone, Golden Claw, word wall (Unrelenting Force).",
+      "pt": "Primeira masmorra grande. Dragonstone, Garra Dourada, muro das palavras (Força Implacável)."
+    },
+    "approx": true
+  },
+  {
+    "id": "ustengrav",
+    "cat": "dungeon",
+    "sub": "nordic_ruin",
+    "x": 520,
+    "y": 235,
+    "hold": "hjaalmarch",
+    "name": {
+      "en": "Ustengrav",
+      "pt": "Ustengrav"
+    },
+    "desc": {
+      "en": "Tomb of Jurgen Windcaller. Horn quest, word wall (Become Ethereal).",
+      "pt": "Tumba de Jurgen Windcaller. Missão da Trompa, muro das palavras (Tornar-se Etéreo)."
+    },
+    "approx": true
+  },
+  {
+    "id": "saarthal",
+    "cat": "dungeon",
+    "sub": "nordic_ruin",
+    "x": 920,
+    "y": 185,
+    "hold": "winterhold",
+    "name": {
+      "en": "Saarthal",
+      "pt": "Saarthal"
+    },
+    "desc": {
+      "en": "Ancient Nordic city, College of Winterhold questline. Eye of Magnus.",
+      "pt": "Cidade nórdica antiga, linha de missões do Colégio. Olho de Magnus."
+    },
+    "approx": true
+  },
+  {
+    "id": "labyrinthian",
+    "cat": "dungeon",
+    "sub": "nordic_ruin",
+    "x": 560,
+    "y": 375,
+    "hold": "hjaalmarch",
+    "name": {
+      "en": "Labyrinthian",
+      "pt": "Labyrinthian"
+    },
+    "desc": {
+      "en": "Huge ruin, Staff of Magnus. Dragon priest Morokei. Word wall (Slow Time).",
+      "pt": "Ruína enorme, Cajado de Magnus. Sacerdote dragão Morokei. Muro das palavras (Retardar o Tempo)."
+    },
+    "approx": true
+  },
+  {
+    "id": "dimhollow_crypt",
+    "cat": "dungeon",
+    "sub": "nordic_ruin",
+    "x": 690,
+    "y": 280,
+    "hold": "the_pale",
+    "name": {
+      "en": "Dimhollow Crypt",
+      "pt": "Dimhollow Crypt"
+    },
+    "desc": {
+      "en": "Dawnguard: where Serana is found.",
+      "pt": "Dawnguard: onde Serana é encontrada."
+    },
+    "approx": true
+  },
+  {
+    "id": "yngol_barrow",
+    "cat": "dungeon",
+    "sub": "nordic_ruin",
+    "x": 1075,
+    "y": 300,
+    "hold": "eastmarch",
+    "name": {
+      "en": "Yngol Barrow",
+      "pt": "Yngol Barrow"
+    },
+    "desc": {
+      "en": "Tomb of Yngol, helm of Yngol.",
+      "pt": "Tumba de Yngol, elmo de Yngol."
+    },
+    "approx": true
+  },
+  {
+    "id": "forelhost",
+    "cat": "dungeon",
+    "sub": "nordic_ruin",
+    "x": 1170,
+    "y": 755,
+    "hold": "the_rift",
+    "name": {
+      "en": "Forelhost",
+      "pt": "Forelhost"
+    },
+    "desc": {
+      "en": "Dragon cult fortress. Dragon priest Rahgot.",
+      "pt": "Fortaleza do culto do dragão. Sacerdote dragão Rahgot."
+    },
+    "approx": true
+  },
+  {
+    "id": "volskygge",
+    "cat": "dungeon",
+    "sub": "nordic_ruin",
+    "x": 250,
+    "y": 165,
+    "hold": "haafingar",
+    "name": {
+      "en": "Volskygge",
+      "pt": "Volskygge"
+    },
+    "desc": {
+      "en": "Dragon priest Volsung. Word wall (Whirlwind Sprint).",
+      "pt": "Sacerdote dragão Volsung. Muro das palavras (Corrida do Turbilhão)."
+    },
+    "approx": true
+  },
+  {
+    "id": "alftand",
+    "cat": "dungeon",
+    "sub": "dwemer_ruin",
+    "x": 960,
+    "y": 255,
+    "hold": "winterhold",
+    "name": {
+      "en": "Alftand",
+      "pt": "Alftand"
+    },
+    "desc": {
+      "en": "Dwemer ruin, entrance to Blackreach. Dwarven metal, soul gems.",
+      "pt": "Ruína dwemer, entrada pra Blackreach. Metal dwemer, gemas de alma."
+    },
+    "approx": true
+  },
+  {
+    "id": "mzulft",
+    "cat": "dungeon",
+    "sub": "dwemer_ruin",
+    "x": 1050,
+    "y": 400,
+    "hold": "eastmarch",
+    "name": {
+      "en": "Mzulft",
+      "pt": "Mzulft"
+    },
+    "desc": {
+      "en": "Dwemer ruin, Oculory. College questline.",
+      "pt": "Ruína dwemer, Oculório. Linha de missões do Colégio."
+    },
+    "approx": true
+  },
+  {
+    "id": "nchuand_zel",
+    "cat": "dungeon",
+    "sub": "dwemer_ruin",
+    "x": 170,
+    "y": 412,
+    "hold": "the_reach",
+    "name": {
+      "en": "Nchuand-Zel",
+      "pt": "Nchuand-Zel"
+    },
+    "desc": {
+      "en": "Dwemer ruin beneath Markarth.",
+      "pt": "Ruína dwemer embaixo de Markarth."
+    },
+    "approx": true
+  },
+  {
+    "id": "blackreach",
+    "cat": "dungeon",
+    "sub": "dwemer_ruin",
+    "x": 990,
+    "y": 300,
+    "hold": "winterhold",
+    "name": {
+      "en": "Blackreach",
+      "pt": "Blackreach"
+    },
+    "desc": {
+      "en": "Vast underground cavern. Crimson Nirnroot, geode veins (soul gems), Dwemer loot, ebony and other ores.",
+      "pt": "Caverna subterrânea gigante. Nirnroot Carmesim, veios de geodo (gemas de alma), loot dwemer, ébano e outros minérios."
+    },
+    "approx": true
+  },
+  {
+    "id": "high_hrothgar",
+    "cat": "landmark",
+    "sub": "mountain",
+    "x": 770,
+    "y": 567,
+    "hold": "whiterun",
+    "name": {
+      "en": "Throat of the World / High Hrothgar",
+      "pt": "Garganta do Mundo / High Hrothgar"
+    },
+    "desc": {
+      "en": "Tallest mountain in Tamriel. Monastery of the Greybeards, Paarthurnax at the summit.",
+      "pt": "Montanha mais alta de Tamriel. Mosteiro dos Barbas-Grisalhas, Paarthurnax no topo."
+    },
+    "img": "fort.png"
+  },
+  {
+    "id": "sky_haven_temple",
+    "cat": "dungeon",
+    "sub": "keep",
+    "x": 330,
+    "y": 500,
+    "hold": "the_reach",
+    "name": {
+      "en": "Sky Haven Temple (Karthspire)",
+      "pt": "Sky Haven Temple (Karthspire)"
+    },
+    "desc": {
+      "en": "Blades headquarters. Alduin's Wall.",
+      "pt": "Quartel-general dos Blades. Muro de Alduin."
+    },
+    "approx": true,
+    "img": "nordic_ruin.png"
+  },
+  {
+    "id": "castle_volkihar",
+    "cat": "dungeon",
+    "sub": "keep",
+    "x": 300,
+    "y": 55,
+    "hold": "haafingar",
+    "name": {
+      "en": "Castle Volkihar",
+      "pt": "Castelo Volkihar"
+    },
+    "desc": {
+      "en": "Dawnguard: vampire castle on an island north-west of Solitude.",
+      "pt": "Dawnguard: castelo dos vampiros numa ilha a noroeste de Solitude."
+    },
+    "approx": true,
+    "img": "castle_2.png"
+  },
+  {
+    "id": "fort_dawnguard",
+    "cat": "dungeon",
+    "sub": "keep",
+    "x": 1195,
+    "y": 650,
+    "hold": "the_rift",
+    "name": {
+      "en": "Fort Dawnguard",
+      "pt": "Forte Dawnguard"
+    },
+    "desc": {
+      "en": "Dawnguard headquarters, Dayspring Canyon.",
+      "pt": "Quartel-general da Dawnguard, Dayspring Canyon."
+    },
+    "approx": true,
+    "img": "castle_4.png"
+  },
+  {
+    "id": "fellglow_keep",
+    "cat": "dungeon",
+    "sub": "fort",
+    "x": 780,
+    "y": 370,
+    "hold": "whiterun",
+    "name": {
+      "en": "Fellglow Keep",
+      "pt": "Fellglow Keep"
+    },
+    "desc": {
+      "en": "Mage fort, College quest (Hitting the Books).",
+      "pt": "Forte de magos, missão do Colégio."
+    },
+    "approx": true
+  },
+  {
+    "id": "fort_greymoor",
+    "cat": "dungeon",
+    "sub": "fort",
+    "x": 640,
+    "y": 440,
+    "hold": "whiterun",
+    "name": {
+      "en": "Fort Greymoor",
+      "pt": "Forte Greymoor"
+    },
+    "desc": {
+      "en": "Bandit fort west of Whiterun, civil war objective.",
+      "pt": "Forte de bandidos a oeste de Whiterun, objetivo da guerra civil."
+    },
+    "approx": true
+  },
+  {
+    "id": "fort_sungard",
+    "cat": "dungeon",
+    "sub": "fort",
+    "x": 345,
+    "y": 455,
+    "hold": "the_reach",
+    "name": {
+      "en": "Fort Sungard",
+      "pt": "Forte Sungard"
+    },
+    "desc": {
+      "en": "Fort in the eastern Reach, civil war objective.",
+      "pt": "Forte no leste do Reach, objetivo da guerra civil."
+    },
+    "approx": true
+  },
+  {
+    "id": "fort_amol",
+    "cat": "dungeon",
+    "sub": "fort",
+    "x": 920,
+    "y": 470,
+    "hold": "eastmarch",
+    "name": {
+      "en": "Fort Amol",
+      "pt": "Forte Amol"
+    },
+    "desc": {
+      "en": "Fort between Whiterun and Windhelm.",
+      "pt": "Forte entre Whiterun e Windhelm."
+    },
+    "approx": true
+  },
+  {
+    "id": "western_watchtower",
+    "cat": "dungeon",
+    "sub": "tower",
+    "x": 665,
+    "y": 445,
+    "hold": "whiterun",
+    "name": {
+      "en": "Western Watchtower",
+      "pt": "Torre de Vigia Oeste"
+    },
+    "desc": {
+      "en": "First dragon fight (Mirmulnir).",
+      "pt": "Primeira luta contra dragão (Mirmulnir)."
+    },
+    "approx": true
+  },
+  {
+    "id": "halted_stream_camp",
+    "cat": "dungeon",
+    "sub": "bandit_camp",
+    "x": 700,
+    "y": 375,
+    "hold": "whiterun",
+    "name": {
+      "en": "Halted Stream Camp",
+      "pt": "Halted Stream Camp"
+    },
+    "desc": {
+      "en": "Bandit camp with iron mine, Transmute Mineral Ore spell book.",
+      "pt": "Acampamento de bandidos com mina de ferro, livro da magia Transmutar Minério."
+    },
+    "approx": true
+  },
+  {
+    "id": "embershard_mine",
+    "cat": "dungeon",
+    "sub": "bandit_camp",
+    "x": 660,
+    "y": 605,
+    "hold": "falkreath",
+    "name": {
+      "en": "Embershard Mine",
+      "pt": "Embershard Mine"
+    },
+    "desc": {
+      "en": "Bandit iron mine between Helgen and Riverwood.",
+      "pt": "Mina de ferro dos bandidos entre Helgen e Riverwood."
+    },
+    "approx": true
+  },
+  {
+    "id": "mount_anthor",
+    "cat": "dungeon",
+    "sub": "dragon_lair",
+    "x": 900,
+    "y": 240,
+    "hold": "winterhold",
+    "name": {
+      "en": "Mount Anthor",
+      "pt": "Monte Anthor"
+    },
+    "desc": {
+      "en": "Dragon lair, word wall (Ice Form).",
+      "pt": "Covil de dragão, muro das palavras (Forma de Gelo)."
+    },
+    "approx": true
+  },
+  {
+    "id": "bonestrewn_crest",
+    "cat": "dungeon",
+    "sub": "dragon_lair",
+    "x": 980,
+    "y": 475,
+    "hold": "eastmarch",
+    "name": {
+      "en": "Bonestrewn Crest",
+      "pt": "Bonestrewn Crest"
+    },
+    "desc": {
+      "en": "Dragon lair, word wall (Frost Breath).",
+      "pt": "Covil de dragão, muro das palavras (Sopro Gélido)."
+    },
+    "approx": true
+  },
+  {
+    "id": "shearpoint",
+    "cat": "dungeon",
+    "sub": "dragon_lair",
+    "x": 790,
+    "y": 330,
+    "hold": "the_pale",
+    "name": {
+      "en": "Shearpoint",
+      "pt": "Shearpoint"
+    },
+    "desc": {
+      "en": "Dragon + dragon priest Krosis. Word wall (Throw Voice, all 3 words).",
+      "pt": "Dragão + sacerdote dragão Krosis. Muro das palavras (Lançar Voz, 3 palavras)."
+    },
+    "approx": true
+  },
+  {
+    "id": "eldersblood_peak",
+    "cat": "dungeon",
+    "sub": "dragon_lair",
+    "x": 555,
+    "y": 340,
+    "hold": "hjaalmarch",
+    "name": {
+      "en": "Eldersblood Peak",
+      "pt": "Eldersblood Peak"
+    },
+    "desc": {
+      "en": "Dragon lair, word wall (Disarm).",
+      "pt": "Covil de dragão, muro das palavras (Desarmar)."
+    },
+    "approx": true
+  },
+  {
+    "id": "lost_tongue_overlook",
+    "cat": "dungeon",
+    "sub": "dragon_lair",
+    "x": 1120,
+    "y": 735,
+    "hold": "the_rift",
+    "name": {
+      "en": "Lost Tongue Overlook",
+      "pt": "Lost Tongue Overlook"
+    },
+    "desc": {
+      "en": "Dragon lair, word wall (Dismay).",
+      "pt": "Covil de dragão, muro das palavras (Desânimo)."
+    },
+    "approx": true
+  },
+  {
+    "id": "ancients_ascent",
+    "cat": "dungeon",
+    "sub": "dragon_lair",
+    "x": 560,
+    "y": 725,
+    "hold": "falkreath",
+    "name": {
+      "en": "Ancient's Ascent",
+      "pt": "Ancient's Ascent"
+    },
+    "desc": {
+      "en": "Dragon lair, word wall (Animal Allegiance).",
+      "pt": "Covil de dragão, muro das palavras (Lealdade Animal)."
+    },
+    "approx": true
+  },
+  {
+    "id": "dragontooth_crater",
+    "cat": "dungeon",
+    "sub": "dragon_lair",
+    "x": 210,
+    "y": 235,
+    "hold": "the_reach",
+    "name": {
+      "en": "Dragontooth Crater",
+      "pt": "Dragontooth Crater"
+    },
+    "desc": {
+      "en": "Dragon lair, word wall (Elemental Fury).",
+      "pt": "Covil de dragão, muro das palavras (Fúria Elemental)."
+    },
+    "approx": true
+  },
+  {
+    "id": "skyborn_altar",
+    "cat": "dungeon",
+    "sub": "dragon_lair",
+    "x": 515,
+    "y": 345,
+    "hold": "hjaalmarch",
+    "name": {
+      "en": "Skyborn Altar",
+      "pt": "Skyborn Altar"
+    },
+    "desc": {
+      "en": "Dragon lair, word wall (Frost Breath).",
+      "pt": "Covil de dragão, muro das palavras (Sopro Gélido)."
+    },
+    "approx": true
+  },
+  {
+    "id": "northwind_summit",
+    "cat": "dungeon",
+    "sub": "dragon_lair",
+    "x": 1065,
+    "y": 565,
+    "hold": "the_rift",
+    "name": {
+      "en": "Northwind Summit",
+      "pt": "Northwind Summit"
+    },
+    "desc": {
+      "en": "Dragon lair, word wall (Aura Whisper).",
+      "pt": "Covil de dragão, muro das palavras (Sussurro de Aura)."
+    },
+    "approx": true
+  },
+  {
+    "id": "autumnwatch_tower",
+    "cat": "dungeon",
+    "sub": "dragon_lair",
+    "x": 870,
+    "y": 655,
+    "hold": "the_rift",
+    "name": {
+      "en": "Autumnwatch Tower",
+      "pt": "Autumnwatch Tower"
+    },
+    "desc": {
+      "en": "Dragon lair, word wall (Marked for Death).",
+      "pt": "Covil de dragão, muro das palavras (Marcado pra Morte)."
+    },
+    "approx": true
+  },
+  {
+    "id": "bleakwind_basin",
+    "cat": "dungeon",
+    "sub": "giant_camp",
+    "x": 625,
+    "y": 465,
+    "hold": "whiterun",
+    "name": {
+      "en": "Bleakwind Basin",
+      "pt": "Bleakwind Basin"
+    },
+    "desc": {
+      "en": "Giant camp with mammoths. Giant's toe, mammoth tusk.",
+      "pt": "Acampamento de gigantes com mamutes. Dedo de gigante, presa de mamute."
+    },
+    "approx": true
+  },
+  {
+    "id": "sleeping_tree_camp",
+    "cat": "dungeon",
+    "sub": "giant_camp",
+    "x": 585,
+    "y": 455,
+    "hold": "whiterun",
+    "name": {
+      "en": "Sleeping Tree Camp",
+      "pt": "Sleeping Tree Camp"
+    },
+    "desc": {
+      "en": "Giant camp, Sleeping Tree Sap.",
+      "pt": "Acampamento de gigantes, Seiva da Árvore Adormecida."
+    },
+    "approx": true
+  },
+  {
+    "id": "secundas_kiss",
+    "cat": "dungeon",
+    "sub": "giant_camp",
+    "x": 600,
+    "y": 425,
+    "hold": "whiterun",
+    "name": {
+      "en": "Secunda's Kiss",
+      "pt": "Secunda's Kiss"
+    },
+    "desc": {
+      "en": "Giant camp north-west of Whiterun.",
+      "pt": "Acampamento de gigantes a noroeste de Whiterun."
+    },
+    "approx": true
+  },
+  {
+    "id": "red_road_pass",
+    "cat": "dungeon",
+    "sub": "giant_camp",
+    "x": 790,
+    "y": 405,
+    "hold": "whiterun",
+    "name": {
+      "en": "Red Road Pass",
+      "pt": "Red Road Pass"
+    },
+    "desc": {
+      "en": "Giant camp east of Whiterun.",
+      "pt": "Acampamento de gigantes a leste de Whiterun."
+    },
+    "approx": true
+  },
+  {
+    "id": "guardian_stones",
+    "cat": "landmark",
+    "sub": "standing_stone",
+    "x": 660,
+    "y": 585,
+    "hold": "whiterun",
+    "name": {
+      "en": "Guardian Stones",
+      "pt": "Pedras Guardiãs"
+    },
+    "desc": {
+      "en": "Warrior, Mage and Thief stones (+20% XP to the respective skills).",
+      "pt": "Pedras do Guerreiro, Mago e Ladrão (+20% XP nas habilidades respectivas)."
+    },
+    "approx": true
+  },
+  {
+    "id": "lady_stone",
+    "cat": "landmark",
+    "sub": "standing_stone",
+    "x": 560,
+    "y": 600,
+    "hold": "falkreath",
+    "name": {
+      "en": "Lady Stone",
+      "pt": "Pedra da Dama"
+    },
+    "desc": {
+      "en": "Island on Lake Ilinalta. Health and stamina regen.",
+      "pt": "Ilha no Lago Ilinalta. Regeneração de vida e stamina."
+    },
+    "approx": true
+  },
+  {
+    "id": "lord_stone",
+    "cat": "landmark",
+    "sub": "standing_stone",
+    "x": 770,
+    "y": 290,
+    "hold": "the_pale",
+    "name": {
+      "en": "Lord Stone",
+      "pt": "Pedra do Senhor"
+    },
+    "desc": {
+      "en": "+50 armor, 25% magic resistance.",
+      "pt": "+50 armadura, 25% resistência a magia."
+    },
+    "approx": true
+  },
+  {
+    "id": "lover_stone",
+    "cat": "landmark",
+    "sub": "standing_stone",
+    "x": 230,
+    "y": 375,
+    "hold": "the_reach",
+    "name": {
+      "en": "Lover Stone",
+      "pt": "Pedra do Amante"
+    },
+    "desc": {
+      "en": "+15% XP to all skills.",
+      "pt": "+15% XP em todas as habilidades."
+    },
+    "approx": true
+  },
+  {
+    "id": "ritual_stone",
+    "cat": "landmark",
+    "sub": "standing_stone",
+    "x": 785,
+    "y": 425,
+    "hold": "whiterun",
+    "name": {
+      "en": "Ritual Stone",
+      "pt": "Pedra do Ritual"
+    },
+    "desc": {
+      "en": "Raise nearby dead once a day.",
+      "pt": "Reanima mortos próximos uma vez por dia."
+    },
+    "approx": true
+  },
+  {
+    "id": "serpent_stone",
+    "cat": "landmark",
+    "sub": "standing_stone",
+    "x": 1080,
+    "y": 235,
+    "hold": "winterhold",
+    "name": {
+      "en": "Serpent Stone",
+      "pt": "Pedra da Serpente"
+    },
+    "desc": {
+      "en": "Island north-east of Winterhold. Paralysis poison power.",
+      "pt": "Ilha a nordeste de Winterhold. Poder de veneno paralisante."
+    },
+    "approx": true
+  },
+  {
+    "id": "shadow_stone",
+    "cat": "landmark",
+    "sub": "standing_stone",
+    "x": 1110,
+    "y": 640,
+    "hold": "the_rift",
+    "name": {
+      "en": "Shadow Stone",
+      "pt": "Pedra da Sombra"
+    },
+    "desc": {
+      "en": "Invisibility once a day.",
+      "pt": "Invisibilidade uma vez por dia."
+    },
+    "approx": true
+  },
+  {
+    "id": "steed_stone",
+    "cat": "landmark",
+    "sub": "standing_stone",
+    "x": 385,
+    "y": 110,
+    "hold": "haafingar",
+    "name": {
+      "en": "Steed Stone",
+      "pt": "Pedra do Corcel"
+    },
+    "desc": {
+      "en": "+100 carry weight, armor weighs nothing.",
+      "pt": "+100 capacidade de carga, armadura não pesa."
+    },
+    "approx": true
+  },
+  {
+    "id": "tower_stone",
+    "cat": "landmark",
+    "sub": "standing_stone",
+    "x": 835,
+    "y": 190,
+    "hold": "the_pale",
+    "name": {
+      "en": "Tower Stone",
+      "pt": "Pedra da Torre"
+    },
+    "desc": {
+      "en": "Unlock expert locks once a day.",
+      "pt": "Abre fechaduras de perito uma vez por dia."
+    },
+    "approx": true
+  },
+  {
+    "id": "atronach_stone",
+    "cat": "landmark",
+    "sub": "standing_stone",
+    "x": 1000,
+    "y": 455,
+    "hold": "eastmarch",
+    "name": {
+      "en": "Atronach Stone",
+      "pt": "Pedra do Atronach"
+    },
+    "desc": {
+      "en": "+50 magicka, 50% spell absorption, -50% magicka regen.",
+      "pt": "+50 magicka, 50% absorção de magia, -50% regeneração."
+    },
+    "approx": true
+  },
+  {
+    "id": "apprentice_stone",
+    "cat": "landmark",
+    "sub": "standing_stone",
+    "x": 485,
+    "y": 270,
+    "hold": "hjaalmarch",
+    "name": {
+      "en": "Apprentice Stone",
+      "pt": "Pedra do Aprendiz"
+    },
+    "desc": {
+      "en": "Magicka regen doubled, weakness to magic.",
+      "pt": "Regeneração de magicka dobrada, fraqueza a magia."
+    },
+    "approx": true
+  },
+  {
+    "id": "pale_pass",
+    "cat": "landmark",
+    "sub": "pass",
+    "x": 700,
+    "y": 712,
+    "hold": "falkreath",
+    "name": {
+      "en": "Pale Pass",
+      "pt": "Pale Pass"
+    },
+    "desc": {
+      "en": "Pass to Cyrodiil through the Jerall Mountains.",
+      "pt": "Passagem pra Cyrodiil pelas Montanhas Jerall."
+    }
+  },
+  {
+    "id": "dunmeth_pass",
+    "cat": "landmark",
+    "sub": "pass",
+    "x": 1070,
+    "y": 350,
+    "hold": "eastmarch",
+    "name": {
+      "en": "Dunmeth Pass",
+      "pt": "Dunmeth Pass"
+    },
+    "desc": {
+      "en": "Pass to Morrowind, east of Windhelm.",
+      "pt": "Passagem pra Morrowind, a leste de Windhelm."
+    }
+  },
+  {
+    "id": "lake_ilinalta",
+    "cat": "landmark",
+    "sub": "lake",
+    "x": 560,
+    "y": 592,
+    "hold": "falkreath",
+    "name": {
+      "en": "Lake Ilinalta",
+      "pt": "Lago Ilinalta"
+    },
+    "desc": {
+      "en": "Largest lake. Ilinalta's Deep, Lady Stone, slaughterfish, Nirnroot.",
+      "pt": "Maior lago. Ilinalta's Deep, Pedra da Dama, peixes-carniceiros, Nirnroot."
+    }
+  },
+  {
+    "id": "lake_geir",
+    "cat": "landmark",
+    "sub": "lake",
+    "x": 900,
+    "y": 632,
+    "hold": "the_rift",
+    "name": {
+      "en": "Lake Geir",
+      "pt": "Lago Geir"
+    },
+    "desc": {
+      "en": "Lake east of Ivarstead.",
+      "pt": "Lago a leste de Ivarstead."
+    }
+  },
+  {
+    "id": "lake_honrich",
+    "cat": "landmark",
+    "sub": "lake",
+    "x": 1080,
+    "y": 717,
+    "hold": "the_rift",
+    "name": {
+      "en": "Lake Honrich",
+      "pt": "Lago Honrich"
+    },
+    "desc": {
+      "en": "Lake of Riften. Goldenglow Estate (Thieves Guild).",
+      "pt": "Lago de Riften. Goldenglow Estate (Guilda dos Ladrões)."
+    }
+  },
+  {
+    "id": "lake_yorgrim",
+    "cat": "landmark",
+    "sub": "lake",
+    "x": 865,
+    "y": 330,
+    "hold": "eastmarch",
+    "name": {
+      "en": "Lake Yorgrim",
+      "pt": "Lago Yorgrim"
+    },
+    "desc": {
+      "en": "Lake west of Windhelm.",
+      "pt": "Lago a oeste de Windhelm."
+    }
+  },
+  {
+    "id": "college_winterhold",
+    "cat": "landmark",
+    "sub": "misc",
+    "x": 950,
+    "y": 135,
+    "hold": "winterhold",
+    "name": {
+      "en": "College of Winterhold",
+      "pt": "Colégio de Winterhold"
+    },
+    "desc": {
+      "en": "Mages guild of Skyrim. Arcanaeum, Hall of the Elements, Enchanting and alchemy stations.",
+      "pt": "Guilda dos magos de Skyrim. Arcanaeum, Salão dos Elementos, estações de encantamento e alquimia."
+    },
+    "approx": true,
+    "img": "college.png"
+  },
+  {
+    "id": "shrine_azura",
+    "cat": "landmark",
+    "sub": "shrine",
+    "x": 905,
+    "y": 215,
+    "hold": "winterhold",
+    "name": {
+      "en": "Shrine of Azura",
+      "pt": "Santuário de Azura"
+    },
+    "desc": {
+      "en": "Giant statue south of Winterhold. Azura's Star quest.",
+      "pt": "Estátua gigante ao sul de Winterhold. Missão da Estrela de Azura."
+    },
+    "approx": true
+  },
+  {
+    "id": "shrine_mehrunes",
+    "cat": "landmark",
+    "sub": "shrine",
+    "x": 765,
+    "y": 240,
+    "hold": "the_pale",
+    "name": {
+      "en": "Shrine of Mehrunes Dagon",
+      "pt": "Santuário de Mehrunes Dagon"
+    },
+    "desc": {
+      "en": "Pieces of the Past quest, Mehrunes' Razor.",
+      "pt": "Missão Pieces of the Past, Navalha de Mehrunes."
+    },
+    "approx": true
+  }
 ]

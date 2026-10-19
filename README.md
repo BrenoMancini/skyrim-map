@@ -43,8 +43,8 @@ A new subtype can be used freely: anything typed in the *Subtype* field of the e
 
 ## Contributing · Como contribuir
 
-1. Turn on **Edit mode** in the sidebar.
-2. Click the map to add a point, drag markers to move them, use the polygon tools (top-right) to draw or edit areas. Click *Edit* inside a popup to change or delete an item.
+1. **Click** an empty spot on the map → *Add resource here*. Fill the form and save. (The menu also shows the hold you clicked, *Draw area* and *Copy coordinates*.)
+2. Turn on **Edit mode** in the sidebar to drag markers and to edit area vertices with the polygon tools (top-right). Click *Edit* inside any popup to change or delete an item.
 3. Changes are saved in your browser only. Click **Export all (JSON)** and send the file, or open a pull request:
    ```
    py -3 tools/split_export.py ~/Downloads/skyrim-map-data.json
@@ -54,13 +54,39 @@ A new subtype can be used freely: anything typed in the *Subtype* field of the e
 
 ---
 
-1. Ligue o **Modo de edição** na barra lateral.
-2. Clique no mapa pra adicionar um ponto, arraste marcadores pra mover, use as ferramentas de polígono (canto superior direito) pra desenhar ou editar áreas. Clique em *Editar* dentro de um popup pra alterar ou apagar.
+1. **Clique** num espaço vazio do mapa → *Adicionar recurso aqui*. Preencha o formulário e salve. (O menu também mostra o hold clicado, *Desenhar área* e *Copiar coordenadas*.)
+2. Ligue o **Modo de edição** na barra lateral pra arrastar marcadores e editar os vértices das áreas com as ferramentas de polígono (canto superior direito). Clique em *Editar* dentro de qualquer popup pra alterar ou apagar.
 3. As mudanças ficam só no seu navegador. Clique em **Exportar tudo (JSON)** e mande o arquivo, ou abra um pull request usando o script acima pra gravar em `data/`.
 4. **Só minhas mudanças** exporta só o que você editou; quem mantém o repo importa esse arquivo por cima dos dados atuais.
+
+## Shared database · Banco compartilhado (Supabase)
+
+Without a database the site is static: edits live only in the browser that made them. To make every visitor's edits visible to everyone on refresh, plug in a free [Supabase](https://supabase.com) project:
+
+1. Create a project at supabase.com (free tier).
+2. Open **SQL Editor**, paste the contents of `supabase/schema.sql`, run it.
+3. Open **Project Settings → API** and copy the *Project URL* and the *anon public* key.
+4. Put both into `js/config.js` and publish. The anon key is designed to be public; what it can do is limited by the row policies in the SQL (read/write of the `map_overrides` table only).
+
+With the database on, the repository's `data/*.json` is the base layer and the table holds every change on top of it. **Export all (JSON)** still works and gives you the merged result, which you can commit back into `data/` from time to time with `tools/split_export.py`.
+
+---
+
+Sem banco o site é estático: as edições ficam só no navegador de quem fez. Pra todo visitante ver as mudanças dos outros ao dar F5, conecte um projeto grátis do [Supabase](https://supabase.com):
+
+1. Crie um projeto em supabase.com (plano grátis).
+2. Abra o **SQL Editor**, cole o conteúdo de `supabase/schema.sql` e rode.
+3. Em **Project Settings → API** copie a *Project URL* e a chave *anon public*.
+4. Coloque as duas em `js/config.js` e publique. A chave anon foi feita pra ser pública; o que ela pode fazer é limitado pelas políticas do SQL (ler e escrever só na tabela `map_overrides`).
+
+Com o banco ligado, o `data/*.json` do repositório é a camada base e a tabela guarda cada mudança por cima. **Exportar tudo (JSON)** continua funcionando e dá o resultado combinado, que você pode gravar de volta em `data/` de vez em quando com `tools/split_export.py`.
 
 ## Stack
 
 Leaflet 1.9 (`CRS.Simple` over the map image), Leaflet-Geoman for polygon drawing, vanilla JS, no build step. Hosted on GitHub Pages.
 
-Map image © Bethesda Softworks. Fan project, non-commercial.
+## Credits · Créditos
+
+- Map image and in-game map marker icons © Bethesda Softworks (marker PNGs in `assets/icons/*.png` come from the [UESP](https://en.uesp.net/wiki/Skyrim:Maps) wiki). Fan project, non-commercial.
+- Ingredient and resource icons (`assets/icons/*.svg`) are from [game-icons.net](https://game-icons.net) by Lorc, Delapouite and contributors, licensed [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/).
+- Built with [Leaflet](https://leafletjs.com) and [Leaflet-Geoman](https://geoman.io).

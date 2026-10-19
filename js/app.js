@@ -21,7 +21,41 @@
   const toXY = (ll) => ({ x: +ll.lng.toFixed(1), y: +(H - ll.lat).toFixed(1) });
 
   function loadOvr() { try { return JSON.parse(localStorage.getItem(LS_OVR)) || { holds: {}, items: {} }; } catch { return { holds: {}, items: {} }; } }
-  function saveOvr() { localStorage.setItem(LS_OVR, JSON.stringify(S.ovr)); updateChangeCount(); }
+
+  // ---------- shared database (Supabase REST, optional) ----------
+  const CFG = window.SKYRIM_CONFIG || {};
+  const REMOTE = !!(CFG.supabaseUrl && CFG.supabaseKey);
+  const rHeaders = () => ({ apikey: CFG.supabaseKey, Authorization: "Bearer " + CFG.supabaseKey, "Content-Type": "application/json" });
+  const rUrl = () => CFG.supabaseUrl.replace(/\/$/, "") + "/rest/v1/map_overrides";
+  async function remoteLoad() {
+    const r = await fetch(rUrl() + "?select=id,kind,data&order=updated_at.asc", { headers: rHeaders() });
+    if (!r.ok) throw new Error("load " + r.status);
+    const ovr = { holds: {}, items: {} };
+    for (const row of await r.json()) (row.kind === "hold" ? ovr.holds : ovr.items)[row.id] = row.data;
+    return ovr;
+  }
+  async function remoteSave(changes) {   // changes: [{kind:"item"|"hold", id}]
+    const rows = changes.map(({ kind, id }) => ({ id, kind, data: (kind === "hold" ? S.ovr.holds : S.ovr.items)[id] ?? null }));
+    const r = await fetch(rUrl() + "?on_conflict=id", { method: "POST", headers: { ...rHeaders(), Prefer: "resolution=merge-duplicates,return=minimal" }, body: JSON.stringify(rows) });
+    if (!r.ok) throw new Error("save " + r.status);
+  }
+  let pending = (() => { try { return JSON.parse(localStorage.getItem(LS_OVR + ".pending")) || []; } catch { return []; } })();
+  function setSync(msg, bad) { const el = $("#sync-status"); if (el) { el.textContent = msg; el.style.color = bad ? "#f0a08f" : ""; } }
+  async function flushPending() {
+    if (!REMOTE || !pending.length) return;
+    try { await remoteSave(pending); pending = []; localStorage.removeItem(LS_OVR + ".pending"); setSync(T("syncOn")); }
+    catch (e) { console.warn(e); setSync(T("syncErr"), true); }
+  }
+
+  // persist overrides. `changes` lists what was touched so the shared database gets only those rows.
+  function saveOvr(changes) {
+    localStorage.setItem(LS_OVR, JSON.stringify(S.ovr)); updateChangeCount();
+    if (REMOTE && changes && changes.length) {
+      pending.push(...changes); localStorage.setItem(LS_OVR + ".pending", JSON.stringify(pending));
+      flushPending();
+    }
+  }
+  const allChanges = () => [...Object.keys(S.ovr.holds).map((id) => ({ kind: "hold", id })), ...Object.keys(S.ovr.items).map((id) => ({ kind: "item", id }))];
   function ovrCount() { return Object.keys(S.ovr.holds).length + Object.keys(S.ovr.items).length; }
 
   // ---------- effective data (base + overrides) ----------
@@ -39,13 +73,16 @@
   function subLabel(item) { const s = subInfo(item); return s[S.lang] || s.en || item.sub; }
   function colorOf(item) { const s = subInfo(item); return s.color || catOf(item).color; }
   function iconOf(item) { return subInfo(item).icon || catOf(item).icon; }
+  function imgOf(item) { return item.img || subInfo(item).img || catOf(item).img || ""; }
+  function iconHtml(item, cls) { const im = imgOf(item); return im ? `<img class="${cls || ""}${im.endsWith(".svg") ? " svg" : ""}" src="assets/icons/${im}" alt="">` : iconOf(item); }
 
   // ---------- map ----------
-  const map = L.map("map", { crs: L.CRS.Simple, minZoom: -1, maxZoom: 3, zoomSnap: 0.25, zoomDelta: 0.5, attributionControl: false, wheelPxPerZoomLevel: 90 });
+  const map = L.map("map", { crs: L.CRS.Simple, minZoom: -1, maxZoom: 4, zoomSnap: 0, zoomDelta: 0.5, attributionControl: false, wheelPxPerZoomLevel: 80 });
   const bounds = [[0, 0], [H, W]];
   L.imageOverlay("assets/skyrim_map.jpg", bounds).addTo(map);
-  map.fitBounds(bounds);
+  map.fitBounds(bounds, { padding: [0, 0] });
   map.setMinZoom(map.getZoom());             // never zoom out past "whole map"
+  window.addEventListener("resize", () => { const z = map.getZoom(); map.setMinZoom(-2); map.fitBounds(bounds); map.setMinZoom(map.getZoom()); if (z > map.getZoom()) map.setZoom(z); });
   map.setMaxBounds([[-200, -300], [H + 200, W + 300]]);
   S.layers.holds = L.layerGroup().addTo(map);
   S.layers.holdLabels = L.layerGroup().addTo(map);
@@ -59,19 +96,19 @@
     for (const h of Object.values(allHolds())) {
       const dim = S.holdFilter && S.holdFilter !== h.id;
       const poly = L.polygon(h.points.map(([x, y]) => xy(x, y)), {
-        color: h.color, weight: dim ? 1 : 2, fillColor: h.color, fillOpacity: dim ? 0.04 : 0.16, dashArray: "6 5", pmIgnore: !S.edit
+        color: h.color, weight: dim ? 1 : 2, fillColor: h.color, fillOpacity: dim ? 0.04 : 0.16, dashArray: "6 5", pmIgnore: !S.edit, interactive: S.edit
       });
       poly._holdId = h.id;
       poly.bindPopup(() => holdPopup(h));
       poly.on("pm:edit", (e) => {
         const cur = allHolds()[h.id];
         const pts = e.layer.getLatLngs()[0].map((ll) => { const p = toXY(ll); return [p.x, p.y]; });
-        S.ovr.holds[h.id] = { ...cur, points: pts }; saveOvr();
+        S.ovr.holds[h.id] = { ...cur, points: pts }; saveOvr([{ kind: "hold", id: h.id }]);
       });
       S.layers.holds.addLayer(poly); S.polys[h.id] = poly;
       if (S.showLabels) {
         const c = poly.getBounds().getCenter();
-        S.layers.holdLabels.addLayer(L.marker(c, { interactive: false, icon: L.divIcon({ className: "hold-label", html: L10(h.name).toUpperCase(), iconSize: [160, 20], iconAnchor: [80, 10] }) }));
+        S.layers.holdLabels.addLayer(L.marker(c, { interactive: false, icon: L.divIcon({ className: "hold-label", html: `<span class="lbl" data-text="${esc(L10(h.name).toUpperCase())}">${esc(L10(h.name).toUpperCase())}</span>`, iconSize: [220, 24], iconAnchor: [110, 12] }) }));
       }
     }
   }
@@ -87,17 +124,19 @@
     for (const it of Object.values(allItems())) {
       if (!isVisible(it)) continue;
       const big = !!catOf(it).big && (it.sub === "city" || it.sub === "town");
-      const size = big ? 30 : 22;
+      const size = big ? 36 : 26;
       const m = L.marker(xy(it.x, it.y), {
         draggable: S.edit, pmIgnore: true, riseOnHover: true,
-        icon: L.divIcon({ className: "", html: `<div class="poi${big ? " big" : ""}" style="background:${colorOf(it)};width:${size}px;height:${size}px">${iconOf(it)}</div>`, iconSize: [size, size], iconAnchor: [size / 2, size / 2], popupAnchor: [0, -size / 2] })
+        icon: L.divIcon({ className: "", html: `<div class="poi${big ? " big" : ""}" style="background:${colorOf(it)};width:${size}px;height:${size}px">${iconHtml(it)}</div>`, iconSize: [size, size], iconAnchor: [size / 2, size / 2], popupAnchor: [0, -size / 2] })
       });
       m._itemId = it.id;
       m.bindPopup(() => itemPopup(it), { maxWidth: 300 });
       const label = L10(it.name);
-      if (S.showLabels && it.cat === "settlement" && (big || z >= 0.5)) m.bindTooltip(label, { permanent: true, direction: "bottom", className: "poi-label", offset: [0, size / 2 - 2] });
-      else m.bindTooltip(label, { direction: "top", className: "poi-label", offset: [0, -size / 2] });
-      m.on("dragend", () => { const p = toXY(m.getLatLng()); S.ovr.items[it.id] = { ...allItems()[it.id], ...p, approx: false }; saveOvr(); });
+      const permanent = S.showLabels && (it.cat === "settlement" ? (big || z >= 0.3) : z >= 1.4);
+      m.bindTooltip(`<span class="lbl" data-text="${esc(label)}">${esc(label)}</span>`, { permanent, direction: permanent ? "bottom" : "top", className: "poi-label" + (big ? " big" : ""), offset: permanent ? [0, size / 2 - 4] : [0, -size / 2], opacity: 1 });
+      m.on("mouseover", () => m.getTooltip()?.getElement()?.classList.add("hover"));
+      m.on("mouseout", () => m.getTooltip()?.getElement()?.classList.remove("hover"));
+      m.on("dragend", () => { const p = toXY(m.getLatLng()); S.ovr.items[it.id] = { ...allItems()[it.id], ...p, approx: false }; saveOvr([{ kind: "item", id: it.id }]); });
       S.layers.points.addLayer(m); S.markers[it.id] = m;
     }
   }
@@ -107,12 +146,12 @@
   function itemPopup(it) {
     it = allItems()[it.id] || it;
     const tags = (it.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join("");
-    return `<div class="popup"><h3>${iconOf(it)} ${esc(L10(it.name))}</h3>
+    return `<div class="popup"><h3>${esc(L10(it.name))}</h3>
       <div class="meta">${esc(L10(catOf(it).label))} · ${esc(subLabel(it))} · ${esc(holdName(it.hold))}</div>
       <div>${esc(L10(it.desc))}</div>
       ${tags ? `<div class="tags">${tags}</div>` : ""}
       ${it.approx ? `<div class="approx">${T("approx")}</div>` : ""}
-      ${S.edit ? `<button class="edit-btn" onclick="SkyrimMap.editItem('${it.id}')">${T("editBtn")}</button>` : ""}</div>`;
+      <button class="edit-btn" onclick="SkyrimMap.editItem('${it.id}')">${T("editBtn")}</button></div>`;
   }
   function holdPopup(h) {
     h = allHolds()[h.id] || h;
@@ -120,7 +159,7 @@
     return `<div class="popup"><h3>${esc(L10(h.name))}</h3>
       ${cap ? `<div class="meta">${T("capital")}: <a href="#" onclick="SkyrimMap.goTo('${cap.id}');return false">${esc(L10(cap.name))}</a></div>` : ""}
       <div>${esc(L10(h.desc))}</div>
-      ${S.edit ? `<button class="edit-btn" onclick="SkyrimMap.editHold('${h.id}')">${T("editBtn")}</button>` : ""}</div>`;
+      <button class="edit-btn" onclick="SkyrimMap.editHold('${h.id}')">${T("editBtn")}</button></div>`;
   }
 
   // ---------- filters UI ----------
@@ -147,7 +186,7 @@
       const total = keys.reduce((a, s) => a + subs[cid][s], 0);
       const el = document.createElement("div"); el.className = "cat" + (openCats.has(cid) ? " open" : ""); el.dataset.cat = cid;
       el.innerHTML = `<div class="cat-head"><span class="caret">▶</span><input type="checkbox" ${on === keys.length ? "checked" : ""} ${on && on < keys.length ? "data-ind=1" : ""}>
-        <span class="ico">${c.icon}</span><span>${esc(L10(c.label))}</span><span class="count">${total}</span></div><div class="subs"></div>`;
+        <span class="ico">${iconHtml({ cat: cid, sub: "" })}</span><span>${esc(L10(c.label))}</span><span class="count">${total}</span></div><div class="subs"></div>`;
       const cb = el.querySelector("input"); cb.indeterminate = on > 0 && on < keys.length;
       cb.addEventListener("click", (e) => { e.stopPropagation(); for (const s of keys) cb.checked ? S.filters.add(`${cid}:${s}`) : S.filters.delete(`${cid}:${s}`); apply(); });
       el.querySelector(".cat-head").addEventListener("click", () => el.classList.toggle("open"));
@@ -155,7 +194,7 @@
       for (const sid of keys) {
         const si = c.subs[sid] || { en: sid, pt: sid, icon: c.icon };
         const lab = document.createElement("label");
-        lab.innerHTML = `<input type="checkbox" ${S.filters.has(`${cid}:${sid}`) ? "checked" : ""}><span class="dot" style="background:${si.color || c.color}"></span><span class="ico">${si.icon || c.icon}</span><span>${esc(si[S.lang] || si.en || sid)}</span><span class="count">${subs[cid][sid]}</span>`;
+        lab.innerHTML = `<input type="checkbox" ${S.filters.has(`${cid}:${sid}`) ? "checked" : ""}><span class="dot" style="background:${si.color || c.color}"></span><span class="ico">${iconHtml({ cat: cid, sub: sid })}</span><span>${esc(si[S.lang] || si.en || sid)}</span><span class="count">${subs[cid][sid]}</span>`;
         lab.querySelector("input").addEventListener("change", (e) => { e.target.checked ? S.filters.add(`${cid}:${sid}`) : S.filters.delete(`${cid}:${sid}`); apply(); });
         subsEl.appendChild(lab);
       }
@@ -181,7 +220,7 @@
     for (const h of Object.values(allHolds())) if (L10(h.name).toLowerCase().includes(q)) hits.push({ kind: "hold", id: h.id, label: L10(h.name), icon: "🗺️", sub: "" });
     for (const it of Object.values(allItems())) {
       const hay = [it.name.en, it.name.pt, subLabel(it), holdName(it.hold), ...(it.tags || [])].join(" ").toLowerCase();
-      if (hay.includes(q)) hits.push({ kind: "item", id: it.id, label: L10(it.name), icon: iconOf(it), sub: subLabel(it) });
+      if (hay.includes(q)) hits.push({ kind: "item", id: it.id, label: L10(it.name), icon: iconHtml(it), sub: subLabel(it) });
     }
     box.innerHTML = hits.length ? hits.slice(0, 40).map((h) => `<div data-kind="${h.kind}" data-id="${h.id}"><span class="ico">${h.icon}</span>${esc(h.label)}<small>${esc(h.sub)}</small></div>`).join("") : `<div>${T("noResults")}</div>`;
     box.classList.remove("hidden");
@@ -199,13 +238,43 @@
   // ---------- edit mode ----------
   $("#edit-mode").addEventListener("change", (e) => {
     S.edit = e.target.checked; $("#edit-tools").classList.toggle("hidden", !S.edit);
-    if (S.edit) {
+    if (S.edit && map.pm) {
       map.pm.addControls({ position: "topright", drawMarker: false, drawCircleMarker: false, drawPolyline: false, drawRectangle: false, drawCircle: false, drawText: false, cutPolygon: false, rotateMode: false, removalMode: false, editMode: true, dragMode: false, drawPolygon: true });
       map.pm.setLang(S.lang === "pt" ? "pt_br" : "en");
-    } else { map.pm.removeControls(); map.pm.disableGlobalEditMode(); }
+    } else if (map.pm) { map.pm.removeControls(); map.pm.disableGlobalEditMode(); }
     renderHolds(); renderPoints();
   });
-  map.on("click", (e) => { if (!S.edit || map.pm.globalDrawModeEnabled() || map.pm.globalEditModeEnabled()) return; const p = toXY(e.latlng); openForm(null, { kind: "point", ...p }); });
+  // click menu (left click on empty map, right click too)
+  const ctx = $("#ctx"); let ctxPoint = null, popupWasOpen = false;
+  map.on("preclick", () => { popupWasOpen = !!(map._popup && map._popup.isOpen()); });
+  function showMenu(e) {
+    ctxPoint = toXY(e.latlng);
+    const hid = holdAt(ctxPoint.x, ctxPoint.y);
+    const hb = ctx.querySelector('[data-act="hold"]');
+    hb.classList.toggle("hidden", !hid); hb.dataset.hold = hid; hb.querySelector("span:last-child").textContent = hid ? holdName(hid) : "";
+    // menu is position:fixed, so viewport coordinates of the click are used directly
+    let x = e.originalEvent.clientX + 2, y = e.originalEvent.clientY + 2;
+    ctx.classList.remove("hidden");
+    if (x + ctx.offsetWidth > window.innerWidth) x -= ctx.offsetWidth + 4; if (y + ctx.offsetHeight > window.innerHeight) y -= ctx.offsetHeight + 4;
+    ctx.style.left = x + "px"; ctx.style.top = y + "px";
+  }
+  map.on("click", (e) => {
+    if (!ctx.classList.contains("hidden")) { hideCtx(); return; }   // click outside the menu closes it
+    if (popupWasOpen) return;                                           // click that closed a popup does nothing else
+    if (map.pm && (map.pm.globalDrawModeEnabled() || map.pm.globalEditModeEnabled())) return;
+    showMenu(e);
+  });
+  map.on("contextmenu", (e) => { L.DomEvent.preventDefault(e.originalEvent); showMenu(e); });
+  const hideCtx = () => ctx.classList.add("hidden");
+  map.on("movestart zoomstart", hideCtx); document.addEventListener("keydown", (e) => { if (e.key === "Escape") { hideCtx(); } });
+  ctx.querySelectorAll("button").forEach((b) => b.addEventListener("click", (ev) => {
+    ev.stopPropagation(); const act = b.dataset.act; hideCtx();
+    if (act === "add") openForm(null, { kind: "point", ...ctxPoint });
+    else if (act === "hold") { const h = allHolds()[b.dataset.hold]; if (h) L.popup().setLatLng(xy(ctxPoint.x, ctxPoint.y)).setContent(holdPopup(h)).openOn(map); }
+    else if (act === "area") { if (!S.edit) { $("#edit-mode").checked = true; $("#edit-mode").dispatchEvent(new Event("change")); } map.pm?.enableDraw("Polygon"); }
+    else if (act === "copy") { navigator.clipboard?.writeText(`${ctxPoint.x}, ${ctxPoint.y}`); toast(T("copied")); }
+  }));
+  function toast(msg) { const t = document.createElement("div"); t.className = "coords"; t.style.bottom = "34px"; t.textContent = msg; $("#map").appendChild(t); setTimeout(() => t.remove(), 1800); }
   map.on("pm:create", (e) => {
     if (e.shape !== "Polygon") return;
     const pts = e.layer.getLatLngs()[0].map((ll) => { const p = toXY(ll); return [p.x, p.y]; });
@@ -214,7 +283,7 @@
   });
 
   const F = (id) => document.getElementById(id);
-  function fillCatSelect() { const sel = F("f-cat"); sel.innerHTML = Object.entries(S.cats).map(([id, c]) => `<option value="${id}">${c.icon} ${esc(L10(c.label))}</option>`).join(""); }
+  function fillCatSelect() { const sel = F("f-cat"); sel.innerHTML = Object.entries(S.cats).map(([id, c]) => `<option value="${id}">${esc(L10(c.label))}</option>`).join(""); }
   function fillSubList() { const cid = F("f-cat").value; const subs = allSubs()[cid] || {}; F("sub-list").innerHTML = Object.keys(subs).map((s) => `<option value="${s}">${esc((S.cats[cid]?.subs[s] || {})[S.lang] || s)}</option>`).join(""); }
   F("f-cat").addEventListener("change", fillSubList);
 
@@ -246,25 +315,27 @@
     if (!confirm(T("confirmDelete"))) return;
     const id = F("f-id").value, isArea = F("f-kind").value === "area";
     const bucket = isArea ? S.ovr.holds : S.ovr.items, base = isArea ? S.base.holds : S.base.items;
-    if (base[id]) bucket[id] = null; else delete bucket[id];
-    saveOvr(); closeForm(); refreshAll();
+    bucket[id] = null;                       // null = deleted (also for ids that only exist in the database)
+    saveOvr([{ kind: isArea ? "hold" : "item", id }]); closeForm(); refreshAll();
   });
   F("poi-form").addEventListener("submit", (e) => {
     e.preventDefault();
     const isArea = F("f-kind").value === "area";
-    const nameEn = F("f-name-en").value.trim(), namePt = F("f-name-pt").value.trim() || nameEn;
+    const nameEn = F("f-name-en").value.trim() || F("f-name-pt").value.trim(), namePt = F("f-name-pt").value.trim() || nameEn;
+    if (!nameEn) { alert(T("needName")); F("f-name-en").focus(); return; }
     const id = F("f-id").value || slug(nameEn);
     if (isArea) {
       S.ovr.holds[id] = { id, kind: "area", color: F("f-color").value, capital: F("poi-form")._capital, name: { en: nameEn, pt: namePt },
         desc: { en: F("f-desc-en").value.trim(), pt: F("f-desc-pt").value.trim() }, points: F("poi-form")._points || [] };
     } else {
       const sub = F("f-sub").value.trim().toLowerCase().replace(/\s+/g, "_") || "misc";
-      S.ovr.items[id] = { id, cat: F("f-cat").value, sub, x: +F("f-x").value, y: +F("f-y").value, hold: F("f-hold").value,
+      const prev = allItems()[id] || {};
+      S.ovr.items[id] = { ...(prev.img ? { img: prev.img } : {}), id, cat: F("f-cat").value, sub, x: +F("f-x").value, y: +F("f-y").value, hold: F("f-hold").value,
         name: { en: nameEn, pt: namePt }, desc: { en: F("f-desc-en").value.trim(), pt: F("f-desc-pt").value.trim() },
         tags: F("f-tags").value.split(",").map((t) => t.trim()).filter(Boolean) };
       S.filters.add(`${F("f-cat").value}:${sub}`);
     }
-    saveOvr(); closeForm(); refreshAll();
+    saveOvr([{ kind: isArea ? "hold" : "item", id }]); closeForm(); refreshAll();
   });
   function slug(s) { let b = s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "") || "item"; let id = b, n = 2; const all = { ...allItems(), ...allHolds() }; while (all[id]) id = `${b}_${n++}`; return id; }
   function holdAt(x, y) { for (const h of Object.values(allHolds())) if (pointInPoly([x, y], h.points)) return h.id; return ""; }
@@ -293,12 +364,15 @@
         for (const [id, it] of Object.entries(items)) if (JSON.stringify(it) !== JSON.stringify(S.base.items[id])) S.ovr.items[id] = it;
         for (const id in S.base.items) if (!items[id]) S.ovr.items[id] = null;
       } else throw new Error("format");
-      saveOvr(); refreshAll(); alert(T("imported"));
+      saveOvr(allChanges()); refreshAll(); alert(T("imported"));
     } catch { alert(T("importFail")); }
     e.target.value = "";
   });
-  $("#btn-reset").addEventListener("click", () => { if (confirm(T("confirmReset"))) { S.ovr = { holds: {}, items: {} }; saveOvr(); refreshAll(); } });
-  function updateChangeCount() { $("#change-count").textContent = T("changes", ovrCount()); }
+  $("#btn-reset").addEventListener("click", async () => {
+    if (REMOTE) { try { S.ovr = await remoteLoad(); saveOvr(); refreshAll(); } catch (e) { setSync(T("syncLoadErr"), true); } return; }
+    if (confirm(T("confirmReset"))) { S.ovr = { holds: {}, items: {} }; saveOvr(); refreshAll(); }
+  });
+  function updateChangeCount() { $("#change-count").textContent = REMOTE ? T("changesRemote", ovrCount()) : T("changes", ovrCount()); }
 
   // ---------- misc UI ----------
   $("#toggle-holds").addEventListener("change", (e) => { S.showHolds = e.target.checked; renderHolds(); });
@@ -314,7 +388,8 @@
     document.querySelectorAll("[data-i18n]").forEach((el) => el.textContent = T(el.dataset.i18n));
     document.querySelectorAll("[data-i18n-ph]").forEach((el) => el.placeholder = T(el.dataset.i18nPh));
     document.title = T("title");
-    if (S.edit) map.pm.setLang(l === "pt" ? "pt_br" : "en");
+    if (REMOTE) setSync(pending.length ? T("syncErr") : T("syncOn"), !!pending.length); else setSync(T("syncOff"));
+    if (S.edit && map.pm) map.pm.setLang(l === "pt" ? "pt_br" : "en");
     refreshAll();
   }
   function refreshAll() { renderHoldSelects(); renderFilters(); renderHolds(); renderPoints(); updateChangeCount(); map.closePopup(); }
@@ -335,8 +410,26 @@
       const arr = await j(`data/${f}`);
       for (const it of arr) (it.kind === "area" ? S.base.holds : S.base.items)[it.id] = it;
     }
+    if (REMOTE) {
+      try { S.ovr = await remoteLoad(); localStorage.setItem(LS_OVR, JSON.stringify(S.ovr)); setSync(T("syncOn")); }
+      catch (e) { console.warn(e); setSync(T("syncLoadErr"), true); }
+      flushPending();
+    } else setSync(T("syncOff"));
     initFilters();
     setLang(S.lang);
     if (location.hash.length > 1) setTimeout(() => goTo(decodeURIComponent(location.hash.slice(1))), 300);
+    if (new URLSearchParams(location.search).get("selftest")) {
+      try {
+        openForm(null, { kind: "point", x: 700, y: 400 });
+        F("f-cat").value = "ingredient"; fillSubList(); F("f-sub").value = "nirnroot"; F("f-name-en").value = "Selftest Nirnroot";
+        F("poi-form").requestSubmit();
+        const it = allItems()["selftest_nirnroot"];
+        const mk = S.markers["selftest_nirnroot"];
+        map.closePopup(); popupWasOpen = false;
+        map.fire("click", { latlng: xy(600, 450), originalEvent: { clientX: 700, clientY: 500 } });
+        const menuOk = !ctx.classList.contains("hidden") && ctx.querySelector('[data-act="hold"] span:last-child').textContent.length > 0;
+        document.title = "SELFTEST " + (it && it.hold === "whiterun" && it.x === 700 && mk ? "OK" : "FAIL " + JSON.stringify(it)) + " MENU " + (menuOk ? "OK" : "FAIL");
+      } catch (e) { document.title = "SELFTEST ERR " + e.message; }
+    }
   })().catch((err) => { console.error(err); alert("Failed to load data: " + err.message); });
 })();

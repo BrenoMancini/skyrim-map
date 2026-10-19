@@ -1,4 +1,10 @@
 {
-  "repo": "https://github.com/",
-  "files": ["holds.json", "locations.json", "ores.json", "ingredients.json", "other.json"]
+  "repo": "https://github.com/BrenoMancini/skyrim-map",
+  "files": [
+    "holds.json",
+    "locations.json",
+    "ores.json",
+    "ingredients.json",
+    "other.json"
+  ]
 }
