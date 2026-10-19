@@ -319,8 +319,8 @@
     "id": "nightgate_inn",
     "cat": "settlement",
     "sub": "inn",
-    "x": 790,
-    "y": 250,
+    "x": 783,
+    "y": 280,
     "hold": "the_pale",
     "name": {
       "en": "Nightgate Inn",
@@ -353,8 +353,8 @@
     "id": "mor_khazgur",
     "cat": "settlement",
     "sub": "orc_stronghold",
-    "x": 120,
-    "y": 250,
+    "x": 180,
+    "y": 284,
     "hold": "the_reach",
     "name": {
       "en": "Mor Khazgur",
@@ -473,7 +473,7 @@
     "cat": "dungeon",
     "sub": "nordic_ruin",
     "x": 560,
-    "y": 375,
+    "y": 364,
     "hold": "hjaalmarch",
     "name": {
       "en": "Labyrinthian",
@@ -678,8 +678,8 @@
     "id": "fort_dawnguard",
     "cat": "dungeon",
     "sub": "keep",
-    "x": 1195,
-    "y": 650,
+    "x": 1182,
+    "y": 644,
     "hold": "the_rift",
     "name": {
       "en": "Fort Dawnguard",
@@ -696,8 +696,8 @@
     "id": "fellglow_keep",
     "cat": "dungeon",
     "sub": "fort",
-    "x": 780,
-    "y": 370,
+    "x": 775,
+    "y": 398,
     "hold": "whiterun",
     "name": {
       "en": "Fellglow Keep",
@@ -781,8 +781,8 @@
     "id": "halted_stream_camp",
     "cat": "dungeon",
     "sub": "bandit_camp",
-    "x": 700,
-    "y": 375,
+    "x": 695,
+    "y": 383,
     "hold": "whiterun",
     "name": {
       "en": "Halted Stream Camp",
@@ -917,8 +917,8 @@
     "id": "dragontooth_crater",
     "cat": "dungeon",
     "sub": "dragon_lair",
-    "x": 210,
-    "y": 235,
+    "x": 232,
+    "y": 246,
     "hold": "the_reach",
     "name": {
       "en": "Dragontooth Crater",
@@ -1053,8 +1053,8 @@
     "id": "guardian_stones",
     "cat": "landmark",
     "sub": "standing_stone",
-    "x": 660,
-    "y": 585,
+    "x": 664,
+    "y": 571,
     "hold": "whiterun",
     "name": {
       "en": "Guardian Stones",
@@ -1189,8 +1189,8 @@
     "id": "tower_stone",
     "cat": "landmark",
     "sub": "standing_stone",
-    "x": 835,
-    "y": 190,
+    "x": 726,
+    "y": 196,
     "hold": "the_pale",
     "name": {
       "en": "Tower Stone",
@@ -1322,7 +1322,7 @@
     "sub": "lake",
     "x": 865,
     "y": 330,
-    "hold": "eastmarch",
+    "hold": "the_pale",
     "name": {
       "en": "Lake Yorgrim",
       "pt": "Lago Yorgrim"
@@ -1371,8 +1371,8 @@
     "id": "shrine_mehrunes",
     "cat": "landmark",
     "sub": "shrine",
-    "x": 765,
-    "y": 240,
+    "x": 738,
+    "y": 245,
     "hold": "the_pale",
     "name": {
       "en": "Shrine of Mehrunes Dagon",

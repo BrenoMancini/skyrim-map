@@ -66,8 +66,8 @@
     "id": "mine_halted_stream",
     "cat": "mine",
     "sub": "iron",
-    "x": 703,
-    "y": 372,
+    "x": 697,
+    "y": 384,
     "hold": "whiterun",
     "tags": [
       "iron",
@@ -173,8 +173,8 @@
     "id": "mine_fort_fellhammer",
     "cat": "mine",
     "sub": "iron",
-    "x": 755,
-    "y": 225,
+    "x": 735,
+    "y": 231,
     "hold": "the_pale",
     "tags": [
       "iron",
@@ -365,8 +365,8 @@
     "id": "mine_mor_khazgur",
     "cat": "mine",
     "sub": "orichalcum",
-    "x": 124,
-    "y": 256,
+    "x": 188,
+    "y": 292,
     "hold": "the_reach",
     "tags": [
       "orichalcum",
@@ -410,7 +410,7 @@
     "cat": "mine",
     "sub": "orichalcum",
     "x": 430,
-    "y": 545,
+    "y": 559,
     "hold": "falkreath",
     "tags": [
       "orichalcum",

@@ -67,8 +67,8 @@
     "id": "mill_angas",
     "cat": "other",
     "sub": "lumber",
-    "x": 880,
-    "y": 265,
+    "x": 877,
+    "y": 293,
     "hold": "the_pale",
     "tags": [
       "wood",
@@ -131,7 +131,7 @@
     "cat": "other",
     "sub": "lumber",
     "x": 360,
-    "y": 207,
+    "y": 201,
     "hold": "haafingar",
     "tags": [
       "wood",
@@ -215,8 +215,8 @@
     "id": "hunt_falkreath",
     "cat": "other",
     "sub": "hunting",
-    "x": 500,
-    "y": 690,
+    "x": 506,
+    "y": 680,
     "hold": "falkreath",
     "tags": [
       "deer",
