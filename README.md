@@ -81,6 +81,12 @@ Sem banco o site é estático: as edições ficam só no navegador de quem fez. 
 
 Com o banco ligado, o `data/*.json` do repositório é a camada base e a tabela guarda cada mudança por cima. **Exportar tudo (JSON)** continua funcionando e dá o resultado combinado, que você pode gravar de volta em `data/` de vez em quando com `tools/split_export.py`.
 
+### Reference images · Imagens de referência
+
+Markers can carry a screenshot. The site downsizes it in the browser (1600 px full + 400 px thumbnail, JPEG) and uploads both to a public Supabase Storage bucket named `map-images`; the item stores `image: { url, thumb }`. Create the bucket in the dashboard (**Storage → New bucket**, public) and give the `anon` role SELECT/INSERT/UPDATE/DELETE on it (**Storage → Policies**). `supabase/storage.sql` does the same thing when the SQL editor is allowed to create policies on `storage.objects`.
+
+Marcadores podem ter um print. O site reduz a imagem no navegador (1600 px + miniatura de 400 px, JPEG) e envia as duas pro bucket público `map-images` do Supabase Storage; o item guarda `image: { url, thumb }`. Crie o bucket pelo painel (**Storage → New bucket**, público) e dê ao papel `anon` SELECT/INSERT/UPDATE/DELETE nele (**Storage → Policies**). O `supabase/storage.sql` faz o mesmo quando o editor SQL deixa criar políticas em `storage.objects`.
+
 ## Stack
 
 Leaflet 1.9 (`CRS.Simple` over the map image), Leaflet-Geoman for polygon drawing, vanilla JS, no build step. Hosted on GitHub Pages.

@@ -40,6 +40,27 @@
     const r = await fetch(rUrl() + "?on_conflict=id", { method: "POST", headers: { ...rHeaders(), Prefer: "resolution=merge-duplicates,return=minimal" }, body: JSON.stringify(rows) });
     if (!r.ok) throw new Error("save " + r.status);
   }
+  // image storage (Supabase Storage bucket "map-images", see supabase/storage.sql)
+  const BUCKET = "map-images";
+  const storageUrl = (path) => CFG.supabaseUrl.replace(/\/$/, "") + "/storage/v1/object/public/" + BUCKET + "/" + path;
+  async function uploadImage(blob, path) {
+    const r = await fetch(CFG.supabaseUrl.replace(/\/$/, "") + "/storage/v1/object/" + BUCKET + "/" + path, {
+      method: "POST", headers: { apikey: CFG.supabaseKey, Authorization: "Bearer " + CFG.supabaseKey, "Content-Type": blob.type, "x-upsert": "true" }, body: blob });
+    if (!r.ok) throw new Error("upload " + r.status);
+  }
+  function resizeImage(file, max, quality) {   // downscale in the browser so uploads stay small
+    return new Promise((resolve, reject) => {
+      const img = new Image(); const url = URL.createObjectURL(file);
+      img.onload = () => {
+        const k = Math.min(1, max / Math.max(img.width, img.height));
+        const c = document.createElement("canvas"); c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+        c.getContext("2d").drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(url);
+        c.toBlob((b) => b ? resolve(b) : reject(new Error("encode")), "image/jpeg", quality);
+      };
+      img.onerror = () => { URL.revokeObjectURL(url); reject(new Error("decode")); };
+      img.src = url;
+    });
+  }
   let pending = (() => { try { return JSON.parse(localStorage.getItem(LS_OVR + ".pending")) || []; } catch { return []; } })();
   function setSync(msg, bad) { const el = $("#sync-status"); if (el) { el.textContent = msg; el.style.color = bad ? "#f0a08f" : ""; } }
   async function flushPending() {
@@ -167,6 +188,7 @@
     return `<div class="popup"><h3>${esc(nameOf(it))}</h3>
       <div class="meta">${esc(L10(catOf(it).label))} · ${esc(subLabel(it))} · ${esc(holdName(it.hold))}</div>
       <div>${esc(L10(it.desc))}</div>
+      ${it.image?.url ? `<a class="pop-img" href="${esc(it.image.url)}" onclick="SkyrimMap.lightbox('${esc(it.image.url)}');return false"><img src="${esc(it.image.thumb || it.image.url)}" alt="" loading="lazy"></a>` : ""}
       ${tags ? `<div class="tags">${tags}</div>` : ""}
       ${it.approx ? `<div class="approx">${T("approx")}</div>` : ""}
       <button class="edit-btn" onclick="SkyrimMap.editItem('${it.id}')">${T("editBtn")}</button></div>`;
@@ -393,6 +415,9 @@
     fillCatSelect(); F("f-cat").value = item?.cat || "settlement"; fillSubList();
     F("f-sub").value = item?.sub || ""; F("f-name-en").value = L10(item?.name); F("f-name-pt").value = item?.name?.pt || "";
     F("poi-form")._orig = { name: item?.name, desc: item?.desc };
+    F("f-image-row").classList.toggle("hidden", !REMOTE || kind === "area");
+    F("f-image").value = ""; F("poi-form")._removeImage = false;
+    setImagePreview(item?.image?.thumb || item?.image?.url || "");
     F("f-hold").value = item?.hold || (defaults.x != null ? holdAt(defaults.x, defaults.y) : "");
     F("f-desc-en").value = L10(item?.desc); F("f-desc-pt").value = item?.desc?.pt || "";
     F("f-tags").value = (item?.tags || []).join(", "); F("f-color").value = item?.color || "#c08a3e";
@@ -429,7 +454,10 @@
     bucket[id] = null;                       // null = deleted (also for ids that only exist in the database)
     saveOvr([{ kind: isArea ? "hold" : "item", id }]); closeForm(); refreshAll(); toast(T("deleted"), "success");
   });
-  F("poi-form").addEventListener("submit", (e) => {
+  function setImagePreview(src) { const p = F("f-image-preview"); p.src = src; p.classList.toggle("hidden", !src); F("f-image-remove").classList.toggle("hidden", !src); }
+  F("f-image").addEventListener("change", () => { const f = F("f-image").files[0]; if (!f) return; if (f.size > 20 * 1024 * 1024) { toast(T("imageTooBig"), "error"); F("f-image").value = ""; return; } F("poi-form")._removeImage = false; setImagePreview(URL.createObjectURL(f)); });
+  F("f-image-remove").addEventListener("click", () => { F("f-image").value = ""; F("poi-form")._removeImage = true; setImagePreview(""); });
+  F("poi-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const isArea = F("f-kind").value === "area";
     const orig = F("poi-form")._orig || {};
@@ -446,7 +474,18 @@
     } else {
       const sub = subRaw || "misc";
       const prev = allItems()[id] || {};
-      S.ovr.items[id] = { ...(prev.img ? { img: prev.img } : {}), id, cat: F("f-cat").value, sub, x: +F("f-x").value, y: +F("f-y").value, hold: holdAt(+F("f-x").value, +F("f-y").value) || F("f-hold").value,
+      let image = F("poi-form")._removeImage ? null : (prev.image || null);
+      const file = F("f-image").files[0];
+      if (file && REMOTE) {
+        toast(T("uploading"), "info", 6000);
+        try {
+          const base = `${id}_${Date.now()}`;
+          const [full, thumb] = await Promise.all([resizeImage(file, 1600, 0.82), resizeImage(file, 400, 0.8)]);
+          await Promise.all([uploadImage(full, base + ".jpg"), uploadImage(thumb, base + "_t.jpg")]);
+          image = { url: storageUrl(base + ".jpg"), thumb: storageUrl(base + "_t.jpg") };
+        } catch (err) { console.warn(err); toast(T("uploadFail"), "error", 4000); return; }
+      }
+      S.ovr.items[id] = { ...(prev.img ? { img: prev.img } : {}), ...(image ? { image } : {}), id, cat: F("f-cat").value, sub, x: +F("f-x").value, y: +F("f-y").value, hold: holdAt(+F("f-x").value, +F("f-y").value) || F("f-hold").value,
         name: nameEn ? name : { en: "", pt: "" }, desc,
         tags: F("f-tags").value.split(",").map((t) => t.trim()).filter(Boolean) };
       S.filters.add(`${F("f-cat").value}:${sub}`);
@@ -526,8 +565,16 @@
   }
   function refreshAll() { renderHoldSelects(); renderFilters(); renderHolds(); renderPoints(); updateChangeCount(); map.closePopup(); }
 
+  const lb = $("#lightbox");
+  function lightbox(url) {
+    lb.querySelector("img").src = url; lb.classList.remove("hidden");
+    const close = () => { lb.classList.add("hidden"); lb.querySelector("img").src = ""; document.removeEventListener("keydown", onKey, true); };
+    const onKey = (e) => { if (e.key === "Escape") { e.stopPropagation(); close(); } };
+    document.addEventListener("keydown", onKey, true);
+    lb.onclick = close;
+  }
   window.SkyrimMap = {
-    goTo, goToHold,
+    lightbox, goTo, goToHold,
     editItem: (id) => { map.closePopup(); openForm(allItems()[id]); },
     editHold: (id) => { map.closePopup(); openForm(allHolds()[id]); }
   };
