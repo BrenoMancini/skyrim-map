@@ -50,7 +50,7 @@
   // persist overrides. `changes` lists what was touched so the shared database gets only those rows.
   function saveOvr(changes) {
     localStorage.setItem(LS_OVR, JSON.stringify(S.ovr)); updateChangeCount();
-    if (REMOTE && changes && changes.length) {
+    if (REMOTE && changes && changes.length && !S.noRemote) {
       pending.push(...changes); localStorage.setItem(LS_OVR + ".pending", JSON.stringify(pending));
       flushPending();
     }
@@ -73,6 +73,7 @@
   function subLabel(item) { const s = subInfo(item); return s[S.lang] || s.en || item.sub; }
   function colorOf(item) { const s = subInfo(item); return s.color || catOf(item).color; }
   function iconOf(item) { return subInfo(item).icon || catOf(item).icon; }
+  function nameOf(item) { return L10(item.name) || subLabel(item); }
   function imgOf(item) { return item.img || subInfo(item).img || catOf(item).img || ""; }
   function iconHtml(item, cls) { const im = imgOf(item); return im ? `<img class="${cls || ""}${im.endsWith(".svg") ? " svg" : ""}" src="assets/icons/${im}" alt="">` : iconOf(item); }
 
@@ -131,7 +132,7 @@
       });
       m._itemId = it.id;
       m.bindPopup(() => itemPopup(it), { maxWidth: 300 });
-      const label = L10(it.name);
+      const label = nameOf(it);
       const permanent = S.showLabels && (it.cat === "settlement" ? (big || z >= 0.3) : z >= 1.4);
       m.bindTooltip(`<span class="lbl" data-text="${esc(label)}">${esc(label)}</span>`, { permanent, direction: permanent ? "bottom" : "top", className: "poi-label" + (big ? " big" : ""), offset: permanent ? [0, size / 2 - 4] : [0, -size / 2], opacity: 1 });
       m.on("mouseover", () => m.getTooltip()?.getElement()?.classList.add("hover"));
@@ -146,7 +147,7 @@
   function itemPopup(it) {
     it = allItems()[it.id] || it;
     const tags = (it.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join("");
-    return `<div class="popup"><h3>${esc(L10(it.name))}</h3>
+    return `<div class="popup"><h3>${esc(nameOf(it))}</h3>
       <div class="meta">${esc(L10(catOf(it).label))} · ${esc(subLabel(it))} · ${esc(holdName(it.hold))}</div>
       <div>${esc(L10(it.desc))}</div>
       ${tags ? `<div class="tags">${tags}</div>` : ""}
@@ -157,7 +158,7 @@
     h = allHolds()[h.id] || h;
     const cap = h.capital && allItems()[h.capital];
     return `<div class="popup"><h3>${esc(L10(h.name))}</h3>
-      ${cap ? `<div class="meta">${T("capital")}: <a href="#" onclick="SkyrimMap.goTo('${cap.id}');return false">${esc(L10(cap.name))}</a></div>` : ""}
+      ${cap ? `<div class="meta">${T("capital")}: <a href="#" onclick="SkyrimMap.goTo('${cap.id}');return false">${esc(nameOf(cap))}</a></div>` : ""}
       <div>${esc(L10(h.desc))}</div>
       <button class="edit-btn" onclick="SkyrimMap.editHold('${h.id}')">${T("editBtn")}</button></div>`;
   }
@@ -219,8 +220,8 @@
     const hits = [];
     for (const h of Object.values(allHolds())) if (L10(h.name).toLowerCase().includes(q)) hits.push({ kind: "hold", id: h.id, label: L10(h.name), icon: "🗺️", sub: "" });
     for (const it of Object.values(allItems())) {
-      const hay = [it.name.en, it.name.pt, subLabel(it), holdName(it.hold), ...(it.tags || [])].join(" ").toLowerCase();
-      if (hay.includes(q)) hits.push({ kind: "item", id: it.id, label: L10(it.name), icon: iconHtml(it), sub: subLabel(it) });
+      const hay = [it.name?.en, it.name?.pt, subLabel(it), holdName(it.hold), ...(it.tags || [])].join(" ").toLowerCase();
+      if (hay.includes(q)) hits.push({ kind: "item", id: it.id, label: nameOf(it), icon: iconHtml(it), sub: subLabel(it) });
     }
     box.innerHTML = hits.length ? hits.slice(0, 40).map((h) => `<div data-kind="${h.kind}" data-id="${h.id}"><span class="ico">${h.icon}</span>${esc(h.label)}<small>${esc(h.sub)}</small></div>`).join("") : `<div>${T("noResults")}</div>`;
     box.classList.remove("hidden");
@@ -299,9 +300,10 @@
     F("f-tags").parentElement.classList.toggle("hidden", isArea);
     F("f-delete").classList.toggle("hidden", !item);
     fillCatSelect(); F("f-cat").value = item?.cat || "settlement"; fillSubList();
-    F("f-sub").value = item?.sub || ""; F("f-name-en").value = item?.name?.en || ""; F("f-name-pt").value = item?.name?.pt || "";
+    F("f-sub").value = item?.sub || ""; F("f-name-en").value = L10(item?.name); F("f-name-pt").value = item?.name?.pt || "";
+    F("poi-form")._orig = { name: item?.name, desc: item?.desc };
     F("f-hold").value = item?.hold || (defaults.x != null ? holdAt(defaults.x, defaults.y) : "");
-    F("f-desc-en").value = item?.desc?.en || ""; F("f-desc-pt").value = item?.desc?.pt || "";
+    F("f-desc-en").value = L10(item?.desc); F("f-desc-pt").value = item?.desc?.pt || "";
     F("f-tags").value = (item?.tags || []).join(", "); F("f-color").value = item?.color || "#c08a3e";
     F("f-x").value = item?.x ?? defaults.x ?? ""; F("f-y").value = item?.y ?? defaults.y ?? "";
     F("poi-form")._points = item?.points || defaults.points || null;
@@ -321,17 +323,22 @@
   F("poi-form").addEventListener("submit", (e) => {
     e.preventDefault();
     const isArea = F("f-kind").value === "area";
-    const nameEn = F("f-name-en").value.trim() || F("f-name-pt").value.trim(), namePt = F("f-name-pt").value.trim() || nameEn;
-    if (!nameEn) { alert(T("needName")); F("f-name-en").focus(); return; }
-    const id = F("f-id").value || slug(nameEn);
+    const orig = F("poi-form")._orig || {};
+    const both = (val, prev) => (val === L10(prev) && prev) ? prev : { en: val, pt: val };   // untouched → keep both languages
+    const nameVal = F("f-name-en").value.trim(), descVal = F("f-desc-en").value.trim();
+    const name = both(nameVal, orig.name), desc = both(descVal, orig.desc);
+    const nameEn = nameVal;
+    const subRaw = F("f-sub").value.trim().toLowerCase().replace(/\s+/g, "_");
+    if (!isArea && !nameEn && !subRaw) { alert(T("needName")); F("f-sub").focus(); return; }
+    if (isArea && !nameEn) { alert(T("needName")); F("f-name-en").focus(); return; }
+    const id = F("f-id").value || slug(nameEn || subRaw);
     if (isArea) {
-      S.ovr.holds[id] = { id, kind: "area", color: F("f-color").value, capital: F("poi-form")._capital, name: { en: nameEn, pt: namePt },
-        desc: { en: F("f-desc-en").value.trim(), pt: F("f-desc-pt").value.trim() }, points: F("poi-form")._points || [] };
+      S.ovr.holds[id] = { id, kind: "area", color: F("f-color").value, capital: F("poi-form")._capital, name, desc, points: F("poi-form")._points || [] };
     } else {
-      const sub = F("f-sub").value.trim().toLowerCase().replace(/\s+/g, "_") || "misc";
+      const sub = subRaw || "misc";
       const prev = allItems()[id] || {};
       S.ovr.items[id] = { ...(prev.img ? { img: prev.img } : {}), id, cat: F("f-cat").value, sub, x: +F("f-x").value, y: +F("f-y").value, hold: F("f-hold").value,
-        name: { en: nameEn, pt: namePt }, desc: { en: F("f-desc-en").value.trim(), pt: F("f-desc-pt").value.trim() },
+        name: nameEn ? name : { en: "", pt: "" }, desc,
         tags: F("f-tags").value.split(",").map((t) => t.trim()).filter(Boolean) };
       S.filters.add(`${F("f-cat").value}:${sub}`);
     }
@@ -420,6 +427,7 @@
     if (location.hash.length > 1) setTimeout(() => goTo(decodeURIComponent(location.hash.slice(1))), 300);
     if (new URLSearchParams(location.search).get("selftest")) {
       try {
+        S.noRemote = true;
         openForm(null, { kind: "point", x: 700, y: 400 });
         F("f-cat").value = "ingredient"; fillSubList(); F("f-sub").value = "nirnroot"; F("f-name-en").value = "Selftest Nirnroot";
         F("poi-form").requestSubmit();
@@ -427,8 +435,16 @@
         const mk = S.markers["selftest_nirnroot"];
         map.closePopup(); popupWasOpen = false;
         map.fire("click", { latlng: xy(600, 450), originalEvent: { clientX: 700, clientY: 500 } });
+        openForm(null, { kind: "point", x: 900, y: 650 });
+        F("f-cat").value = "ingredient"; fillSubList(); F("f-sub").value = "nordic_barnacle"; F("f-name-en").value = "";
+        F("poi-form").requestSubmit();
+        const nn = Object.values(allItems()).find((i) => i.sub === "nordic_barnacle" && i.x === 900);
+        const namelessOk = nn && nameOf(nn) === subLabel(nn) && nameOf(nn).length > 0;
+        if (nn) { S.ovr.items[nn.id] = null; saveOvr([{ kind: "item", id: nn.id }]); }
+        S.ovr.items["selftest_nirnroot"] = null; saveOvr([{ kind: "item", id: "selftest_nirnroot" }]);
+        document.title = "NAMELESS " + (namelessOk ? "OK" : "FAIL") + " ";
         const menuOk = !ctx.classList.contains("hidden") && ctx.querySelector('[data-act="hold"] span:last-child').textContent.length > 0;
-        document.title = "SELFTEST " + (it && it.hold === "whiterun" && it.x === 700 && mk ? "OK" : "FAIL " + JSON.stringify(it)) + " MENU " + (menuOk ? "OK" : "FAIL");
+        document.title += "SELFTEST " + (it && it.hold === "whiterun" && it.x === 700 && mk ? "OK" : "FAIL " + JSON.stringify(it)) + " MENU " + (menuOk ? "OK" : "FAIL");
       } catch (e) { document.title = "SELFTEST ERR " + e.message; }
     }
   })().catch((err) => { console.error(err); alert("Failed to load data: " + err.message); });
